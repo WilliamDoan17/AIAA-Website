@@ -1,0 +1,22 @@
+.Navbar {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: yellow;
+}
+
+.logo {
+  height: fit-content;
+}
+
+.logo h1 {
+  margin: .5rem;
+}
+
+.linkContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+
