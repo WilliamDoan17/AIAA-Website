@@ -17,3 +17,4 @@
 - _id: string
 - name: string
 - role: string (will be enum later)
+- photo: string
