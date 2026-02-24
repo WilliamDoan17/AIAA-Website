@@ -1,11 +1,11 @@
 const mockProjects = [
   {
-    _id: 1,
+    id: 1,
     name: "SUAS",
     description: "Drone",
   },
   {
-    _id: 2,
+    id: 2,
     name: "COSMIC Sattelite",
     description: "Sattelite",
   }

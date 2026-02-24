@@ -1,20 +1,22 @@
 # Schema of Data for AIAA-Website
 
 ## Projects
-- _id: string
+- id: string
 - name: string
 - description: string
 - coverImage: string 
 
 ## Events
-- _id: string 
+- id: string 
 - name: string 
-- location: string 
+- location: string
+- start_time: string
+_ end_time: string
 - description: string
 - coverImage: string 
 
 ## Members
-- _id: string
+- id: string
 - name: string
 - role: string (will be enum later)
 - photo: string

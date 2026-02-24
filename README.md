@@ -23,7 +23,7 @@ Provides a public-facing interface for visitors to explore the club's active pro
 | Frontend | React (Vite) |
 | Routing | React Router v6 |
 | Backend | Node.js + Express |
-| Database | MongoDB + Mongoose |
+| Database | PostgreSQL |
 | Auth (Stage 2) | JWT |
 
 ---

@@ -1,7 +1,43 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import styles from './Landing.module.css'
+import styles from "./Landing.module.css"
 import useProjects from "../hooks/useProjects"
+import useEvents from '../hooks/useEvents.js'
+
+const EventCard = ({ event }) => {
+  return (
+    <>
+    </>
+  )
+}
+
+const EventSection = () => {
+  const { data, loading, error } = useEvents();
+
+  return (
+    <>
+      <div
+        className={styles.EventSection}
+      >
+        <h2>
+          Upcoming Events
+        </h2>
+        <div
+          className={styles.EventContainer}
+        >
+          {
+            data.map(event => (
+              <EventCard
+                event={event}
+              >
+              </EventCard>
+            ))
+          }
+        </div>
+      </div>
+    </>
+  )
+}
 
 const ProjectCard = ({ project }) => {
   return (
@@ -38,7 +74,7 @@ const ProjectSection = () => {
         <div
           className={styles.ProjectContainer}
         >
-          // notes: use flexbox or grid to align the project card
+          {/* notes: use flexbox or grid to align the project card */}
           {
             projects.map(project => (
               <ProjectCard
@@ -113,6 +149,8 @@ const Landing = () => {
         </AboutSection>
         <ProjectSection>
         </ProjectSection>
+        <EventSection>
+        </EventSection>
         <Footer>
         </Footer>
       </div>
