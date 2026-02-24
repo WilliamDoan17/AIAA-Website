@@ -11,7 +11,7 @@ The mock data in /src/data follows this structure.
 
 ## Events 
 - _id: string
-- title: string
+- name: string
 - date: string
 - location: string
 - description: string 

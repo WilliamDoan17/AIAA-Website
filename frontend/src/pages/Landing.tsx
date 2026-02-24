@@ -38,6 +38,7 @@ const ProjectSection = () => {
         <div
           className={styles.ProjectContainer}
         >
+          // notes: use flexbox or grid to align the project card
           {
             projects.map(project => (
               <ProjectCard

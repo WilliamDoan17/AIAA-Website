@@ -2,13 +2,13 @@
 
 ## Projects
 - _id: string
-- title: string
+- name: string
 - description: string
 - coverImage: string 
 
 ## Events
 - _id: string 
-- title: string 
+- name: string 
 - location: string 
 - description: string
 - coverImage: string 
