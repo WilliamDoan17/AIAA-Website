@@ -5,4 +5,21 @@
   text-align: center;
 }
 
+.AboutSection {
+  padding: 1rem 1.5rem;
+  background-color: white;
+}
+
+.AboutSection h1 {
+  text-align: center;
+}
+
+.ProjectSection {
+  padding: 1rem 1.5rem;
+}
+
+.ProjectSection h1 {
+  text-align: center;
+}
+
 

@@ -5,9 +5,9 @@ The mock data in /src/data follows this structure.
 
 ## Projects
 - _id: string
-- title: string
+- name: string
 - description: string
-- coverImage: string
+- thumbnail: string
 
 ## Events 
 - _id: string
@@ -15,7 +15,7 @@ The mock data in /src/data follows this structure.
 - date: string
 - location: string
 - description: string 
-- coverImage: string
+- thumbnail: string
 
 ## Members
 - _id: string
@@ -23,6 +23,6 @@ The mock data in /src/data follows this structure.
 - role: string
 - photo: string
 
-## Conventiosn
+## Conventions
 - Images are relative paths from /public/ (only for frontend mock data phase)
 - Dates are ISO 8601 strings
