@@ -10,6 +10,10 @@ const MemberSection = () => {
       <div
         className={styles.MemberSection}
       >
+        <h2>
+          Our Team
+        </h2>
+
       </div>
     </>
   )
