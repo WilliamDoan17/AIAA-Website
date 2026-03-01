@@ -9,12 +9,12 @@
 // - thumbnail: string
 
 
-export const mockEvents = [
+const mockEvents = [
   {
     id: 1,
     name: "SUAS Meeting",
     date: "Feb 26",
-    start_time: "6:00pm"
+    start_time: "6:00pm",
     end_time: "8:00pm",
     location: "ENB DFX Lab",
     description: "Meet up and do SUAS",

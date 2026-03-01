@@ -4,9 +4,40 @@ import styles from "./Landing.module.css"
 import useProjects from "../hooks/useProjects"
 import useEvents from '../hooks/useEvents.js'
 
+const MemberSection = () => {
+  return (
+    <>
+      <div
+        className={styles.MemberSection}
+      >
+      </div>
+    </>
+  )
+}
+
 const EventCard = ({ event }) => {
   return (
     <>
+      <div
+        className={styles.EventCard}
+      >
+        <img
+          src={event.thumbnail}
+        >
+        </img>
+        <h4>
+          {event.date} | {event.start_time} - {event.end_time}
+        </h4>
+        <h4>
+          {event.location}
+        </h4>
+        <h3>
+          {event.name}
+        </h3>
+        <p>
+          {event.description}
+        </p>
+      </div>
     </>
   )
 }
