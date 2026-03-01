@@ -1,22 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
 .Navbar {
-  padding: 1rem 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: yellow;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 64px;
+  background: rgba(4, 6, 15, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26, 39, 68, 0.8);
 }
 
-.logo {
-  height: fit-content;
+/* Top accent line */
+.Navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00c8ff 50%, transparent 100%);
+  opacity: 0.6;
 }
 
+/* ─── Logo ─────────────────────────────────── */
 .logo h1 {
-  margin: .5rem 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 40%, #00c8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: default;
 }
 
+/* ─── Link Container ───────────────────────── */
 .linkContainer {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 2.5rem;
 }
 
+.linkContainer a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #7a8aaa;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
 
+/* Underline slide-in on hover */
+.linkContainer a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #00c8ff;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.linkContainer a:hover {
+  color: #e8eef8;
+}
+
+.linkContainer a:hover::after {
+  width: 100%;
+}
+
+/* Active link state (React Router will add .active class) */
+.linkContainer a.active {
+  color: #00c8ff;
+}
+
+.linkContainer a.active::after {
+  width: 100%;
+}
+
+/* ─── Responsive ───────────────────────────── */
+@media (max-width: 600px) {
+  .Navbar {
+    padding: 0 1.25rem;
+  }
+
+  .linkContainer {
+    gap: 1.5rem;
+  }
+
+  .logo h1 {
+    font-size: 0.8rem;
+  }
+}
