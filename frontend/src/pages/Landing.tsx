@@ -3,8 +3,31 @@ import Footer from "../components/Footer"
 import styles from "./Landing.module.css"
 import useProjects from "../hooks/useProjects"
 import useEvents from '../hooks/useEvents.js'
+import { useMembers } from "../hooks/useMembers.js"
+
+const MemberCard = ({ member }) => {
+  return (
+    <>
+      <div
+        className={styles.MemberCard}
+      >
+        <img
+          src={member.photo}
+        ></img>
+        <h3>
+          {member.name}
+        </h3>
+        <p>
+          {member.role}
+        </p>
+      </div>
+    </>
+  )
+}
 
 const MemberSection = () => {
+  const { data, loading, error } = useMembers();
+
   return (
     <>
       <div
@@ -13,7 +36,17 @@ const MemberSection = () => {
         <h2>
           Our Team
         </h2>
-
+        <div
+          className={styles.MemberContainer}
+        >
+          {
+            data.map(member => (
+              <MemberCard
+                member={member}
+              ></MemberCard>
+            ))
+          }
+        </div>
       </div>
     </>
   )
@@ -186,6 +219,8 @@ const Landing = () => {
         </ProjectSection>
         <EventSection>
         </EventSection>
+        <MemberSection>
+        </MemberSection>
         <Footer>
         </Footer>
       </div>
