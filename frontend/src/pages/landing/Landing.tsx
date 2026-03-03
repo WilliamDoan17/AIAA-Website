@@ -1,9 +1,9 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 import styles from "./Landing.module.css"
-import useProjects from "../hooks/useProjects"
-import useEvents from '../hooks/useEvents.js'
-import { useMembers } from "../hooks/useMembers.js"
+import useProjects from "../../hooks/useProjects"
+import useEvents from '../../hooks/useEvents.js'
+import { useMembers } from "../../hooks/useMembers.js"
 
 const MemberCard = ({ member }) => {
   return (

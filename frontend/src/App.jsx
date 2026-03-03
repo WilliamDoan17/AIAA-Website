@@ -1,9 +1,9 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Landing from './pages/Landing.tsx'
-import Projects from './pages/Projects.tsx'
-import Events from './pages/Events.jsx'
-import Members from './pages/Members.jsx'
+import Landing from './pages/landing/Landing.tsx'
+import Projects from './pages/projects/Projects.tsx'
+import Events from './pages/events/Events.jsx'
+import Members from './pages/members/Members.jsx'
 
 function App() {
 
