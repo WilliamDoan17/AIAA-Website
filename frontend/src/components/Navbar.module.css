@@ -30,6 +30,11 @@
 }
 
 /* ─── Logo ─────────────────────────────────── */
+.logo a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .logo h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: 1rem;
@@ -41,7 +46,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.logo a:hover h1 {
+  background: linear-gradient(135deg, #00c8ff 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ─── Link Container ───────────────────────── */

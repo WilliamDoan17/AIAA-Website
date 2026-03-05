@@ -9,9 +9,14 @@ const Navbar = () => {
         <div
           className={styles.logo}
         >
-          <h1>
-            AIAA at USF
-          </h1>
+          <Link
+            to="/"
+          >
+            <h1>
+              AIAA at USF
+            </h1>
+
+          </Link>
         </div>
         <div
           className={styles.linkContainer}
