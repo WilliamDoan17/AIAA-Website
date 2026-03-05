@@ -1,0 +1,333 @@
+/* ============================================
+   AIAA USF — Projects Page CSS Module
+   Aesthetic: Deep-Space Tech / Mission Control
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+/* ─── CSS Variables ─────────────────────────── */
+:root {
+  --void: #04060f;
+  --deep: #080d1f;
+  --panel: #0c1228;
+  --surface: #111827;
+  --rim: #1a2744;
+  --accent: #00c8ff;
+  --accent-dim: rgba(0, 200, 255, 0.15);
+  --accent-glow: rgba(0, 200, 255, 0.4);
+  --gold: #f0a500;
+  --gold-dim: rgba(240, 165, 0, 0.15);
+  --text: #e8eef8;
+  --muted: #7a8aaa;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ─── Page Wrapper ──────────────────────────── */
+.Projects {
+  background-color: var(--void);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Starfield texture overlay */
+.Projects::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Page Header ───────────────────────────── */
+.PageHeader {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 4rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rim);
+}
+
+.PageHeader::before {
+  content: '// PROJECTS';
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.PageHeader h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.PageHeader p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  animation: fadeSlideUp 0.9s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Filter Bar ────────────────────────────── */
+.FilterBar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 4rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rim);
+}
+
+.FilterChoice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.FilterChoice label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+.FilterChoice select {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--rim);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.FilterChoice select:hover,
+.FilterChoice select:focus {
+  border-color: var(--accent);
+}
+
+.FilterChoice select option {
+  background: var(--panel);
+  color: var(--text);
+}
+
+/* ─── Project Container ─────────────────────── */
+.ProjectContainer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 4rem 6rem;
+  background: transparent;
+}
+
+/* ─── Empty State ───────────────────────────── */
+.ProjectContainer p {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 4rem 0;
+}
+
+/* ─── Project Card ──────────────────────────── */
+.ProjectCard {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--rim);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  margin-bottom: 1rem;
+}
+
+/* Accent left bar */
+.ProjectCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.ProjectCard:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.ProjectCard:hover::before {
+  height: 100%;
+}
+
+.ProjectCardImage {
+  width: 280px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.ProjectCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.75) saturate(0.8);
+  transition: filter 0.4s ease;
+}
+
+.ProjectCard:hover .ProjectCardImage img {
+  filter: brightness(0.9) saturate(1);
+}
+
+.ProjectCardImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--rim);
+  min-height: 160px;
+}
+
+/* ─── Project Card Content ──────────────────── */
+.ProjectCardContent {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ProjectCardContent h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin: 0;
+}
+
+.ProjectCardContent p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 300;
+  max-width: 680px;
+}
+
+/* ─── Filter Tags ───────────────────────────── */
+.filterTagContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.FilterTag {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  background: var(--accent-dim);
+  padding: 0.3rem 0.75rem;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+/* ─── Animations ────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .PageHeader {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .FilterBar {
+    padding: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .ProjectContainer {
+    padding: 1.5rem 1.5rem 4rem;
+  }
+
+  .ProjectCard {
+    flex-direction: column;
+  }
+
+  .ProjectCardImage {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .ProjectCardContent {
+    padding: 1.5rem;
+  }
+}
