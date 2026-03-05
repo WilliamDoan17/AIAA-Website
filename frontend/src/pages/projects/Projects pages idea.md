@@ -23,6 +23,8 @@ This is the idea for the Projects page for the AIAA - Club Website.
   
   It exists as a blog page, which the admin writes and post to the user to see
 
+  Follows a default structure + Other structure by writer
+
 ### Execution 
 
 - Start with the main page, which only list what project is current

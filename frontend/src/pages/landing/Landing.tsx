@@ -42,6 +42,7 @@ const MemberSection = () => {
           {
             data.map(member => (
               <MemberCard
+                key={member.id}
                 member={member}
               ></MemberCard>
             ))
@@ -53,17 +54,24 @@ const MemberSection = () => {
 }
 
 const EventCard = ({ event }) => {
+  const start = new Date(event.start_time)
+  const end = new Date(event.end_time)
+
+  const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  const startTime = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+  const endTime = end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+
   return (
     <>
       <div
         className={styles.EventCard}
       >
         <img
-          src={event.thumbnail}
+          src={event.cover_image}
         >
         </img>
         <h4>
-          {event.date} | {event.start_time} - {event.end_time}
+          {date} | {startTime} - {endTime}
         </h4>
         <h4>
           {event.location}
@@ -72,7 +80,7 @@ const EventCard = ({ event }) => {
           {event.name}
         </h3>
         <p>
-          {event.description}
+          {event.summary}
         </p>
       </div>
     </>
@@ -96,6 +104,7 @@ const EventSection = () => {
           {
             data.map(event => (
               <EventCard
+                key={event.id}
                 event={event}
               >
               </EventCard>
@@ -114,14 +123,14 @@ const ProjectCard = ({ project }) => {
         className={styles.ProjectCard}
       >
         <img
-          src={project.thumbnail}
+          src={project.cover_image}
         ></img>
         <div>
           <h3>
             {project.name}
           </h3>
           <p>
-            {project.description}
+            {project.summary}
           </p>
         </div>
       </div>
@@ -146,6 +155,7 @@ const ProjectSection = () => {
           {
             projects.map(project => (
               <ProjectCard
+                key={project.id}
                 project={project}
               ></ProjectCard>
             ))
@@ -188,7 +198,7 @@ const AboutSection = () => {
           Hi, we're the American Institute of Aeronautics and Astronautics!
         </h1>
         <p>
-          Joining us means diving straight into real aerospace engineering challenges that you won't find in the classroom. Whether we’re creating a custom aircraft for the Student Unmanned Aerial Systems competition or building astronaut hardware that NASA will test in microgravity, every project challenges us to think creatively and work as a team. Along the way, you’ll gain hands-on technical skills, connect with industry professionals, and become part of a community who shares your passion for flight and space. It’s exciting, rewarding, and an experience that will stay with you far beyond graduation."
+          Joining us means diving straight into real aerospace engineering challenges that you won't find in the classroom. Whether we're creating a custom aircraft for the Student Unmanned Aerial Systems competition or building astronaut hardware that NASA will test in microgravity, every project challenges us to think creatively and work as a team. Along the way, you'll gain hands-on technical skills, connect with industry professionals, and become part of a community who shares your passion for flight and space. It's exciting, rewarding, and an experience that will stay with you far beyond graduation."
         </p>
         <p>
           We currently has 2 major projects. SUAS an autonamous long range drone for hurricane recovery and COSMIC a satelite robotic arm for in space manufacturing to be presented to NASA in April.
