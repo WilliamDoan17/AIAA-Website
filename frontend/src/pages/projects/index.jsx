@@ -93,7 +93,6 @@ const Projects = () => {
 
   return (
     <div className={styles.Projects}>
-      <Navbar />
       <div className={styles.PageHeader}>
         <h1>Projects</h1>
         <p>Explore what we're working on</p>
@@ -107,7 +106,6 @@ const Projects = () => {
         projects={filtered}
         filterOptions={filterOptions}
       />
-      <Footer />
     </div>
   )
 }

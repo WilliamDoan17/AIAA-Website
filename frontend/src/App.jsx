@@ -4,13 +4,14 @@ import Landing from './pages/landing/Landing'
 import Projects from './pages/projects/index'
 import Events from './pages/events/index'
 import Members from './pages/members/Members'
+import PageLayout from './components/PageLayout'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
+        <Route path="/" element={<PageLayout />}>
           <Route index element={<Landing></Landing>}></Route>
           <Route path="projects" element={<Projects></Projects>}></Route>
           <Route path="events" element={<Events></Events>}></Route>

@@ -219,8 +219,6 @@ const Landing = () => {
       <div
         className={styles.Landing}
       >
-        <Navbar>
-        </Navbar>
         <HeroSection>
         </HeroSection>
         <AboutSection>
@@ -231,8 +229,6 @@ const Landing = () => {
         </EventSection>
         <MemberSection>
         </MemberSection>
-        <Footer>
-        </Footer>
       </div>
     </>
   )
