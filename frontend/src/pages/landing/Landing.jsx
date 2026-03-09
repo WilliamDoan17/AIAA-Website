@@ -96,7 +96,7 @@ const EventSection = () => {
         className={styles.EventSection}
       >
         <h2>
-          Upcoming Events
+          UpcomingEvents Events
         </h2>
         <div
           className={styles.EventContainer}
