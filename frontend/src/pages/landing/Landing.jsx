@@ -4,6 +4,7 @@ import useEvents from '../../hooks/useEvents.js'
 import { useMembers } from "../../hooks/useMembers.js"
 
 const MemberCard = ({ member }) => {
+  const formatRole = (role) => role.replace(/_/g, ' ').toUpperCase()
   return (
     <div className={styles.MemberCard}>
       <div className={styles.MemberCardImage}>
@@ -13,7 +14,7 @@ const MemberCard = ({ member }) => {
         }
       </div>
       <h3>{member.name}</h3>
-      <p>{member.role}</p>
+      <p>{formatRole(member.role)}</p>
     </div>
   )
 }
