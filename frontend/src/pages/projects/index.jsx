@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer.jsx'
 import useProjects from '../../hooks/useProjects.js'
-import Navbar from './../../components/Navbar.jsx'
+import Navbar from '../../components/Navbar.jsx'
 import styles from './index.module.css'
 
 const ProjectCard = ({ project, filterOptions }) => {

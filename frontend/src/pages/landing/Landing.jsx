@@ -1,7 +1,7 @@
-import Navbar from "../../components/Navbar"
-import Footer from "../../components/Footer"
+import Navbar from "../../components/Navbar.jsx"
+import Footer from "../../components/Footer.jsx"
 import styles from "./Landing.module.css"
-import useProjects from "../../hooks/useProjects"
+import useProjects from "../../hooks/useProjects.js"
 import useEvents from '../../hooks/useEvents.js'
 import { useMembers } from "../../hooks/useMembers.js"
 
