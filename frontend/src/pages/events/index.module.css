@@ -1,0 +1,274 @@
+/* ============================================
+   AIAA USF — Events Page CSS Module
+   Aesthetic: Deep-Space Tech / Mission Control
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+/* ─── CSS Variables ─────────────────────────── */
+:root {
+  --void: #04060f;
+  --deep: #080d1f;
+  --panel: #0c1228;
+  --surface: #111827;
+  --rim: #1a2744;
+  --accent: #00c8ff;
+  --accent-dim: rgba(0, 200, 255, 0.15);
+  --accent-glow: rgba(0, 200, 255, 0.4);
+  --gold: #f0a500;
+  --gold-dim: rgba(240, 165, 0, 0.15);
+  --text: #e8eef8;
+  --muted: #7a8aaa;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ─── Page Wrapper ──────────────────────────── */
+.Events {
+  background-color: var(--void);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 6rem;
+}
+/* Starfield texture overlay */
+.Events::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Page Header ───────────────────────────── */
+.Events > h1 {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 auto;
+  padding: 5rem 4rem 2rem;
+  max-width: 1300px;
+  border-bottom: 1px solid var(--rim);
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.Events > h1::before {
+  content: '// EVENTS';
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1rem;
+  background: none;
+  -webkit-text-fill-color: var(--accent);
+}
+
+/* ─── Section Shared Styles ─────────────────── */
+.OngoingEvents,
+.UpcomingEvents,
+.PastEvents {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 4rem 4rem 2rem;
+}
+
+.OngoingEvents h2,
+.UpcomingEvents h2,
+.PastEvents h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  margin: 0 0 2rem;
+}
+
+.OngoingEvents h2::after,
+.UpcomingEvents h2::after,
+.PastEvents h2::after {
+  content: '';
+  display: block;
+  margin-top: 0.5rem;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* Ongoing uses gold accent to signal urgency */
+.OngoingEvents h2 {
+  color: var(--gold);
+}
+
+.OngoingEvents h2::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Past events are visually muted */
+.PastEvents {
+  opacity: 0.6;
+}
+
+/* ─── Event Grid ────────────────────────────── */
+.EventGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ─── Event Card ────────────────────────────── */
+.EventCard {
+  background: var(--panel);
+  border: 1px solid var(--rim);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.EventCard:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(240, 165, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* ─── Event Card Image ──────────────────────── */
+.EventCardImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.EventCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7) saturate(0.6);
+  transition: filter 0.4s ease;
+}
+
+.EventCard:hover .EventCardImage img {
+  filter: brightness(0.9) saturate(1);
+}
+
+.EventCardImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--rim);
+  min-height: 157px;
+}
+
+/* ─── Event Card Content ────────────────────── */
+.EventCard h4 {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin: 1.25rem 1.5rem 0.2rem;
+}
+
+.EventCard h4:nth-of-type(2) {
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.EventCard h3 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin: 0.75rem 1.5rem 0.6rem;
+}
+
+.EventCard p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 1.5rem 1.5rem;
+  font-weight: 300;
+}
+
+/* ─── Show Past Button ──────────────────────── */
+.ShowPastButton {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 2rem auto 0;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.85rem 2.5rem;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--rim);
+  cursor: pointer;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.ShowPastButton:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+/* ─── Animations ────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .Events > h1 {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .OngoingEvents,
+  .UpcomingEvents,
+  .PastEvents {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .EventGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ShowPastButton {
+    margin: 1.5rem 1.5rem 0;
+  }
+}

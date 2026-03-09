@@ -61,13 +61,18 @@ const EventCard = ({ event }) => {
 }
 
 const EventSection = () => {
-  const { data = [], loading, error } = useEvents();
+  const { data = [] } = useEvents()
+  const now = new Date()
+  const displayed = [
+    ...data.filter(e => new Date(e.start_time) <= now && new Date(e.end_time) >= now),
+    ...data.filter(e => new Date(e.start_time) > now)
+  ]
 
   return (
     <div className={styles.EventSection}>
-      <h2>Upcoming Events</h2>
+      <h2>Events</h2>
       <div className={styles.EventContainer}>
-        {data.map(event => (
+        {displayed.map(event => (
           <EventCard
             key={event.id}
             event={event}
