@@ -19,7 +19,7 @@ const mockProjects = [
     description: "The COSMIC (Club Operated Small Mission In orbit CubeSat) project develops a small satellite for research purposes. The team handles systems engineering, structural design, power management, and communication subsystems.",
     cover_image: null,
     status: "in_progress",
-    category: "research",
+    category: "competition",
   },
 ]
 

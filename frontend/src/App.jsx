@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Landing from './pages/landing/Landing'
 import Projects from './pages/projects/index'
 import Events from './pages/events/index'
-import Members from './pages/members/Members'
+import Members from './pages/members/index'
 import PageLayout from './components/PageLayout'
 
 function App() {
