@@ -8,31 +8,6 @@ A public-facing club website for AIAA at USF. Two types of users:
 
 ## Tech Stack
 - **Frontend:** Vite + React
-- **Backend:** Supabase (PostgreSQL + Auth)
-- **Styling:** CSS Modules
-- **Routing:** React Router
-
-## Build Order
-1. Client-facing UI with mock data (current phase)
-2. Backend — Supabase schema + real data replaces mocks
-3. Admin view — write, edit, publish content
-4. Auth — lock admin view behind login
-
-## Pages Planned
-- `/` — Landing page (done)
-- `/projects` — Projects index page (done)
-- `/projects/:id` — Project detail page (not started)
-- `/events` — Events page (not started)
-- `/members` — Members page (not started)
-
-## Data Schema
-Three tables: `projects`, `events`, `members`.
-A fourth table `project_members` (junction) is planned for the project detail page.
-Full schema is in `SCHEMA.md`.
-
-## Key Data Decisions
-- `projects` has both `summary` (short, for cards) and `description` (full, for detail page)
-- `events` uses `timestamptz` for `start_time` and `end_time` — no separate `date` field
 # AIAA Website — Project Decisions Summary
 
 This document summarizes the key decisions made during planning and early development of the AIAA USF club website. Use this to onboard a new AI chat session quickly.
@@ -52,8 +27,8 @@ A public-facing club website for AIAA at USF. Two types of users:
 
 ## Build Order
 
-1. Client-facing UI with mock data (current phase)
-2. Backend — Supabase schema + real data replaces mocks
+1. Client-facing UI with mock data ✅
+2. Backend — Supabase schema + real data replaces mocks (current phase)
 3. Admin view — write, edit, publish content
 4. Auth — lock admin view behind login
 
@@ -61,6 +36,8 @@ A public-facing club website for AIAA at USF. Two types of users:
 
 - **Soft launch** — end of Phase 1, deploy with mock data to Vercel, share internally with officers only
 - **Public launch** — end of Phase 2, real content, announce publicly
+- **Platform:** Vercel (not GitHub Pages — React Router requires extra workarounds on GH Pages)
+- **Branch strategy:** `soft-launch` branch holds the Phase 1 snapshot; Vercel deploys from that branch; Phase 2 development continues on `main`
 
 ## Pages Planned
 
@@ -155,6 +132,13 @@ Landing
 - `PresidentCard`: photo left (3/4 aspect ratio), content right (top-aligned), gold left accent bar
 - `MemberCard`: circular photo, center-aligned, cyan accent on hover
 
+## Supabase Setup (Pre-Phase 2)
+
+- Supabase project created (AIAA-Website)
+- Supabase client installed
+- `.env` configured with Supabase URL and anon key
+- `supabase.ts` written and working
+
 ## Files Produced
 
 - `SCHEMA.md` — full database schema
@@ -168,3 +152,4 @@ Landing
 - `Events.jsx` + `events.index.module.css` — events index page
 - `Members.jsx` + `members.index.module.css` — members index page
 - `Navbar.jsx` + `Navbar.module.css` — shared navbar
+- `supabase.ts` — Supabase client initialization
