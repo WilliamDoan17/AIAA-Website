@@ -8,8 +8,8 @@ Build plan for the AIAA USF Website project.
 - See the details of each project as a website post, consisting of:
   - Overview
   - Explanation
-  - Members working on the project and their roles
-  - Progress / update posts
+  - Members working on the project and their roles 
+  (removed seeing updates)
 - Look up events of the club, including upcoming, ongoing, and past events
 - Read the details of each event:
   - Overview
@@ -18,8 +18,8 @@ Build plan for the AIAA USF Website project.
   - RSVP link
 - See members of the club, and upon click see member details:
   - Photo
-  - Role
-  - Bio
+  - Title
+  - Bio (about me)
   - Projects they are on, with their role and project updates
 
 ### Admin / Officers
@@ -35,7 +35,7 @@ Build plan for the AIAA USF Website project.
 
 ## Phases
 
-### Phase 1 — Frontend with Mock Data
+### Phase 1 — Frontend with Mock Data - Done
 Focus: public-facing, simple display pages where the UI is the main unknown.
 Backend is not involved. All data comes from mock data files.
 
