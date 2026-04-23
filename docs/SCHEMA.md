@@ -1,206 +1,202 @@
 # SCHEMA
-This document states the data schema for the AIAA Website project.
 
-## Conventions
-- Follows Supabase PostgreSQL conventions for types, naming, and usage
-- All tables include `id` and `created_at` as standard fields
-- Optional fields default to `null` unless otherwise stated
+This document details the data model, validations, and access (RLS) controls for the AIAA Website database.
 
 ---
 
-## Data Schema
+## club_info
 
-### projects
+### Schema
+| Field        | Type    | Notes                                  |
+|--------------|---------|----------------------------------------|
+| id           | uuid    | primary key default gen_random_uuid()   |
+| name         | text    | not null check (name <> '')             |
+| cover_image  | text    | not null default ''                     |
+| about        | text    | not null default ''                     |
 
-#### Properties
-- id:
-  - type: uuid
-  - primary key
-  - defaults to gen_random_uuid()
-  - Unique identifier for each project
-- created_at:
-  - type: timestamptz
-  - defaults to now()
-  - constraints:
-    - not null
-  - Records when the project entry was created
-- author_id:
-  - type: uuid
-  - foreign key, references auth.users(id)
-  - constraints:
-    - not null
-    - on delete cascade
-  - The officer who created this project entry
-- name:
-  - type: text
-  - constraints:
-    - not null
-    - check: name <> ''
-  - Display name of the project
-- summary:
-  - type: text
-  - constraints:
-    - not null
-    - check: summary <> ''
-  - Short description shown on the project card
-- description:
-  - type: text
-  - constraints:
-    - not null
-    - check: description <> ''
-  - Full content shown on the project detail page
-- cover_image:
-  - type: text
-  - defaults to null
-  - URL pointing to the project's cover image, optional
-- status:
-  - type: project_status (ENUM('not_started', 'in_progress', 'paused', 'completed'))
-  - defaults to 'not_started'
-  - constraints:
-    - not null
-  - Represents the current state of the project
-- category:
-  - type: project_category (ENUM('competition', 'research'))
-  - constraints:
-    - not null
-  - Classifies the project type for filtering and display
+### No advanced validation or special RLS noted (admin access to edit).
 
-#### Implementation
+---
+
+## club_members
+
+### Schema
 ```sql
-create type project_status as ENUM ('not_started', 'in_progress', 'paused', 'completed');
-create type project_category as ENUM ('competition', 'research');
+create type club_role as enum ('admin', 'officer');
 
-create table projects (
-  id uuid default gen_random_uuid() primary key,
-  created_at timestamptz default now() not null,
-  author_id uuid not null references auth.users(id) on delete cascade,
+create table club_members (
+  id uuid primary key references auth.users(id) not null,
+  email text not null check (email <> ''),
   name text not null check (name <> ''),
-  summary text not null check (summary <> ''),
-  description text not null check (description <> ''),
-  cover_image text default null,
-  status project_status default 'not_started' not null,
-  category project_category not null
+  role club_role not null default 'officer',
+  title text not null check (title <> ''),
+  photo text,
+  bio text not null default '',
+  created_at timestamptz not null default now()
 );
+```
+
+### Field Validation
+| Field     | Validation                                    |
+|-----------|-----------------------------------------------|
+| email     | valid email, not empty, unique                |
+| name      | not empty, 2–64 chars, UTF-8 printable        |
+| role      | enum constraint                               |
+| title     | not empty, 2–48 chars                         |
+| photo     | valid URL or storage ref                      |
+| bio       | max 2048 chars, strip HTML                    |
+| created_at| auto-generated, no user input                 |
+
+### RLS Policies
+- SELECT: authenticated users
+- INSERT: admin only
+- UPDATE: admin, or user updates own name, photo, bio
+- DELETE: admin only
+
+```sql
+-- Allow members to update own profile
+CREATE POLICY "members can update own profile"
+ON club_members
+FOR UPDATE
+USING (auth.uid() = id);
 ```
 
 ---
 
-### events
+## projects
 
-#### Properties
-- id:
-  - type: uuid
-  - primary key
-  - defaults to gen_random_uuid()
-  - Unique identifier for each event
-- created_at:
-  - type: timestamptz
-  - defaults to now()
-  - constraints:
-    - not null
-  - Records when the event entry was created
-- name:
-  - type: text
-  - constraints:
-    - not null
-    - check: name <> ''
-  - Display name of the event
-- description:
-  - type: text
-  - constraints:
-    - not null
-    - check: description <> ''
-  - Full description of the event shown on the detail page
-- cover_image:
-  - type: text
-  - defaults to null
-  - URL pointing to the event's cover image, optional
-- location:
-  - type: text
-  - constraints:
-    - not null
-    - check: location <> ''
-  - Plain text address or venue name of the event
-- url:
-  - type: text
-  - defaults to null
-  - Optional link for online or hybrid events (e.g. Zoom, livestream)
-- start_time:
-  - type: timestamptz
-  - constraints:
-    - not null
-  - When the event begins
-- end_time:
-  - type: timestamptz
-  - constraints:
-    - not null
-    - check: end_time > start_time
-  - When the event ends, must be after start_time
-- status:
-  - type: event_status (ENUM('upcoming', 'ongoing', 'completed'))
-  - defaults to 'upcoming'
-  - constraints:
-    - not null
-  - Represents the current state of the event
+### Schemas
+```sql
+create type project_status as enum ('not_started', 'in_progress', 'paused', 'completed');
+create type project_category as enum ('competition', 'research');
+create type project_member_role as enum ('admin', 'contributor');
 
-#### Implementation
+create table projects (
+  id uuid primary key not null default gen_random_uuid(),
+  name text not null check (name <> ''),
+  summary text not null check (summary <> ''),
+  description text not null check (description <> ''),
+  cover_image text,
+  status project_status not null default 'not_started',
+  category project_category not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table project_members (
+  project_id uuid not null references projects(id) on delete cascade,
+  member_id uuid not null references auth.users(id) on delete cascade,
+  role project_member_role not null default 'contributor',
+  title text not null check (title <> ''),
+  primary key (project_id, member_id)
+);
+
+create table project_posts (
+  id uuid primary key not null default gen_random_uuid(),
+  project_id uuid not null references projects(id) on delete cascade,
+  author_id uuid not null references auth.users(id) on delete cascade,
+  title text not null check (title <> ''),
+  content text not null check (content <> ''),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table project_post_comments (
+  id uuid primary key not null default gen_random_uuid(),
+  post_id uuid not null references project_posts(id) on delete cascade,
+  author_id uuid not null references auth.users(id) on delete cascade,
+  content text not null check (content <> ''),
+  reply_to_id uuid references project_post_comments(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+```
+
+### Field Validation
+| Table              | Field         | Validation/extras               |
+|--------------------|--------------|---------------------------------|
+| projects           | name         | not empty, 3–80 chars, unique   |
+| projects           | summary      | not empty, max 256 chars        |
+| projects           | description  | not empty, max 4096 chars       |
+| projects           | cover_image  | valid URL or storage ref        |
+| projects           | status       | enum only                       |
+| projects           | category     | enum only                       |
+| project_members    | title        | not empty, 2–48 chars           |
+| project_members    | role         | enum only                       |
+| project_posts      | title        | not empty, 2–128 chars          |
+| project_posts      | content      | not empty, 2–4096 chars         |
+| project_post_comments | content   | not empty, 2–2048 chars         |
+
+### RLS Policies
+- projects:
+  - SELECT: all users
+  - INSERT/UPDATE/DELETE: club admin only
+- project_members:
+  - SELECT: project members & club admin
+  - INSERT/UPDATE/DELETE: project admin/club admin
+- project_posts:
+  - SELECT: assigned project members
+  - INSERT: project members
+  - UPDATE/DELETE: author or project/club admin
+- project_post_comments:
+  - SELECT: assigned project members
+  - INSERT: project members
+  - UPDATE/DELETE: author or project/club admin
+
+```sql
+-- Authors can update own posts
+CREATE POLICY "authors can update own posts"
+ON project_posts
+FOR UPDATE
+USING (auth.uid() = author_id);
+```
+
+---
+
+## events
+
+### Schema
 ```sql
 create type event_status as ENUM ('upcoming', 'ongoing', 'completed');
 
 create table events (
-  id uuid default gen_random_uuid() primary key,
-  created_at timestamptz default now() not null,
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
   name text not null check (name <> ''),
   description text not null check (description <> ''),
-  cover_image text default null,
+  cover_image text,
+  content text not null default '',
   location text not null check (location <> ''),
-  url text default null,
+  url text,
   start_time timestamptz not null,
   end_time timestamptz not null check (end_time > start_time),
-  status event_status default 'upcoming' not null
+  status event_status not null default 'upcoming'
 );
 ```
 
----
+### Validation
+| Field      | Validation                            |
+|------------|---------------------------------------|
+| name       | required, 2–64 chars                  |
+| description| required, max 2048 chars              |
+| content    | required, max 4096 chars              |
+| cover_image| valid URL or storage ref              |
+| location   | required, 2–128 chars                 |
+| url        | valid URL (HTTPS preferred)           |
+| start_time | required, future time (on create)     |
+| end_time   | required, end > start                 |
+| status     | enum only                             |
 
-### members
+### RLS Policies
+- SELECT: public (all users)
+- INSERT/UPDATE/DELETE: club admin only
 
-#### Properties
-- id:
-  - type: uuid
-  - primary key
-  - defaults to gen_random_uuid()
-  - Unique identifier for each member
-- created_at:
-  - type: timestamptz
-  - defaults to now()
-  - constraints:
-    - not null
-  - Records when the member entry was created
-- name:
-  - type: text
-  - constraints:
-    - not null
-    - check: name <> ''
-  - Full display name of the member
-- role:
-  - type: member_role (ENUM('president', 'vice_president', 'treasurer', 'officer'))
-  - constraints:
-    - not null
-  - The member's role within the club
-- photo:
-  - type: text
-  - defaults to null
-  - URL pointing to the member's photo, optional
-#### Implementation
 ```sql
-create type member_role as ENUM ('president', 'vice_president', 'treasurer', 'officer');
-
-create table members (
-  id uuid default gen_random_uuid() primary key,
-  created_at timestamptz default now() not null,
-  name text not null check (name <> ''),
-  role member_role not null,
-  photo text default null
+-- Only admins can insert events
+CREATE POLICY "admins can insert events"
+ON events
+FOR INSERT
+WITH CHECK (
+  auth.uid() IN (SELECT id FROM club_members WHERE role = 'admin')
 );
 ```

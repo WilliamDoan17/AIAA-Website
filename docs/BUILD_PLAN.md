@@ -1,37 +1,6 @@
 # BUILD PLAN
 Build plan for the AIAA USF Website project.
 
-## Scope
-### Public Users
-- See an introduction page of the club
-- See which projects the club is working on, completed, and not started yet, filtered by category
-- See the details of each project as a website post, consisting of:
-  - Overview
-  - Explanation
-  - Members working on the project and their roles 
-  (removed seeing updates)
-- Look up events of the club, including upcoming, ongoing, and past events
-- Read the details of each event:
-  - Overview
-  - What happens in the event
-  - Location / link
-  - RSVP link
-- See members of the club, and upon click see member details:
-  - Photo
-  - Title
-  - Bio (about me)
-  - Projects they are on, with their role and project updates
-
-### Admin / Officers
-- Modify club information
-- Add, update, delete projects
-- Modify project details (the post)
-- Add, update, delete events
-- Modify event details (the event post)
-- Add, update, remove members
-- Modify member details
-
----
 
 ## Phases
 
@@ -54,19 +23,72 @@ Focus: finalize the schema, replace mock data with Supabase, then build the deta
 
 The detail pages are deferred to this phase because they involve relational data (project members with roles, update posts per project) that is too complex and artificial to mock reliably. Building them on a real backend is cleaner.
 
-**Backend:**
-- Finalize Supabase schema (projects, events, members, project_members, posts)
-- Replace mock data with real Supabase queries
-- Set up Supabase Auth for officer logins
-- Row Level Security (RLS) for admin-only operations
-
-**Pages:**
-- `/projects/:id` Project detail page
-- `/events/:id` Event detail page
-- `/members/:id` Member detail page
-- Admin views (add, edit, delete for projects, events, members)
-
 **Goal:** Ship a fully functional, deployed website with real content managed by club officers.
+
+---
+
+### Steps
+
+#### P2-1 — Auth
+- Set up Supabase Auth (invite-based sign-up, officer login/logout)
+- write services for Auth
+- implement `AuthProvider`, `AuthContext` and `useAuth` (hook)
+- write `ProtectedRoute` and wire to `App.tsx`
+- add Login page (Public route, path `/login`, lives in `pages/auth/Login.tsx`)
+- write `Login.tsx` that uses hook to login
+
+#### P2-2 — Club Info
+- Apply schema and RLS for `club_info`
+- Write service functions and hook
+- Wire real info from database to public club info 
+- Write `AdminRoute` & `AdminLayout`
+- Admin can view club info at `/admin/club`
+- Admin can edit name, cover image, and about text
+
+#### P2-3 — Members
+- Apply schema and RLS for `club_members`
+- Write service functions and hook
+- Replace `useMembers` mock data with Supabase query — public `/members` page stays identical
+- Public `/members/:id` detail page (photo, title, bio)
+- Admin can view and filter member list at `/admin/members`
+- Admin can invite a new member (triggers Supabase invite email)
+- New member receives invite link → sets password → completes profile (photo, bio) before accessing dashboard
+- Admin can edit a member's role and title
+- Admin can remove a member
+- Officer can edit own name, photo, and bio at their profile page
+
+#### P2-4 — Events
+- Apply schema and RLS for `events`
+- Write service functions and hook
+- Replace `useEvents` mock data with Supabase query — public `/events` page stays identical
+- Public `/events/:id` detail page (description, content, location, time, link)
+- Admin can view all events at `/admin/events`
+- Admin can create a new event
+- Admin can edit or delete any event at `/admin/events/:id`
+
+#### P2-5 — Projects
+- Apply schema and RLS for `projects`, `project_members`, `project_posts`, `project_post_comments`
+- Write service functions and hooks
+- Replace `useProjects` mock data with Supabase query — public `/projects` page stays identical
+- Public `/projects/:id` detail page (project info, member list with roles, posts)
+- Club admin can view all projects at `/admin/projects`
+- Club admin can create, edit, or delete any project
+- Club admin can assign members to a project and set their role and title
+- Project admin can manage members and posts of their project at `/admin/projects/:id`
+- Contributor can view assigned projects at `/contributor/projects`
+- Contributor can create, edit, and delete their own posts at `/contributor/projects/:id`
+- Contributor can comment on posts in projects they are assigned to
+
+#### P2-6 — Public Launch
+- Seed database with real club content (projects, events, members)
+- Final QA pass on all public and admin flows
+- Redeploy on Vercel
+- Announce publicly
+
+---
+
+## Development Strategy
+- Develop and ship by features (vertical slices of the scope)
 
 ---
 
