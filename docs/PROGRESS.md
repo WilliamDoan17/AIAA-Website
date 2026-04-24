@@ -30,7 +30,7 @@
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `club_info` | ⬜ |
+| Apply schema and RLS for `club_info` | ✅ |
 | Write service functions and hook | ⬜ |
 | Wire real club info to public pages | ⬜ |
 | Write `AdminRoute` and `AdminLayout` | ⬜ |
@@ -42,6 +42,7 @@
 | Task | Status |
 |------|--------|
 | Apply schema and RLS for `club_members` | ⬜ |
+| Update RLS for UPDATE on `club_info` (admin-only) | ⬜ | 
 | Write service functions and hook | ⬜ |
 | Replace `useMembers` mock data with Supabase query | ⬜ |
 | Public `/members/:id` detail page | ⬜ |

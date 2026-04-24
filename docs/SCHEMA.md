@@ -17,7 +17,7 @@ This document details the data model, validations, and access (RLS) controls for
 ### RLS
 - **SELECT**: none
 - INSERT: nobody can insert
-- UPDATE: admin only
+- UPDATE: admin only (P2-2+)
 - DELETE: nobody can delete
 
 ---

@@ -1,4 +1,4 @@
-import { useMembers } from '../hooks/useMembers'
+import useMembers from '../hooks/useMembers'
 
 const formatRole = (role) => role.replace(/_/g, ' ').toUpperCase()
 
@@ -36,7 +36,7 @@ const MemberCard = ({ member }) => {
         {member.name}
       </h3>
       <p className="font-display text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-accent m-0 relative z-[1]">
-        {formatRole(member.role)}
+        {formatRole(member.title)}
       </p>
     </div>
   )

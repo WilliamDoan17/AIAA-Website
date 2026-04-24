@@ -1,9 +1,8 @@
 import useProjects from "../hooks/useProjects.js"
 import useEvents from '../hooks/useEvents.js'
-import { useMembers } from "../hooks/useMembers.js"
+import useMembers from "../hooks/useMembers.js"
 
 const MemberCard = ({ member }) => {
-  const formatRole = (role) => role.replace(/_/g, ' ').toUpperCase()
   return (
     <div className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface fade-up member-glow">
       <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-rim mx-auto mb-4 transition-[border-color] duration-300 relative z-[1] hover:border-accent">
@@ -16,7 +15,7 @@ const MemberCard = ({ member }) => {
         {member.name}
       </h3>
       <p className="text-[0.8rem] text-accent m-0 tracking-[0.08em] uppercase font-normal relative z-[1]">
-        {formatRole(member.role)}
+        {member.title}
       </p>
     </div>
   )
@@ -63,7 +62,7 @@ const EventCard = ({ event }) => {
         {event.name}
       </h3>
       <p className="text-[0.9rem] leading-[1.65] text-muted mx-6 mb-6 font-light">
-        {event.summary}
+        {event.description}
       </p>
     </div>
   )
