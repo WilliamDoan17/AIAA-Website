@@ -15,14 +15,19 @@ frontend/src/
 ├── layouts/
 │   ├── AdminLayout.jsx     — auth-gated wrapper for admin routes
 │   └── OfficerLayout.jsx   — auth-gated wrapper for officer/contributor routes
-├── pages/
-│   ├── landing/            — `/` landing page
-│   ├── projects/           — `/projects` index; Phase 2: detail page
-│   ├── events/             — `/events` index; Phase 2: detail page
-│   └── members/            — `/members` index; Phase 2: detail page
+├── pages/                  — flat, one file per route, named by route
+│   ├── Landing.jsx
+│   ├── Projects.jsx
+│   ├── Events.jsx
+│   ├── Members.jsx
+│   └── Login.jsx           — Phase 2+
+├── providers/
+│   └── AuthProvider.jsx
+├── contexts/
+│   └── AuthContext.js
 ├── routes/
-│   ├── ProtectedRoute.jsx  — redirects unauthenticated users
-│   └── PublicRoute.jsx     — redirects authenticated users away from auth pages
+│   ├── ProtectedRoute.jsx  — guards protected routes, renders <Outlet />
+│   └── PublicRoute.jsx     — public routes with PageLayout
 └── supabase/
     └── supabase.js         — Supabase client
 ```
@@ -60,7 +65,8 @@ frontend/src/
 - Admin pages nested under `AdminLayout`; officer/contributor pages under `OfficerLayout`.
 
 ### Styling
-- CSS Modules per component/page.
+- Tailwind CSS utility classes for all new components and pages.
+- Existing Phase 1 pages retain their CSS Modules — migrate incrementally.
 - Design language: Deep-Space / Mission Control.
 - Fonts: Orbitron (headings), DM Sans (body).
 - Key CSS variables: `--void: #04060f`, `--accent: #00c8ff`, `--gold: #f0a500`, `--text: #e8eef8`, `--muted: #7a8aaa`.

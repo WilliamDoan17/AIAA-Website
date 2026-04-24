@@ -4,7 +4,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
 <summary>Apr 24, 2026</summary>
 
-
+- Write `ProtectedRoute` and wire to `App.tsx` ✅
+- Refactor folder structure & switch to Tailwind
+- Add Login page (`/login`) 
+  - Implement `Login.tsx`
+  
 </details>
 
 ---

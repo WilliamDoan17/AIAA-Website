@@ -4,6 +4,9 @@ A list of application pages and their role in the AIAA-Website.
 
 ---
 
+## auth
+- `/login`: public, log in
+
 ## club_members
 - `/admin/members/`: Admin-only. View, filter, invite, edit, or remove members.
 

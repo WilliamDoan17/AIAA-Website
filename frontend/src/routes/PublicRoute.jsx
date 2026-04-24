@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
-import Landing from '../pages/landing/Landing'
-import Projects from '../pages/projects/index.jsx'
-import Events from '../pages/events/index.jsx'
-import Members from '../pages/members/index.jsx'
+import Landing from '../pages/Landing'
+import Projects from '../pages/Projects'
+import Events from '../pages/Events'
+import Members from '../pages/Members'
 
 const PublicRoute = () => {
   return (
