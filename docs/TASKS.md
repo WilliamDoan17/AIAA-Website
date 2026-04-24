@@ -10,7 +10,7 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Implement `Login.tsx` ✅
   - Write `LoginButton` and implement to `NavBar` ✅
 - Apply schema and RLS for `club_info` ✅
-- Write service functions and hook 
+- Migrate to `TypeScript` ✅
 
 </details>
 
