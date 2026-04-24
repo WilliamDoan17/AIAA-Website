@@ -23,8 +23,8 @@
 | Set up Supabase Auth (invite-based sign-up, login/logout) | ✅ |
 | Write services for Auth | ✅ |
 | Implement `AuthProvider`, `AuthContext`, and `useAuth` | ✅ |
-| Write `ProtectedRoute` and wire to `App.tsx` | ⬜ |
-| Add Login page (`/login`) | ⬜ |
+| Write `ProtectedRoute` and wire to `App.tsx` | ✅ |
+| Add Login page (`/login`) | ✅ |
 
 ### P2-2 — Club Info
 

@@ -1,8 +1,9 @@
 import { Link, NavLink } from 'react-router-dom'
+import LoginButton from './LoginButton'
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 md:px-10 h-16 bg-[rgba(4,6,15,0.75)] backdrop-blur-[16px] border-b border-[rgba(26,39,68,0.8)] relative navbar">
+    <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 md:px-10 h-16 bg-[rgba(4,6,15,.75)] backdrop-blur-[16px] border-b border-[rgba(26,39,68,0.8)] navbar">
       <Link to="/" className="no-underline cursor-pointer">
         <h1 className="font-display text-[0.8rem] md:text-base font-black uppercase tracking-[0.15em] m-0 logo-text">
           AIAA at USF
@@ -18,6 +19,8 @@ const Navbar = () => {
             {route.charAt(0).toUpperCase() + route.slice(1)}
           </NavLink>
         ))}
+        <LoginButton>
+        </LoginButton>
       </div>
     </nav>
   )
