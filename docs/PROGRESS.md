@@ -20,9 +20,9 @@
 
 | Task | Status |
 |------|--------|
-| Set up Supabase Auth (invite-based sign-up, login/logout) | ⬜ |
-| Write services for Auth | ⬜ |
-| Implement `AuthProvider`, `AuthContext`, and `useAuth` | ⬜ |
+| Set up Supabase Auth (invite-based sign-up, login/logout) | ✅ |
+| Write services for Auth | ✅ |
+| Implement `AuthProvider`, `AuthContext`, and `useAuth` | ✅ |
 | Write `ProtectedRoute` and wire to `App.tsx` | ⬜ |
 | Add Login page (`/login`) | ⬜ |
 
