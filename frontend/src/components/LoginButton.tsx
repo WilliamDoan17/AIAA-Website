@@ -1,16 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
 
 const LoginButton = () => {
-  const { user } = useAuth()
   const navigate = useNavigate()
 
   const handleLogin = async () => {
-    if (user) {
-      navigate('/u/')
-    } else {
-      navigate('/login')
-    }
+    navigate('/login')
   }
 
 

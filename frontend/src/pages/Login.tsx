@@ -14,7 +14,8 @@ const Login = () => {
   if (userLoading) return null
   if (user) return <Navigate to="/u/" />
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setError(null)
     setLoading(true)
     login(email, password)

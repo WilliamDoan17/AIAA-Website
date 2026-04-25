@@ -7,6 +7,6 @@ export interface Member {
   name: string
   role: ClubRole
   title: string
-  photo: string | null
+  photo: string
   bio: string
 }

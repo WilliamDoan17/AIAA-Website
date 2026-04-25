@@ -8,7 +8,7 @@ const mockMembers: Member[] = [
     name: "Ethan Dewild",
     role: "admin",
     title: "President",
-    photo: null,
+    photo: "",
     bio: "",
   },
   {
@@ -18,7 +18,7 @@ const mockMembers: Member[] = [
     name: "Christopher Lemonds",
     role: "officer",
     title: "Vice President",
-    photo: null,
+    photo: "",
     bio: "",
   },
   {
@@ -28,7 +28,7 @@ const mockMembers: Member[] = [
     name: "Athan Leal",
     role: "officer",
     title: "Treasurer",
-    photo: null,
+    photo: "",
     bio: "",
   },
   {
@@ -38,7 +38,7 @@ const mockMembers: Member[] = [
     name: "Alberto Vargas",
     role: "officer",
     title: "Officer",
-    photo: null,
+    photo: "",
     bio: "",
   },
 ]

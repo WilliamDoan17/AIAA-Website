@@ -10,6 +10,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
+      console.log(session?.user ?? null);
       setLoading(false);
     })
 

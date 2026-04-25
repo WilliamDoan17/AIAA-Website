@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react'
 import useProjects from "../hooks/useProjects"
 import useEvents from '../hooks/useEvents'
 import useMembers from "../hooks/useMembers"
+import { getClubInfo } from '../services/club'
 import type { Member } from '../types/member'
 import type { Event } from '../types/event'
 import type { Project } from '../types/project'
+import type { ClubInfo } from '../types/club'
 
 const MemberCard = ({ member }: { member: Member }) => {
   return (
@@ -146,22 +149,24 @@ const HeroSection = () => {
 }
 
 const AboutSection = () => {
+  const [clubInfo, setClubInfo] = useState<ClubInfo | null>(null)
+
+  useEffect(() => {
+    getClubInfo().then(setClubInfo).catch(console.error)
+  }, [])
+
+  if (!clubInfo) return null
+
   return (
     <div className="relative z-[1] max-w-[860px] py-24 px-8 border-l-2 border-rim ml-[max(2rem,calc(50vw-430px))] mr-8">
       <span className="font-display text-[0.7rem] tracking-[0.3em] text-accent block mb-8 uppercase">
         // ABOUT
       </span>
       <h1 className="font-display text-[clamp(1.3rem,3vw,2rem)] font-bold uppercase tracking-[0.05em] leading-[1.3] text-copy mb-8 pl-6">
-        Hi, we're the American Institute of Aeronautics and Astronautics!
+        {clubInfo.name}
       </h1>
       <p className="text-[1.05rem] leading-[1.85] text-[#a0b0cc] font-light mb-6 pl-6">
-        Joining us means diving straight into real aerospace engineering challenges that you won't find in the classroom. Whether we're creating a custom aircraft for the Student Unmanned Aerial Systems competition or building astronaut hardware that NASA will test in microgravity, every project challenges us to think creatively and work as a team. Along the way, you'll gain hands-on technical skills, connect with industry professionals, and become part of a community who shares your passion for flight and space. It's exciting, rewarding, and an experience that will stay with you far beyond graduation.
-      </p>
-      <p className="text-[1.05rem] leading-[1.85] text-[#a0b0cc] font-light mb-6 pl-6">
-        We currently have 2 major projects. SUAS an autonomous long range drone for hurricane recovery and COSMIC a satellite robotic arm for in space manufacturing to be presented to NASA in April.
-      </p>
-      <p className="text-[1.05rem] leading-[1.85] text-[#a0b0cc] font-light mb-6 pl-6">
-        We are a newer club, only about a year old, so every member is assigned tasks and everything is very hands on. Great time to join because this semester will be a large push for manufacturing!
+        {clubInfo.about}
       </p>
     </div>
   )

@@ -1,6 +1,6 @@
 import supabase from '../supabase/supabase'
 
-export const login = async (email: string, password: string) => {
+export const login = async (email: string, password: string): Promise<void> => {
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password

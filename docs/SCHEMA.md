@@ -27,12 +27,12 @@ This document details the data model, validations, and access (RLS) controls for
 ### Schema
 | Field      | Type             | Notes                              |
 |------------|------------------|------------------------------------|
-| id         | uuid             | primary key, references auth.users |
-| email      | text             | not null, not empty                |
+| id         | uuid             | primary key, references auth.users(id) on delete cascade |
+| email      | text             | not null                           |
 | name       | text             | not null, not empty                |
 | role       | club_role enum   | not null, default 'officer'        |
 | title      | text             | not null, not empty                |
-| photo      | text             | nullable                           |
+| photo      | text             | not null, default ''               |
 | bio        | text             | not null, default ''               |
 | created_at | timestamptz      | not null, default now()            |
 
@@ -50,7 +50,7 @@ This document details the data model, validations, and access (RLS) controls for
 | created_at | auto-generated, no user input                 |
 
 ### RLS Policies
-- SELECT: authenticated users
+- SELECT: none
 - INSERT: admin only
 - UPDATE: admin, or user updates own name, photo, bio
 - DELETE: admin only
