@@ -1,5 +1,5 @@
-import { Route } from 'react-router-dom'
-
 const AdminLayout = () => {
-
+  return null
 }
+
+export default AdminLayout

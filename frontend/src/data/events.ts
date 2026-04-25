@@ -1,4 +1,6 @@
-const mockEvents = [
+import type { Event } from '../types/event'
+
+const mockEvents: Event[] = [
   // --- Past ---
   {
     id: "e1f2a3b4-0001-4c5d-8e9f-1a2b3c4d5e6f",

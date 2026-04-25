@@ -1,8 +1,11 @@
-import useProjects from "../hooks/useProjects.js"
-import useEvents from '../hooks/useEvents.js'
-import useMembers from "../hooks/useMembers.js"
+import useProjects from "../hooks/useProjects"
+import useEvents from '../hooks/useEvents'
+import useMembers from "../hooks/useMembers"
+import type { Member } from '../types/member'
+import type { Event } from '../types/event'
+import type { Project } from '../types/project'
 
-const MemberCard = ({ member }) => {
+const MemberCard = ({ member }: { member: Member }) => {
   return (
     <div className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface fade-up member-glow">
       <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-rim mx-auto mb-4 transition-[border-color] duration-300 relative z-[1] hover:border-accent">
@@ -37,7 +40,7 @@ const MemberSection = () => {
   )
 }
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event }: { event: Event }) => {
   const start = new Date(event.start_time)
   const end = new Date(event.end_time)
   const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -89,7 +92,7 @@ const EventSection = () => {
   )
 }
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="bg-panel border border-rim flex flex-col overflow-hidden relative transition-[border-color,transform] duration-300 cursor-default card-accent hover:border-accent hover:-translate-y-1 fade-up group">
       <div className="w-full aspect-video overflow-hidden">

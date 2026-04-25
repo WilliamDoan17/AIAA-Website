@@ -1,8 +1,7 @@
 import useMembers from '../hooks/useMembers'
+import type { Member } from '../types/member'
 
-const formatRole = (role) => role.replace(/_/g, ' ').toUpperCase()
-
-const PresidentCard = ({ president }) => {
+const PresidentCard = ({ president }: { president: Member }) => {
   return (
     <div className="relative z-[1] flex flex-col md:flex-row items-stretch max-w-[1300px] mx-auto mt-12 px-6 md:px-16 gap-6 md:gap-12 fade-up president-bar group">
       <div className="relative w-full md:w-80 aspect-[3/4] flex-shrink-0 overflow-hidden border border-[rgba(240,165,0,0.3)] md:ml-4">
@@ -23,7 +22,7 @@ const PresidentCard = ({ president }) => {
   )
 }
 
-const MemberCard = ({ member }) => {
+const MemberCard = ({ member }: { member: Member }) => {
   return (
     <div className="bg-panel border border-rim p-10 px-8 relative overflow-hidden text-center transition-[background,border-color] duration-300 hover:bg-surface hover:border-accent fade-up member-glow">
       <div className="w-20 h-20 rounded-full overflow-hidden border border-rim mx-auto mb-5 transition-[border-color] duration-300 relative z-[1] group-hover:border-accent">
@@ -36,13 +35,13 @@ const MemberCard = ({ member }) => {
         {member.name}
       </h3>
       <p className="font-display text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-accent m-0 relative z-[1]">
-        {formatRole(member.title)}
+        {member.title.toUpperCase()}
       </p>
     </div>
   )
 }
 
-const MemberContainer = ({ members }) => {
+const MemberContainer = ({ members }: { members: Member[] }) => {
   if (members.length === 0) return null
   return (
     <div className="relative z-[1] grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 max-w-[1300px] mx-auto mt-12 px-6 md:px-16">
@@ -54,9 +53,9 @@ const MemberContainer = ({ members }) => {
 }
 
 const Members = () => {
-  const { data = [], loading, error } = useMembers()
-  const president = data.find(member => member.role === 'president')
-  const crews = data.filter(member => member.role !== 'president')
+  const { data = [] } = useMembers()
+  const president = data.find(member => member.title === 'President')
+  const crews = data.filter(member => member.title !== 'President')
 
   return (
     <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative pb-24 starfield">

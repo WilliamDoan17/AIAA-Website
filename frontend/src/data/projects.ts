@@ -1,4 +1,6 @@
-const mockProjects = [
+import type { Project } from '../types/project'
+
+const mockProjects: Project[] = [
   {
     id: "d1e2f3a4-0001-4b5c-8d9e-1f2a3b4c5d6e",
     created_at: "2026-01-10T09:00:00Z",

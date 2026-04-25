@@ -1,4 +1,6 @@
-const mockMembers = [
+import type { Member } from '../types/member'
+
+const mockMembers: Member[] = [
   {
     id: "c1d2e3f4-0001-4a5b-8c9d-1e2f3a4b5c6d",
     created_at: "2026-01-10T09:00:00Z",

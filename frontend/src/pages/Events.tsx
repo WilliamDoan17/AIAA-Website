@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import useEvents from '../hooks/useEvents'
+import type { Event } from '../types/event'
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event }: { event: Event }) => {
   const start = new Date(event.start_time)
   const end = new Date(event.end_time)
   const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -26,13 +27,13 @@ const EventCard = ({ event }) => {
         {event.name}
       </h3>
       <p className="text-[0.88rem] leading-[1.65] text-muted mx-6 mb-6 font-light">
-        {event.summary}
+        {event.description}
       </p>
     </div>
   )
 }
 
-const EventGroup = ({ title, events, gold = false, muted = false }) => {
+const EventGroup = ({ title, events, gold = false, muted = false }: { title: string; events: Event[]; gold?: boolean; muted?: boolean }) => {
   if (events.length === 0) return null
   return (
     <div className={`relative z-[1] max-w-[1300px] mx-auto pt-16 pb-8 px-6 md:px-16 ${muted ? 'opacity-60' : ''}`}>
@@ -49,8 +50,8 @@ const EventGroup = ({ title, events, gold = false, muted = false }) => {
 }
 
 const Events = () => {
-  const [showPastEvents, setShowPastEvents] = useState(false)
-  const { data = [], loading, error } = useEvents()
+  const [showPastEvents, setShowPastEvents] = useState<boolean>(false)
+  const { data = [] } = useEvents()
   const now = new Date()
   const upcomingEvents = data.filter(e => new Date(e.start_time) > now)
   const ongoingEvents = data.filter(e => new Date(e.start_time) <= now && new Date(e.end_time) >= now)

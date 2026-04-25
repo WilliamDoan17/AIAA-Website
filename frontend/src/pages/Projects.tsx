@@ -1,13 +1,18 @@
 import { useState, useMemo } from 'react'
-import useProjects from '../hooks/useProjects.js'
+import type React from 'react'
+import useProjects from '../hooks/useProjects'
+import type { Project } from '../types/project'
 
-const FilterTag = ({ value }) => (
+type FilterOptions = Record<string, string[]>
+type Filters = { category: string; status: string }
+
+const FilterTag = ({ value }: { value: string }) => (
   <span className="font-display text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-accent border border-accent-dim bg-accent-dim px-3 py-1 [clip-path:polygon(6px_0%,100%_0%,calc(100%-6px)_100%,0%_100%)]">
     {value}
   </span>
 )
 
-const ProjectCard = ({ project, filterOptions }) => {
+const ProjectCard = ({ project, filterOptions }: { project: Project; filterOptions: FilterOptions }) => {
   return (
     <div className="flex flex-col md:flex-row items-stretch w-full bg-panel border border-rim overflow-hidden relative transition-[border-color,transform] duration-300 cursor-pointer mb-4 card-accent hover:border-accent hover:translate-x-1 fade-up group">
       <div className="w-full md:w-[280px] flex-shrink-0 overflow-hidden">
@@ -24,8 +29,8 @@ const ProjectCard = ({ project, filterOptions }) => {
           {project.summary}
         </p>
         <div className="flex flex-row gap-2 mt-2">
-          {Object.keys(filterOptions).map(key => (
-            <FilterTag key={key} value={project[key]} />
+          {(Object.keys(filterOptions) as Array<keyof Project>).map((key) => (
+            <FilterTag key={String(key)} value={String(project[key])} />
           ))}
         </div>
       </div>
@@ -33,7 +38,7 @@ const ProjectCard = ({ project, filterOptions }) => {
   )
 }
 
-const ProjectContainer = ({ projects, filterOptions }) => {
+const ProjectContainer = ({ projects, filterOptions }: { projects: Project[]; filterOptions: FilterOptions }) => {
   if (projects.length === 0) return (
     <p className="font-display text-xs tracking-[0.2em] uppercase text-muted text-center py-16">
       No projects found.
@@ -48,8 +53,8 @@ const ProjectContainer = ({ projects, filterOptions }) => {
   )
 }
 
-const FilterBar = ({ filters, setFilters, filterOptions }) => {
-  const handleChangeFilter = (key, value) => setFilters({ ...filters, [key]: value })
+const FilterBar = ({ filters, setFilters, filterOptions }: { filters: Filters; setFilters: React.Dispatch<React.SetStateAction<Filters>>; filterOptions: FilterOptions }) => {
+  const handleChangeFilter = (key: string, value: string) => setFilters({ ...filters, [key]: value })
   return (
     <div className="relative z-[1] flex flex-row flex-wrap items-center gap-8 px-6 md:px-16 py-6 max-w-[1300px] mx-auto border-b border-rim">
       {Object.entries(filterOptions).map(([key, options]) => (
@@ -58,7 +63,7 @@ const FilterBar = ({ filters, setFilters, filterOptions }) => {
             {key}:
           </label>
           <select
-            value={filters[key]}
+            value={filters[key as keyof Filters]}
             onChange={(e) => handleChangeFilter(key, e.target.value)}
             className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-copy bg-panel border border-rim px-4 py-2 cursor-pointer outline-none transition-[border-color] duration-300 appearance-none [clip-path:polygon(8px_0%,100%_0%,calc(100%-8px)_100%,0%_100%)] hover:border-accent focus:border-accent"
           >
@@ -82,12 +87,12 @@ const Projects = () => {
     status: ['all', ...new Set(data.map(p => p.status))],
   }), [data])
 
-  const [filters, setFilters] = useState({ category: 'all', status: 'all' })
+  const [filters, setFilters] = useState<{ category: string; status: string }>({ category: 'all', status: 'all' })
 
   const filtered = useMemo(() => data
     .filter(p => filters.category === 'all' || p.category === filters.category)
     .filter(p => filters.status === 'all' || p.status === filters.status)
-  , [data, filters])
+    , [data, filters])
 
   return (
     <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative starfield">

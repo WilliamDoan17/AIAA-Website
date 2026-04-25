@@ -1,20 +1,20 @@
-import { Navigate } from "react-router-dom"
-import useAuth from "../hooks/useAuth"
 import { login } from "../services/auth"
 import { useState } from "react"
+import useAuth from "../hooks/useAuth"
+import { Navigate } from "react-router-dom"
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<Error | null>(null)
 
-  const { user, loading: userLoading } = useAuth()
+  const { user, loading: userLoading
+  } = useAuth()
   if (userLoading) return null
   if (user) return <Navigate to="/u/" />
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
+  const handleLogin = async () => {
     setError(null)
     setLoading(true)
     login(email, password)
