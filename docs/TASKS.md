@@ -4,7 +4,8 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>Apr 27, 2026</summary>
 
-  - Write service and hook for club_members
+  - Write service and hook for club_members ✅
+  - Add member to `AuthContext` and `AuthProvider` ✅
   - Write `AdminRoute` and `AdminLayout` 
 
 </details>

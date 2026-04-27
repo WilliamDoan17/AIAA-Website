@@ -24,7 +24,7 @@ export const getMemberInfo = async (id: string): Promise<Member> => {
 }
 
 export const inviteMember = async (info: MemberInput): Promise<void> => {
-  const { data: authData, error: authError } = await supabase.auth.admin.inviteUserByEmail(email)
+  const { data: authData, error: authError } = await supabase.auth.admin.inviteUserByEmail(info.email)
   if (authError) throw authError
 
   const { error } = await supabase
