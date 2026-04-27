@@ -10,3 +10,5 @@ export interface Member {
   photo: string
   bio: string
 }
+
+export type MemberInput = Omit<Member, 'id' | 'created_at'>

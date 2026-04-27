@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
+import AdminRoute from './AdminRoute'
 
 const ProtectedRoute = () => {
   const { user, loading } = useAuth()
@@ -10,6 +11,7 @@ const ProtectedRoute = () => {
     <Routes>
       <Route path="/">
         {/* will add route components with page later */}
+        <Route path="/admin/" element={<AdminRoute />} />
       </Route>
     </Routes>
   )

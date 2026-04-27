@@ -2,12 +2,19 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>Apr 27, 2026</summary>
+
+  - Write service and hook for club_members
+  - Write `AdminRoute` and `AdminLayout` 
+
+</details>
+
+<details>
 <summary>Apr 24, 2026</summary>
 
 - Fixed ts errors ✅
 - Wire real club info to public pages ✅
-- Add phongjesus@gmail.com as an admin 
-
+- Add phongjesus@gmail.com as an admin ✅
 
 </details>
 

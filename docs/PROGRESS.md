@@ -38,12 +38,12 @@
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `club_members` | ⬜ |
+| Apply schema and RLS for `club_members` | ✅  |
+| Write service functions and hook | ⬜ |
 | Write `AdminRoute` and `AdminLayout` | ⬜ |
 | Add `phongjesus@gmail.com` as `admin` | ⬜ |
 | Admin can view club info at `/admin/club` | ⬜ |
 | Admin can edit name, cover image, and about text | ⬜ |
-| Write service functions and hook | ⬜ |
 | Replace `useMembers` mock data with Supabase query | ⬜ |
 | Public `/members/:id` detail page | ⬜ |
 | Admin can view and filter member list at `/admin/members` | ⬜ |

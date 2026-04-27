@@ -30,6 +30,9 @@ Shared data types used across hooks, services, and components. Derived from the 
 ### ClubRole
 `'admin'` | `'officer'`
 
+### MemberInput
+`Omit<Member, 'id' | 'created_at'`
+
 ---
 
 ## Event
