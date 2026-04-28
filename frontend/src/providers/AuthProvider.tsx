@@ -14,6 +14,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const getCurrentMember = async (id: string) => {
       const currMember = await getMemberInfo(id);
       setMember(currMember);
+      setLoading(false);
     }
 
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -23,8 +24,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         getCurrentMember(currUser.id);
       } else {
         setMember(null);
+        setLoading(false);
       }
-      setLoading(false);
     })
 
     return () => data.subscription.unsubscribe()

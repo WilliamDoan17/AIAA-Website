@@ -5,6 +5,7 @@ import Projects from '../pages/Projects'
 import Events from '../pages/Events'
 import Members from '../pages/Members'
 import Login from '../pages/Login'
+import PublicMemberDetail from '../pages/PublicMemberDetail'
 
 const PublicRoute = () => {
   return (
@@ -15,6 +16,7 @@ const PublicRoute = () => {
         <Route path="events" element={<Events></Events>}></Route>
         <Route path="members" element={<Members></Members>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
+        <Route path="members/:id" element={<PublicMemberDetail></PublicMemberDetail>} />
       </Route>
     </Routes>
 

@@ -6,7 +6,14 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
   - Write service and hook for club_members ✅
   - Add member to `AuthContext` and `AuthProvider` ✅
-  - Write `AdminRoute` and `AdminLayout` 
+  - Write `AdminRoute` ✅
+  - Admin can view club info at `/admin/club`: ✅
+    - Write `AdminClub.tsx` ✅
+    - Wire that to `AdminRoute` ✅
+  - Admin can edit name, cover image, and about text ✅
+  - Replace `useMembers` mock data with Supabase query ✅
+  - Public `/members/:id` detail page ✅
+  - Admin can view and filter member list at `/admin/members`
 
 </details>
 

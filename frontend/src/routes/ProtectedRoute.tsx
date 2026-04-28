@@ -3,15 +3,15 @@ import useAuth from '../hooks/useAuth'
 import AdminRoute from './AdminRoute'
 
 const ProtectedRoute = () => {
-  const { user, loading } = useAuth()
+  const { user, member, loading } = useAuth()
   if (loading) return null
-  if (!user) return <Navigate to="/login"></Navigate>
+  if (!user) return <Navigate to="/login" />
 
   return (
     <Routes>
       <Route path="/">
-        {/* will add route components with page later */}
-        <Route path="/admin/" element={<AdminRoute />} />
+        <Route index element={<Navigate to={member?.role === 'admin' ? '/u/admin/' : '/u/'} replace />} />
+        <Route path="admin/*" element={<AdminRoute />} />
       </Route>
     </Routes>
   )
