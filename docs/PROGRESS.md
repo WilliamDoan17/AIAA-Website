@@ -48,8 +48,8 @@
 | Public `/members/:id` detail page | ✅ |
 | Admin can view and filter member list at `/admin/members` | ✅ |
 | Admin can invite a new member | ✅ |
+| Member onboarding flow (set password → complete profile) at `/u/profile` | ⬜ |
 | Write `OfficerRoute` and `OfficerLayout` | ⬜ |
-| Member onboarding flow (set password → complete profile) | ⬜ |
 | Admin can edit a member's role and title | ⬜ |
 | Admin can remove a member | ⬜ |
 | Officer can edit own name, photo, and bio | ⬜ |

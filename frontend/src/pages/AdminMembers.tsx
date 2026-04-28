@@ -5,6 +5,44 @@ import type { ClubRole } from '../types/member'
 
 // ── Invite Modal ──────────────────────────────────────────────────────────────
 
+type InviteFieldErrors = Partial<Record<'email' | 'name' | 'title' | 'photo', string>>
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const validateInviteForm = (form: { email: string; name: string; title: string; photo: string }): InviteFieldErrors => {
+  const errors: InviteFieldErrors = {}
+
+  if (!form.email.trim()) {
+    errors.email = 'Email is required'
+  } else if (!EMAIL_RE.test(form.email.trim())) {
+    errors.email = 'Enter a valid email address'
+  }
+
+  const name = form.name.trim()
+  if (!name) {
+    errors.name = 'Name is required'
+  } else if (name.length < 2) {
+    errors.name = 'Name must be at least 2 characters'
+  } else if (name.length > 64) {
+    errors.name = 'Name must be 64 characters or fewer'
+  }
+
+  const title = form.title.trim()
+  if (!title) {
+    errors.title = 'Title is required'
+  } else if (title.length < 2) {
+    errors.title = 'Title must be at least 2 characters'
+  } else if (title.length > 48) {
+    errors.title = 'Title must be 48 characters or fewer'
+  }
+
+  if (form.photo.trim()) {
+    try { new URL(form.photo.trim()) } catch { errors.photo = 'Enter a valid URL' }
+  }
+
+  return errors
+}
+
 interface InviteModalProps {
   onClose: () => void
   onInvited: () => void
@@ -12,10 +50,23 @@ interface InviteModalProps {
 
 const InviteModal = ({ onClose, onInvited }: InviteModalProps) => {
   const [form, setForm] = useState({ email: '', name: '', role: 'officer' as ClubRole, title: '', photo: '', bio: '' })
+  const [fieldErrors, setFieldErrors] = useState<InviteFieldErrors>({})
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const setField = (key: string, value: string) => {
+    setForm(f => ({ ...f, [key]: value }))
+    if (fieldErrors[key as keyof InviteFieldErrors]) {
+      setFieldErrors(e => ({ ...e, [key]: undefined }))
+    }
+  }
+
   const handleSubmit = async () => {
+    const errors = validateInviteForm(form)
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
+      return
+    }
     setSaving(true)
     setError(null)
     try {
@@ -44,17 +95,21 @@ const InviteModal = ({ onClose, onInvited }: InviteModalProps) => {
           { key: 'name', label: 'Name', type: 'text' },
           { key: 'title', label: 'Title', type: 'text' },
           { key: 'photo', label: 'Photo URL', type: 'text' },
-        ].map(({ key, label, type }) => (
-          <div key={key} className="flex flex-col gap-1.5">
-            <label className="font-body text-xs font-medium text-muted uppercase tracking-widest">{label}</label>
-            <input
-              type={type}
-              value={form[key as keyof typeof form]}
-              onChange={e => setForm({ ...form, [key]: e.target.value })}
-              className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
-            />
-          </div>
-        ))}
+        ].map(({ key, label, type }) => {
+          const err = fieldErrors[key as keyof InviteFieldErrors]
+          return (
+            <div key={key} className="flex flex-col gap-1.5">
+              <label className="font-body text-xs font-medium text-muted uppercase tracking-widest">{label}</label>
+              <input
+                type={type}
+                value={form[key as keyof typeof form]}
+                onChange={e => setField(key, e.target.value)}
+                className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+              />
+              {err && <p className="text-red-400 text-xs font-body">{err}</p>}
+            </div>
+          )
+        })}
 
         <div className="flex flex-col gap-1.5">
           <label className="font-body text-xs font-medium text-muted uppercase tracking-widest">Role</label>
@@ -201,7 +256,7 @@ const AdminMembers = () => {
     })
     .filter(m => roleFilter === 'all' || m.role === roleFilter)
     .filter(m => titleFilter === 'all' || m.title === titleFilter)
-  , [members, search, roleFilter, titleFilter])
+    , [members, search, roleFilter, titleFilter])
 
   const handleDelete = async (id: string) => {
     setDeletingId(id)

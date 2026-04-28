@@ -2,6 +2,18 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>Apr 29, 2026</summary>
+
+  - Member onboarding flow (set password → complete profile) at `/u/profile`
+</details>
+
+<details>
+  <summary>Apr 28, 2026</summary>
+
+  - Fix cannot invite member bugs ✅
+</details>
+
+<details>
   <summary>Apr 27, 2026</summary>
 
   - Write service and hook for club_members ✅
