@@ -15,7 +15,8 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Public `/members/:id` detail page ✅
   - Admin can view and filter member list at `/admin/members`
     - Rename `Members.tsx` to `PublicMembers.tsx` and apply the same pattern ✅
-    - Write `AdminMembers.tsx`
+    - Write `AdminMembers.tsx` ✅
+  - Use context and provider for `club_info`
 
 </details>
 

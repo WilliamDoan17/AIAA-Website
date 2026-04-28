@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import useProjects from "../hooks/useProjects"
 import useEvents from '../hooks/useEvents'
 import useMembers from "../hooks/useMembers"
-import { getClubInfo } from '../services/club'
+import useClubInfo from '../hooks/useClubInfo'
 import type { Member } from '../types/member'
 import type { Event } from '../types/event'
 import type { Project } from '../types/project'
@@ -10,7 +10,7 @@ import type { ClubInfo } from '../types/club'
 
 const MemberCard = ({ member }: { member: Member }) => {
   return (
-    <div className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface fade-up member-glow">
+    <Link to={`/members/${member.id}`} className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface fade-up member-glow block no-underline">
       <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-rim mx-auto mb-4 transition-[border-color] duration-300 relative z-[1] hover:border-accent">
         {member.photo
           ? <img className="w-full h-full object-cover [filter:grayscale(30%)] transition-[filter] duration-300 hover:[filter:grayscale(0%)]" src={member.photo} alt={member.name} />
@@ -23,7 +23,7 @@ const MemberCard = ({ member }: { member: Member }) => {
       <p className="text-[0.8rem] text-accent m-0 tracking-[0.08em] uppercase font-normal relative z-[1]">
         {member.title}
       </p>
-    </div>
+    </Link>
   )
 }
 
@@ -132,11 +132,11 @@ const ProjectSection = () => {
   )
 }
 
-const HeroSection = () => {
+const HeroSection = ({ clubInfo }: { clubInfo: ClubInfo | null }) => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-center py-24 px-8 z-[1] overflow-hidden hero-glow hero-line">
       <h1 className="font-display text-[clamp(1.8rem,5vw,3.8rem)] font-black uppercase tracking-[0.06em] leading-[1.15] max-w-[900px] mb-6 heading-gradient fade-up-slow">
-        American Institute of Aeronautics and Astronautics at USF
+        {clubInfo?.name ?? ''}
       </h1>
       <h3 className="font-body font-light text-[clamp(1rem,2.5vw,1.4rem)] tracking-[0.25em] uppercase text-accent mb-10 fade-up-slow-d1">
         Become part of our vibrant community
@@ -148,15 +148,7 @@ const HeroSection = () => {
   )
 }
 
-const AboutSection = () => {
-  const [clubInfo, setClubInfo] = useState<ClubInfo | null>(null)
-
-  useEffect(() => {
-    getClubInfo().then(setClubInfo).catch(console.error)
-  }, [])
-
-  if (!clubInfo) return null
-
+const AboutSection = ({ clubInfo }: { clubInfo: ClubInfo }) => {
   return (
     <div className="relative z-[1] max-w-[860px] py-24 px-8 border-l-2 border-rim ml-[max(2rem,calc(50vw-430px))] mr-8">
       <span className="font-display text-[0.7rem] tracking-[0.3em] text-accent block mb-8 uppercase">
@@ -173,10 +165,12 @@ const AboutSection = () => {
 }
 
 const Landing = () => {
+  const { clubInfo } = useClubInfo()
+
   return (
     <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative starfield">
-      <HeroSection />
-      <AboutSection />
+      <HeroSection clubInfo={clubInfo} />
+      {clubInfo && <AboutSection clubInfo={clubInfo} />}
       <ProjectSection />
       <EventSection />
       <MemberSection />
