@@ -22,10 +22,9 @@ const AdminSidebar = () => {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `px-3 py-2 rounded text-sm font-body transition-colors duration-200 ${
-                isActive
-                  ? 'bg-accent-dim text-accent'
-                  : 'text-muted hover:text-copy hover:bg-rim'
+              `px-3 py-2 rounded text-sm font-body transition-colors duration-200 ${isActive
+                ? 'bg-accent-dim text-accent'
+                : 'text-muted hover:text-copy hover:bg-rim'
               }`
             }
           >

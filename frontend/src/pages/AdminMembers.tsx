@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { getAllMembers, inviteMember, updateMember, deleteMember } from '../services/members'
 import type { Member } from '../types/member'
 import type { ClubRole } from '../types/member'
@@ -180,6 +180,9 @@ const AdminMembers = () => {
   const [showInvite, setShowInvite] = useState(false)
   const [editing, setEditing] = useState<Member | null>(null)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
+  const [roleFilter, setRoleFilter] = useState('all')
+  const [titleFilter, setTitleFilter] = useState('all')
 
   const fetchMembers = () => {
     getAllMembers()
@@ -188,6 +191,17 @@ const AdminMembers = () => {
   }
 
   useEffect(() => { fetchMembers() }, [])
+
+  const titles = useMemo(() => ['all', ...new Set(members.map(m => m.title))], [members])
+
+  const filtered = useMemo(() => members
+    .filter(m => {
+      const q = search.toLowerCase()
+      return m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q)
+    })
+    .filter(m => roleFilter === 'all' || m.role === roleFilter)
+    .filter(m => titleFilter === 'all' || m.title === titleFilter)
+  , [members, search, roleFilter, titleFilter])
 
   const handleDelete = async (id: string) => {
     setDeletingId(id)
@@ -205,7 +219,7 @@ const AdminMembers = () => {
       {editing && <EditModal member={editing} onClose={() => setEditing(null)} onSaved={fetchMembers} />}
 
       <div className="max-w-4xl">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6">
           <h1 className="font-display text-xl font-semibold tracking-wide text-copy section-underline">
             Members
           </h1>
@@ -217,13 +231,41 @@ const AdminMembers = () => {
           </button>
         </div>
 
+        <div className="flex flex-wrap gap-3 mb-6">
+          <input
+            type="text"
+            placeholder="Search name or email..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 w-64"
+          />
+          <select
+            value={roleFilter}
+            onChange={e => setRoleFilter(e.target.value)}
+            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+          >
+            <option value="all">All Roles</option>
+            <option value="admin">Admin</option>
+            <option value="officer">Officer</option>
+          </select>
+          <select
+            value={titleFilter}
+            onChange={e => setTitleFilter(e.target.value)}
+            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+          >
+            {titles.map(t => (
+              <option key={t} value={t}>{t === 'all' ? 'All Titles' : t}</option>
+            ))}
+          </select>
+        </div>
+
         {loading ? (
           <p className="text-muted font-body text-sm">Loading...</p>
-        ) : members.length === 0 ? (
-          <p className="text-muted font-body text-sm">No members yet.</p>
+        ) : filtered.length === 0 ? (
+          <p className="text-muted font-body text-sm">No members found.</p>
         ) : (
           <div className="flex flex-col gap-2">
-            {members.map(member => (
+            {filtered.map(member => (
               <div
                 key={member.id}
                 className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40"

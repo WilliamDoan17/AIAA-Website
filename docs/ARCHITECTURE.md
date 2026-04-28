@@ -7,29 +7,54 @@ This document describes the structure and conventions of the AIAA Website fronte
 
 ```
 frontend/src/
-├── main.jsx                — React entry point
-├── App.jsx                 — router + layout composition
-├── components/             — shared UI (Navbar, Footer, PageLayout)
-├── data/                   — mock data files (Phase 1 only, replaced by hooks in Phase 2)
-├── hooks/                  — data-fetching hooks (one per domain)
-├── layouts/
-│   ├── AdminLayout.jsx     — auth-gated wrapper for admin routes
-│   └── OfficerLayout.jsx   — auth-gated wrapper for officer/contributor routes
-├── pages/                  — flat, one file per route, named by route
-│   ├── Landing.jsx
-│   ├── Projects.jsx
-│   ├── Events.jsx
-│   ├── Members.jsx
-│   └── Login.jsx           — Phase 2+
-├── providers/
-│   └── AuthProvider.jsx
+├── main.tsx                — React entry point
+├── App.tsx                 — router + provider composition
+├── components/             — shared UI (Navbar, Footer)
 ├── contexts/
-│   └── AuthContext.js
+│   ├── AuthContext.ts      — { user, member, loading }
+│   └── ClubInfoContext.ts  — { clubInfo, loading }
+├── hooks/                  — thin wrappers around contexts and services
+│   ├── useAuth.ts
+│   ├── useClubInfo.ts
+│   ├── useEvents.ts
+│   ├── useMembers.ts
+│   └── useProjects.ts
+├── layouts/
+│   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
+│   ├── OfficerLayout.tsx   — layout for officer/contributor routes
+│   └── PublicLayout.tsx    — Navbar + Footer + outlet for public routes
+├── pages/                  — one file per route, prefixed by audience
+│   ├── Landing.tsx
+│   ├── Login.tsx
+│   ├── PublicEvents.tsx
+│   ├── PublicMembers.tsx
+│   ├── PublicMemberDetail.tsx
+│   ├── PublicProjects.tsx
+│   ├── AdminClub.tsx
+│   └── AdminMembers.tsx
+├── providers/
+│   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
+│   └── ClubInfoProvider.tsx — fetches club_info once at app level
 ├── routes/
-│   ├── ProtectedRoute.jsx  — guards protected routes, renders <Outlet />
-│   └── PublicRoute.jsx     — public routes with PageLayout
-└── supabase/
-    └── supabase.js         — Supabase client
+│   ├── AdminRoute.tsx      — role guard for admin pages
+│   ├── ProtectedRoute.tsx  — auth guard, role-based index redirect
+│   └── PublicRoute.tsx     — public pages
+├── services/               — Supabase query functions, one file per domain
+│   ├── auth.ts
+│   ├── club.ts
+│   └── members.ts
+├── supabase/
+│   └── supabase.ts         — Supabase client (single instance)
+└── types/
+    ├── auth.ts
+    ├── club.ts
+    ├── event.ts
+    ├── member.ts
+    └── project.ts
+
+supabase/functions/
+└── invite-member/
+    └── index.ts            — Edge Function: create auth user + insert club_members row
 ```
 
 ---

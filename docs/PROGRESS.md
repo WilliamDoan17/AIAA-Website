@@ -46,8 +46,9 @@
 | Admin can edit name, cover image, and about text | ✅ |
 | Replace `useMembers` mock data with Supabase query | ✅ |
 | Public `/members/:id` detail page | ✅ |
-| Admin can view and filter member list at `/admin/members` | ⬜ |
-| Admin can invite a new member | ⬜ |
+| Admin can view and filter member list at `/admin/members` | ✅ |
+| Admin can invite a new member | ✅ |
+| Write `OfficerRoute` and `OfficerLayout` | ⬜ |
 | Member onboarding flow (set password → complete profile) | ⬜ |
 | Admin can edit a member's role and title | ⬜ |
 | Admin can remove a member | ⬜ |

@@ -24,13 +24,9 @@ export const getMemberInfo = async (id: string): Promise<Member> => {
 }
 
 export const inviteMember = async (info: MemberInput): Promise<void> => {
-  const { data: authData, error: authError } = await supabase.auth.admin.inviteUserByEmail(info.email)
-  if (authError) throw authError
-
-  const { error } = await supabase
-    .from('club_members')
-    .insert({ id: authData.user.id, ...info })
-
+  const { error } = await supabase.functions.invoke('invite-member', {
+    body: info,
+  })
   if (error) throw error
 }
 
