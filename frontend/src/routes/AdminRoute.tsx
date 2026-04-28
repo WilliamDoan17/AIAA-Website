@@ -2,6 +2,7 @@ import useAuth from "../hooks/useAuth";
 import { Route, Routes, Navigate } from 'react-router-dom'
 import AdminClub from '../pages/AdminClub'
 import AdminLayout from "../layouts/AdminLayout";
+import AdminMembers from "../pages/AdminMembers";
 
 const AdminRoute = () => {
   const { member, loading } = useAuth();
@@ -13,7 +14,8 @@ const AdminRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<AdminLayout />}>
-        <Route path="/club/" element={<AdminClub />} />
+        <Route path="club" element={<AdminClub />} />
+        <Route path="members" element={<AdminMembers />}></Route>
       </Route>
     </Routes>
   )

@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import PublicLayout from '../layouts/PublicLayout'
 import Landing from '../pages/Landing'
-import Projects from '../pages/Projects'
-import Events from '../pages/Events'
-import Members from '../pages/Members'
+import PublicProjects from '../pages/PublicProjects'
+import PublicEvents from '../pages/PublicEvents'
+import PublicMembers from '../pages/PublicMembers'
 import Login from '../pages/Login'
 import PublicMemberDetail from '../pages/PublicMemberDetail'
 
@@ -11,15 +11,14 @@ const PublicRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<PublicLayout />}>
-        <Route index element={<Landing></Landing>}></Route>
-        <Route path="projects" element={<Projects></Projects>}></Route>
-        <Route path="events" element={<Events></Events>}></Route>
-        <Route path="members" element={<Members></Members>}></Route>
-        <Route path="login" element={<Login></Login>}></Route>
-        <Route path="members/:id" element={<PublicMemberDetail></PublicMemberDetail>} />
+        <Route index element={<Landing />} />
+        <Route path="projects" element={<PublicProjects />} />
+        <Route path="events" element={<PublicEvents />} />
+        <Route path="members" element={<PublicMembers />} />
+        <Route path="members/:id" element={<PublicMemberDetail />} />
+        <Route path="login" element={<Login />} />
       </Route>
     </Routes>
-
   )
 }
 

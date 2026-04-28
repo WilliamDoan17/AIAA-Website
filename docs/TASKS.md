@@ -14,6 +14,8 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Replace `useMembers` mock data with Supabase query ✅
   - Public `/members/:id` detail page ✅
   - Admin can view and filter member list at `/admin/members`
+    - Rename `Members.tsx` to `PublicMembers.tsx` and apply the same pattern ✅
+    - Write `AdminMembers.tsx`
 
 </details>
 
