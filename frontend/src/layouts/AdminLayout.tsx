@@ -6,6 +6,7 @@ const navItems = [
   { label: 'Members', to: '/u/admin/members' },
   { label: 'Projects', to: '/u/admin/projects' },
   { label: 'Events', to: '/u/admin/events' },
+  { label: 'Profile', to: '/u/admin/profile' }
 ]
 
 const AdminSidebar = () => {

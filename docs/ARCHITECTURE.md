@@ -26,6 +26,7 @@ frontend/src/
 ├── pages/                  — one file per route, prefixed by audience
 │   ├── Landing.tsx
 │   ├── Login.tsx
+│   ├── MemberProfile.tsx   — edit profile + reset password (admin & officer)
 │   ├── PublicEvents.tsx
 │   ├── PublicMembers.tsx
 │   ├── PublicMemberDetail.tsx
@@ -33,11 +34,12 @@ frontend/src/
 │   ├── AdminClub.tsx
 │   └── AdminMembers.tsx
 ├── providers/
-│   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
+│   ├── AuthProvider.tsx    — fetches session + club_members row on auth change, exposes refetchMember
 │   └── ClubInfoProvider.tsx — fetches club_info once at app level
 ├── routes/
 │   ├── AdminRoute.tsx      — role guard for admin pages
-│   ├── ProtectedRoute.tsx  — auth guard, role-based index redirect
+│   ├── OfficerRoute.tsx    — role guard for officer pages
+│   ├── ProtectedRoute.tsx  — auth guard, is_setup guard, role-based index redirect
 │   └── PublicRoute.tsx     — public pages
 ├── services/               — Supabase query functions, one file per domain
 │   ├── auth.ts
@@ -52,10 +54,20 @@ frontend/src/
     ├── member.ts
     └── project.ts
 
-supabase/functions/
-└── invite-member/
-    └── index.ts            — Edge Function: create auth user + insert club_members row
 ```
+
+---
+
+## Onboarding Flow
+
+When an admin invites a new member via `invite-member`, the member is created with `is_setup = false` and a default password.
+
+On first login:
+1. `AuthProvider` fetches the `club_members` row — `is_setup` is `false`
+2. `ProtectedRoute` detects `!member.is_setup` and shows `SetupGuardModal`
+3. The modal blocks navigation and prompts the user to reset their password
+4. On success, `reset-password` edge function updates the password and sets `is_setup = true`
+5. `refetchMember()` updates the context — modal dismisses, user proceeds normally
 
 ---
 

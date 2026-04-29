@@ -9,6 +9,7 @@ export interface Member {
   title: string
   photo: string
   bio: string
+  is_setup: boolean
 }
 
-export type MemberInput = Omit<Member, 'id' | 'created_at'>
+export type MemberInput = Omit<Member, 'id' | 'created_at' | 'is_setup'>

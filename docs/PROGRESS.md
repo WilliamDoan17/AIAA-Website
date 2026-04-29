@@ -48,11 +48,13 @@
 | Public `/members/:id` detail page | ✅ |
 | Admin can view and filter member list at `/admin/members` | ✅ |
 | Admin can invite a new member | ✅ |
-| Member onboarding flow (set password → complete profile) at `/u/profile` | ⬜ |
-| Write `OfficerRoute` and `OfficerLayout` | ⬜ |
-| Admin can edit a member's role and title | ⬜ |
-| Admin can remove a member | ⬜ |
-| Officer can edit own name, photo, and bio | ⬜ |
+| Member onboarding flow (set password → complete profile) at `/u/profile` | ✅ |
+| `SetupGuardModal` — force password reset on first login | ✅ |
+| Write `OfficerRoute` and `OfficerLayout` | ✅ |
+| Admin can edit a member's role and title | ✅ |
+| Admin can remove a member | ✅ |
+| Officer can edit own name, photo, and bio | ✅ |
+| RLS: block `is_setup` writes from client, block self-update of `title` for non-admins | ✅ |
 
 ### P2-4 — Events
 
@@ -93,4 +95,4 @@
 
 ---
 
-**Last updated:** Wed Apr 23 2026
+**Last updated:** Tue Apr 29 2026

@@ -5,6 +5,27 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   <summary>Apr 29, 2026</summary>
 
   - Member onboarding flow (set password → complete profile) at `/u/profile`
+    - Hook for member info (`useMemberInfo`) (use `useEffect`) ✅
+    - `resetPassword` service ✅
+    - `MemberProfile.tsx` ✅
+    - Wire to `ProtectedRoute` ✅
+    - Wire to `AdminLayout` ✅
+    - edit profile & password ✅
+    - Write `OfficerRoute` and `OfficerLayout` ✅
+    - Implement `is_setup` to `club_members` ✅
+      - update docs ✅
+      - Add column `is_setup` ✅
+      - RLS can't update `is_setup` (let the server function handle) ✅
+      - `MemberInput` excludes `is_setup` ✅
+      - Run SQL to update all accounts up to now as `is_setup` = `false` ✅
+    - Write Edge Function for reset password ✅
+      - Verify current password ✅
+      - Update password via admin API ✅
+      - Set `is_setup = true` in `club_members` ✅
+    - Handle redirection if `member.is_setup` = `false` ✅
+    - `SetupGuardModal` — blocks navigation, prompts password reset on first login ✅
+    - Update architecture docs for onboarding flow ✅
+
 </details>
 
 <details>

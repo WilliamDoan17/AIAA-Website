@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import supabase from '../supabase/supabase';
 import type { User } from '../types/auth';
@@ -9,19 +9,25 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null)
   const [member, setMember] = useState<Member | null>(null);
+  const userIdRef = useRef<string | null>(null);
+
+  const fetchMemberInfo = useCallback(async (id: string) => {
+    const currMember = await getMemberInfo(id);
+    setMember(currMember);
+  }, [])
+
+  const refetchMember = useCallback(async () => {
+    if (!userIdRef.current) return
+    await fetchMemberInfo(userIdRef.current)
+  }, [fetchMemberInfo])
 
   useEffect(() => {
-    const getCurrentMember = async (id: string) => {
-      const currMember = await getMemberInfo(id);
-      setMember(currMember);
-      setLoading(false);
-    }
-
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       const currUser = session?.user ?? null;
       setUser(currUser)
+      userIdRef.current = currUser?.id ?? null
       if (currUser) {
-        getCurrentMember(currUser.id);
+        fetchMemberInfo(currUser.id).finally(() => setLoading(false));
       } else {
         setMember(null);
         setLoading(false);
@@ -29,7 +35,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     })
 
     return () => data.subscription.unsubscribe()
-  }, [])
+  }, [fetchMemberInfo])
 
   return (
     <AuthContext.Provider
@@ -37,6 +43,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loading,
         user,
         member,
+        refetchMember,
       }}
     >
       {children}

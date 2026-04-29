@@ -1,5 +1,21 @@
 # Database Triggers
 
+## `enforce_self_title_restriction`
+
+**Table:** `public.club_members`
+**Event:** `BEFORE UPDATE`
+**Function:** `restrict_self_title_update()`
+
+**Description:**
+Prevents a non-admin member from updating their own `title`. Admins can update their own title since `OLD.role = 'admin'` bypasses the check. Admins updating other members are also unaffected since `auth.uid() = OLD.id` is false. The service role (edge functions) is unaffected since `auth.uid()` returns `null`.
+
+**Flow:**
+1. UPDATE is attempted on `club_members`
+2. If `auth.uid() = OLD.id` and `NEW.title != OLD.title` and `OLD.role != 'admin'`, raise exception
+3. Otherwise allow the update
+
+---
+
 ## `on_club_member_deleted`
 
 **Table:** `public.club_members`  

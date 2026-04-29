@@ -34,6 +34,7 @@ This document details the data model, validations, and access (RLS) controls for
 | title      | text             | not null, not empty                |
 | photo      | text             | not null, default ''               |
 | bio        | text             | not null, default ''               |
+| is_setup   | boolean          | not null, default false            |
 | created_at | timestamptz      | not null, default now()            |
 
 > `club_role`: `admin` | `officer`
@@ -47,12 +48,13 @@ This document details the data model, validations, and access (RLS) controls for
 | title      | not empty, 2–48 chars                         |
 | photo      | valid URL or storage ref                      |
 | bio        | max 2048 chars, strip HTML                    |
+| is_setup   | server-only, not writable via RLS             |
 | created_at | auto-generated, no user input                 |
 
 ### RLS Policies
 - SELECT: none
 - INSERT: admin only
-- UPDATE: admin, or user updates own name, photo, bio
+- UPDATE: admin, or user updates own name, photo, bio (not is_setup)
 - DELETE: admin only
 
 ---
