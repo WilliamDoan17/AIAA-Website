@@ -2,6 +2,12 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 1, 2026</summary>
+
+  - Hooks now uses `tanstack-query` to manage refetch 
+</details>
+
+<details>
   <summary>Apr 29, 2026</summary>
 
   - Member onboarding flow (set password → complete profile) at `/u/profile`
