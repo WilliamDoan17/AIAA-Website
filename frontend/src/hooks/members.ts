@@ -38,9 +38,9 @@ export const useUpdateMember = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: ({ id, updates }: UpdateMemberProps) => updateMember(id, updates),
-    onSuccess: (_data, { id }) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['members', id],
+        queryKey: ['members'],
       })
     }
   })
@@ -50,13 +50,9 @@ export const useDeleteMember = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (id: string) => deleteMember(id),
-    onSuccess: (_data, id) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['members'],
-        exact: true,
-      })
-      queryClient.invalidateQueries({
-        queryKey: ['members', id],
       })
     }
   })
