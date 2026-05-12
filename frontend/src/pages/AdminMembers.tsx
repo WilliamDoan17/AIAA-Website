@@ -1,7 +1,5 @@
 import { useState, useMemo } from 'react'
-import { updateMember, deleteMember } from '../services/members'
-import { useQueryClient } from '@tanstack/react-query'
-import { useMembers, useInviteMember } from '../hooks/members'
+import { useMembers, useInviteMember, useUpdateMember, useDeleteMember } from '../hooks/members'
 import type { Member } from '../types/member'
 import type { ClubRole } from '../types/member'
 
@@ -140,26 +138,14 @@ const InviteModal = ({ onClose }: InviteModalProps) => {
 interface EditModalProps {
   member: Member
   onClose: () => void
-  onSaved: () => void
 }
 
-const EditModal = ({ member, onClose, onSaved }: EditModalProps) => {
+const EditModal = ({ member, onClose }: EditModalProps) => {
   const [form, setForm] = useState({ role: member.role, title: member.title })
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { mutate: update, isPending: saving, error: updateError } = useUpdateMember()
 
-  const handleSave = async () => {
-    setSaving(true)
-    setError(null)
-    try {
-      await updateMember(member.id, form)
-      onSaved()
-      onClose()
-    } catch {
-      setError('Failed to save changes')
-    } finally {
-      setSaving(false)
-    }
+  const handleSave = () => {
+    update({ id: member.id, updates: form }, { onSuccess: onClose })
   }
 
   return (
@@ -195,7 +181,7 @@ const EditModal = ({ member, onClose, onSaved }: EditModalProps) => {
           </select>
         </div>
 
-        {error && <p className="text-red-400 text-xs font-body">{error}</p>}
+        {updateError && <p className="text-red-400 text-xs font-body">Failed to save changes</p>}
 
         <div className="flex gap-3 pt-1">
           <button
@@ -220,22 +206,13 @@ const EditModal = ({ member, onClose, onSaved }: EditModalProps) => {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
 const AdminMembers = () => {
-  const [members, setMembers] = useState<Member[]>([])
-  const [loading, setLoading] = useState(true)
+  const { data: members = [], isLoading: loading } = useMembers()
+  const { mutate: remove, isPending: isDeleting, variables: deletingId } = useDeleteMember()
   const [showInvite, setShowInvite] = useState(false)
   const [editing, setEditing] = useState<Member | null>(null)
-  const [deletingId, setDeletingId] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [roleFilter, setRoleFilter] = useState('all')
   const [titleFilter, setTitleFilter] = useState('all')
-
-  const fetchMembers = () => {
-    getAllMembers()
-      .then(setMembers)
-      .finally(() => setLoading(false))
-  }
-
-  useEffect(() => { fetchMembers() }, [])
 
   const titles = useMemo(() => ['all', ...new Set(members.map(m => m.title))], [members])
 
@@ -248,20 +225,10 @@ const AdminMembers = () => {
     .filter(m => titleFilter === 'all' || m.title === titleFilter)
     , [members, search, roleFilter, titleFilter])
 
-  const handleDelete = async (id: string) => {
-    setDeletingId(id)
-    try {
-      await deleteMember(id)
-      setMembers(prev => prev.filter(m => m.id !== id))
-    } finally {
-      setDeletingId(null)
-    }
-  }
-
   return (
     <>
-      {showInvite && <InviteModal onClose={() => setShowInvite(false)} onInvited={fetchMembers} />}
-      {editing && <EditModal member={editing} onClose={() => setEditing(null)} onSaved={fetchMembers} />}
+      {showInvite && <InviteModal onClose={() => setShowInvite(false)} />}
+      {editing && <EditModal member={editing} onClose={() => setEditing(null)} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">
@@ -343,11 +310,11 @@ const AdminMembers = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(member.id)}
-                    disabled={deletingId === member.id}
+                    onClick={() => remove(member.id)}
+                    disabled={isDeleting && deletingId === member.id}
                     className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1 disabled:opacity-50"
                   >
-                    {deletingId === member.id ? '...' : 'Remove'}
+                    {isDeleting && deletingId === member.id ? '...' : 'Remove'}
                   </button>
                 </div>
               </div>
