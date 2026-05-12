@@ -13,12 +13,12 @@ frontend/src/
 ├── contexts/
 │   ├── AuthContext.ts      — { user, member, loading }
 │   └── ClubInfoContext.ts  — { clubInfo, loading }
-├── hooks/                  — thin wrappers around contexts and services
-│   ├── useAuth.ts
-│   ├── useClubInfo.ts
-│   ├── useEvents.ts
-│   ├── useMembers.ts
-│   └── useProjects.ts
+├── hooks/                  — data access hooks, one file per resource domain
+│   ├── members.ts          — useMembers, useMember, useInviteMember, useUpdateMember, useDeleteMember
+│   ├── useAuth.ts          — reads AuthContext
+│   ├── useClubInfo.ts      — reads ClubInfoContext
+│   ├── useEvents.ts        — fetches events from Supabase
+│   └── useProjects.ts      — fetches projects from Supabase
 ├── layouts/
 │   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
 │   ├── OfficerLayout.tsx   — layout for officer/contributor routes
@@ -34,8 +34,9 @@ frontend/src/
 │   ├── AdminClub.tsx
 │   └── AdminMembers.tsx
 ├── providers/
-│   ├── AuthProvider.tsx    — fetches session + club_members row on auth change, exposes refetchMember
-│   └── ClubInfoProvider.tsx — fetches club_info once at app level
+│   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
+│   ├── ClubInfoProvider.tsx — fetches club_info once at app level
+│   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient
 ├── routes/
 │   ├── AdminRoute.tsx      — role guard for admin pages
 │   ├── OfficerRoute.tsx    — role guard for officer pages
@@ -53,7 +54,6 @@ frontend/src/
     ├── event.ts
     ├── member.ts
     └── project.ts
-
 ```
 
 ---
@@ -73,42 +73,51 @@ On first login:
 
 ## Layers
 
-1. **Pages** — route-level components. Fetch data via hooks, compose section components, own filter state.
-2. **Components** — shared UI across pages (`Navbar`, `Footer`, `PageLayout`). Domain-specific cards and containers live under `pages/` for now; move to `components/` as they get reused.
-3. **Hooks** — one per domain (`useProjects`, `useEvents`, `useMembers`). Phase 1: return mock data. Phase 2: call Supabase, expose `{ data, loading, error }`.
+1. **Pages** — route-level components. Fetch data via hooks, compose section components, own filter/UI state.
+2. **Components** — shared UI across pages (`Navbar`, `Footer`). Domain-specific cards and modals live inside `pages/` until reused.
+3. **Hooks** — one file per resource domain. Member hooks use TanStack Query for caching and mutation management. Context hooks (`useAuth`, `useClubInfo`) read from providers. Other hooks (`useEvents`, `useProjects`) use `useState` + `useEffect` and will be migrated to TanStack Query.
 4. **Layouts** — auth-gated wrappers. `AdminLayout` enforces `role = 'admin'`; `OfficerLayout` enforces any authenticated session.
-5. **Supabase client** — single import from `supabase/supabase.js`. Never instantiate the client elsewhere.
+5. **Services** — plain async functions that call Supabase. No React. Used directly by hooks as `queryFn`/`mutationFn`. Never import the Supabase client outside of services.
+6. **Providers** — `QueryProvider` wraps the entire app and holds the `QueryClient`. `AuthProvider` and `ClubInfoProvider` sit inside it.
+
+---
+
+## Data Fetching
+
+### Server state (TanStack Query)
+Resources that live on the server (`members`) use TanStack Query hooks. This provides:
+- Automatic caching with a 1-minute stale time
+- Cache invalidation after mutations instead of manual refetch calls
+- Shared cache across all components — no prop-drilling `refetch`
+
+Query key shape for members:
+- List: `['members']`
+- Single: `['members', id]`
+
+`invalidateQueries({ queryKey: ['members'], exact: true })` targets the list only.
+`invalidateQueries({ queryKey: ['members', id] })` targets one member's detail.
+
+### Context state
+`club_info` and auth session are fetched once by providers and exposed via context. These don't use TanStack Query because they're app-global singletons managed by Supabase auth events.
+
+### Filter state
+- Filter state is local `useState` inside the page that owns it.
+- `filterOptions` derived from data with `useMemo` — never hardcoded.
+- Filtered results computed with `useMemo` depending on `[data, filters]`.
 
 ---
 
 ## Conventions
 
-### Data fetching
-- Fetch once at the page level; pass data down as props.
-- Never fetch inside cards or child components.
-- Phase 1: hooks return mock data directly. Phase 2: hooks query Supabase and expose a loading/error state.
-
-### Filter state
-- Filter state is a single object: `{ category: 'all', status: 'all' }`.
-- `filterOptions` is derived from data with `useMemo` — never hardcoded.
-- Filtered results computed with `useMemo` depending on `[data, filters]`.
-
 ### Null image handling
-- `cover_image` and `photo` can be null. Always render a placeholder `<div>` instead of a broken `<img>`.
+`cover_image` and `photo` can be null. Always render a placeholder `<div>` instead of a broken `<img>`.
 
 ### Routing
-- Routes composed in `src/App.jsx`.
-- Public pages under no layout wrapper.
-- Admin pages nested under `AdminLayout`; officer/contributor pages under `OfficerLayout`.
+Routes composed in `App.tsx`. Public pages under `PublicRoute`; admin pages nested under `AdminRoute` + `AdminLayout`; officer pages under `OfficerRoute` + `OfficerLayout`.
 
 ### Styling
-- Tailwind CSS utility classes for all new components and pages.
-- Existing Phase 1 pages retain their CSS Modules — migrate incrementally.
+- Tailwind CSS utility classes throughout.
 - Design language: Deep-Space / Mission Control.
 - Fonts: Orbitron (headings), DM Sans (body).
 - Key CSS variables: `--void: #04060f`, `--accent: #00c8ff`, `--gold: #f0a500`, `--text: #e8eef8`, `--muted: #7a8aaa`.
 - Starfield overlay via `::before` pseudo-element on page wrappers.
-
-### Naming
-- Pages: `index.jsx` + `index.module.css` inside a named folder (e.g. `pages/projects/`).
-- Shared components: `PascalCase.jsx` + `PascalCase.module.css` in `components/`.

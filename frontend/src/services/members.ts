@@ -1,7 +1,5 @@
 import supabase from "../supabase/supabase";
-import { Member } from "../types/member";
-
-type MemberInput = Omit<Member, 'id' | 'created_at'>
+import type { Member, MemberInput } from "../types/member";
 
 export const getAllMembers = async (): Promise<Member[]> => {
   const { data, error } = await supabase

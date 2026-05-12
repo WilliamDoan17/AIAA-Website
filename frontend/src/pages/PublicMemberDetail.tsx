@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { getMemberInfo } from '../services/members'
-import type { Member } from '../types/member'
+import { useMember } from '../hooks/members'
 
 const PublicMemberDetail = () => {
   const { id } = useParams<{ id: string }>()
-  const [member, setMember] = useState<Member | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (!id) return
-    getMemberInfo(id)
-      .then(setMember)
-      .catch(() => setError(true))
-      .finally(() => setLoading(false))
-  }, [id])
+  const { data: member, isLoading: loading, isError: error } = useMember(id!)
 
   if (loading) return (
     <div className="min-h-screen bg-void text-copy flex items-center justify-center">
