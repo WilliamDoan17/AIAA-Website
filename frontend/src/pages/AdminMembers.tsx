@@ -1,5 +1,7 @@
-import { useState, useEffect, useMemo } from 'react'
-import { getAllMembers, inviteMember, updateMember, deleteMember } from '../services/members'
+import { useState, useMemo } from 'react'
+import { updateMember, deleteMember } from '../services/members'
+import { useQueryClient } from '@tanstack/react-query'
+import { useMembers, useInviteMember } from '../hooks/members'
 import type { Member } from '../types/member'
 import type { ClubRole } from '../types/member'
 
@@ -45,14 +47,12 @@ const validateInviteForm = (form: { email: string; name: string; title: string; 
 
 interface InviteModalProps {
   onClose: () => void
-  onInvited: () => void
 }
 
-const InviteModal = ({ onClose, onInvited }: InviteModalProps) => {
+const InviteModal = ({ onClose }: InviteModalProps) => {
   const [form, setForm] = useState({ email: '', name: '', role: 'officer' as ClubRole, title: '', photo: '', bio: '' })
   const [fieldErrors, setFieldErrors] = useState<InviteFieldErrors>({})
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { mutate: invite, isPending, error: inviteError } = useInviteMember()
 
   const setField = (key: string, value: string) => {
     setForm(f => ({ ...f, [key]: value }))
@@ -61,23 +61,13 @@ const InviteModal = ({ onClose, onInvited }: InviteModalProps) => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const errors = validateInviteForm(form)
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors)
       return
     }
-    setSaving(true)
-    setError(null)
-    try {
-      await inviteMember(form)
-      onInvited()
-      onClose()
-    } catch {
-      setError('Failed to send invite')
-    } finally {
-      setSaving(false)
-    }
+    invite(form, { onSuccess: onClose })
   }
 
   return (
@@ -123,15 +113,15 @@ const InviteModal = ({ onClose, onInvited }: InviteModalProps) => {
           </select>
         </div>
 
-        {error && <p className="text-red-400 text-xs font-body">{error}</p>}
+        {inviteError && <p className="text-red-400 text-xs font-body">Failed to send invite</p>}
 
         <div className="flex gap-3 pt-1">
           <button
             onClick={handleSubmit}
-            disabled={saving}
+            disabled={isPending}
             className="relative overflow-hidden flex-1 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            {saving ? 'Sending...' : 'Send Invite'}
+            {isPending ? 'Sending...' : 'Send Invite'}
           </button>
           <button
             onClick={onClose}

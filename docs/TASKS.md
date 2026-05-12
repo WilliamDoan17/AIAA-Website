@@ -4,16 +4,17 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>May 12, 2026</summary>
 
-  - Hooks now use `@tanstack/react-query` to manage refetch
-    - create branch `refactor/tanstack-query-introduction`
-    - install `@tanstack/react-query` (+ devtools in dev)
-    - set up `QueryClient` and wrap app in `<QueryClientProvider>` in `main.tsx`
-    - rename `hooks/useMembers.ts` → `hooks/members.ts`; merge `useMemberInfo` in and delete the old file
-    - implement `useMembers`, `useMember(id)`, and `useInviteMember` in `hooks/members.ts`
+  - Hooks now use `@tanstack/react-query` to manage refetch ✅
+    - create branch `refactor/tanstack-query-introduction` ✅
+    - install `@tanstack/react-query` (+ devtools in dev) ✅
+    - set up `QueryClient` and wrap app in `<QueryClientProvider>` in `main.tsx` ✅
+    - rename `hooks/useMembers.ts` → `hooks/members.ts`; merge `useMemberInfo` in and delete the old file ✅
+    - implement `useMembers`, `useMember(id)`, and `useInviteMember` in `hooks/members.ts` 
       - centralize query keys with a `memberKeys` factory
       - `useInviteMember` invalidates `memberKeys.all` on success (replaces manual `refetch`)
     - update callsites (`AdminMembers`, `PublicMembers`, `MemberProfile`, `PublicMemberDetail`) to new return shapes; remove manual `refetch` plumbing
     - typecheck + manual smoke test (list loads, detail loads, invite refreshes list automatically)
+    - rewrite docs: ARCHITECTURE.md, HOOKS.md
 </details>
 
 <details>
