@@ -10,9 +10,9 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - set up `QueryClient` and wrap app in `<QueryClientProvider>` in `main.tsx` ✅
     - rename `hooks/useMembers.ts` → `hooks/members.ts`; merge `useMemberInfo` in and delete the old file ✅
     - implement `useMembers`, `useMember(id)`, and `useInviteMember`, `useUpdateMember`, `useDeleteMember` in `hooks/members.ts`  ✅
-    - update callsites (`AdminMembers`, `PublicMembers`, `MemberProfile`, `PublicMemberDetail`) to new return shapes; remove manual `refetch` plumbing ✅
-    - typecheck + manual smoke test (list loads, detail loads, invite refreshes list automatically)
-    - rewrite docs: ARCHITECTURE.md, HOOKS.md
+    - update callsites (`AdminMembers`, `PublicMembers`, `MemberProfile`, `PublicMemberDetail`) to new return shapes; remove manual `refetch` plumbing ✅ 
+    - typecheck + manual smoke test (list loads, detail loads, invite refreshes list automatically) ✅
+    - rewrite docs: ARCHITECTURE.md, HOOKS.md ✅
 </details>
 
 <details>
