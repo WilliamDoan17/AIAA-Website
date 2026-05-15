@@ -4,7 +4,9 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>May 15, 2026</summary>
 
-  - Refactor the uses of `Routes` and `Layout`
+  - Refactor the uses of `Routes` and `Layout` ✅
+  - Apply schema and RLS for `events` ✅
+
 </details>
 
 <details>
