@@ -13,3 +13,6 @@ export interface Event {
   end_time: string
   status: EventStatus
 }
+
+export type EventInsert = Omit<Event, 'id' | 'created_at'>
+export type EventUpdate = Partial<EventInsert>

@@ -42,7 +42,7 @@ Shared data types used across hooks, services, and components. Derived from the 
 | id          | string       | uuid                   |
 | created_at  | string       | ISO 8601 timestamptz   |
 | name        | string       |                        |
-| summary     | string       |                        |
+| content    | string       |                        |
 | description | string       |                        |
 | cover_image | string        | url or storage ref     |
 | location    | string       |                        |
@@ -53,6 +53,12 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ### EventStatus
 `'upcoming'` | `'ongoing'` | `'completed'`
+
+### EventInsert
+`Omit<Member, 'id' | 'created_at'>`
+
+### EventUpdate
+`Partial<EventInsert>`
 
 ---
 
