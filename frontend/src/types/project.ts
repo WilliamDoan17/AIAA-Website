@@ -8,7 +8,7 @@ export interface Project {
   name: string
   summary: string
   description: string
-  cover_image: string | null
+  cover_image: string
   status: ProjectStatus
   category: ProjectCategory
 }

@@ -44,7 +44,7 @@ Shared data types used across hooks, services, and components. Derived from the 
 | name        | string       |                        |
 | summary     | string       |                        |
 | description | string       |                        |
-| cover_image | string\|null  | url or storage ref     |
+| cover_image | string        | url or storage ref     |
 | location    | string       |                        |
 | url         | string\|null  |                        |
 | start_time  | string       | ISO 8601 timestamptz   |
@@ -65,7 +65,7 @@ Shared data types used across hooks, services, and components. Derived from the 
 | name        | string          |                      |
 | summary     | string          |                      |
 | description | string          |                      |
-| cover_image | string\|null     | url or storage ref   |
+| cover_image | string           | url or storage ref   |
 | status      | ProjectStatus   |                      |
 | category    | ProjectCategory |                      |
 

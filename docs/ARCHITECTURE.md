@@ -110,7 +110,7 @@ Query key shape for members:
 ## Conventions
 
 ### Null image handling
-`cover_image` and `photo` can be null. Always render a placeholder `<div>` instead of a broken `<img>`.
+`photo` can be null. Always render a placeholder `<div>` instead of a broken `<img>`.
 
 ### Routing
 Routes composed in `App.tsx`. Public pages under `PublicRoute`; admin pages nested under `AdminRoute` + `AdminLayout`; officer pages under `OfficerRoute` + `OfficerLayout`.

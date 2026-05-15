@@ -68,7 +68,7 @@ This document details the data model, validations, and access (RLS) controls for
 | name        | text                  | not null, not empty         |
 | summary     | text                  | not null, not empty         |
 | description | text                  | not null, not empty         |
-| cover_image | text                  | nullable                    |
+| cover_image | text                  | not null, default ''        |
 | status      | project_status enum   | not null, default 'not_started' |
 | category    | project_category enum | not null                    |
 | created_at  | timestamptz           | not null, default now()     |
@@ -141,7 +141,7 @@ This document details the data model, validations, and access (RLS) controls for
 | created_at  | timestamptz       | not null, default now()      |
 | name        | text              | not null, not empty          |
 | description | text              | not null, not empty          |
-| cover_image | text              | nullable                     |
+| cover_image | text              | not null, default ''         |
 | content     | text              | not null, default ''         |
 | location    | text              | not null, not empty          |
 | url         | text              | nullable                     |

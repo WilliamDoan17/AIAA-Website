@@ -6,7 +6,7 @@ export interface Event {
   name: string
   description: string
   content: string
-  cover_image: string | null
+  cover_image: string
   location: string
   url: string | null
   start_time: string
