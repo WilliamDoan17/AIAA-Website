@@ -1,4 +1,4 @@
-# SERVICES (suggestion)
+# SERVICES
 
 This file will document Supabase and related backend services for the AIAA-Website. For each service, describe its role, integration details, and endpoint structure.
 
@@ -21,6 +21,15 @@ This file will document Supabase and related backend services for the AIAA-Websi
 - inviteMember(info: `MemberInput`) -> `void`: calls Edge Function `invite-member` (see below)
 - updateMember(id, updates: `Partial<Member>`) -> `void`: update member info (admin can update all, or officer can only update their own)
 - deleteMember(id) -> `void`: delete member (admin only)
+
+## events
+`src/services/members.ts`
+
+- getAllEvents() -> `Event[]`: get all events
+- getEventById(id: string) -> `Event`: get all events 
+- createEvent(info: `EventInsert`) -> `void`: add an event for the club with info
+- updateEvent(id: string, updates: `EventUpdate`) -> `void`: update an event
+- deleteEvent(id: string) -> `void`: delete an event
 
 ---
 
