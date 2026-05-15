@@ -60,7 +60,7 @@
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `events` | ⬜ |
+| Apply schema and RLS for `events` | ✅ |
 | Write service functions and hook | ⬜ |
 | Replace `useEvents` mock data with Supabase query | ⬜ |
 | Public `/events/:id` detail page | ⬜ |

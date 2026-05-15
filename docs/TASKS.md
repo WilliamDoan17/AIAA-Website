@@ -6,6 +6,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
   - Refactor the uses of `Routes` and `Layout` ✅
   - Apply schema and RLS for `events` ✅
+  - Write service functions and hook for events  
+    - Write service functions for events 
+    - Plan on hooks for events using React Query and update the docs
+    - Implement hoosk for events 
+
 
 </details>
 
