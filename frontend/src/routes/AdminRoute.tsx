@@ -1,26 +1,12 @@
-import useAuth from "../hooks/useAuth";
-import { Route, Routes, Navigate } from 'react-router-dom'
-import AdminClub from '../pages/AdminClub'
-import AdminLayout from "../layouts/AdminLayout";
-import AdminMembers from "../pages/AdminMembers";
-import MemberProfile from "../pages/MemberProfile";
+import { Navigate, Outlet } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const AdminRoute = () => {
-  const { member, loading } = useAuth();
-  if (loading) return null;
-  if (member?.role !== "admin") {
-    return <Navigate to="/u/" />
-  }
+  const { member, loading } = useAuth()
+  if (loading) return null
+  if (member?.role !== 'admin') return <Navigate to="/u/" />
 
-  return (
-    <Routes>
-      <Route path="/" element={<AdminLayout />}>
-        <Route path="club" element={<AdminClub />} />
-        <Route path="members" element={<AdminMembers />} />
-        <Route path="profile" element={<MemberProfile />} />
-      </Route>
-    </Routes>
-  )
+  return <Outlet />
 }
 
-export default AdminRoute;
+export default AdminRoute

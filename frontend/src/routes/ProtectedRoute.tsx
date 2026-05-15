@@ -1,7 +1,5 @@
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
-import AdminRoute from './AdminRoute'
-import OfficerRoute from './OfficerRoute'
 import SetupGuardModal from '../components/SetupGuardModal'
 
 const ProtectedRoute = () => {
@@ -12,15 +10,15 @@ const ProtectedRoute = () => {
   return (
     <>
       {member && !member.is_setup && <SetupGuardModal />}
-      <Routes>
-        <Route path="/">
-          <Route index element={<Navigate to={member?.role === 'admin' ? '/u/admin/' : '/u/officer/'} replace />} />
-          <Route path="admin/*" element={<AdminRoute />} />
-          <Route path="officer/*" element={<OfficerRoute />} />
-        </Route>
-      </Routes>
+      <Outlet />
     </>
   )
+}
+
+export const ProtectedIndex = () => {
+  const { member, loading } = useAuth()
+  if (loading) return null
+  return <Navigate to={member?.role === 'admin' ? '/u/admin/' : '/u/officer/'} replace />
 }
 
 export default ProtectedRoute
