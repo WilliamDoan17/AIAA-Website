@@ -42,6 +42,7 @@ function App() {
                 <Route index element={<ProtectedIndex />} />
                 <Route path="admin" element={<AdminRoute />}>
                   <Route element={<AdminLayout />}>
+                    <Route index element={null}></Route>
                     <Route path="club" element={<AdminClub />} />
                     <Route path="members" element={<AdminMembers />} />
                     <Route path="profile" element={<MemberProfile />} />
@@ -49,6 +50,7 @@ function App() {
                 </Route>
                 <Route path="officer" element={<OfficerRoute />}>
                   <Route element={<OfficerLayout />}>
+                    <Route index element={null}></Route>
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>
