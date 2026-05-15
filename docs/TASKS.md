@@ -2,6 +2,12 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 15, 2026</summary>
+
+  - Refactor the uses of `Routes` and `Layout`
+</details>
+
+<details>
   <summary>May 12, 2026</summary>
 
   - Hooks now use `@tanstack/react-query` to manage refetch ✅
