@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { createEvent, getAllEvents, getEventById, updateEvent } from '../services/events.js'
+import { createEvent, deleteEvent, getAllEvents, getEventById, updateEvent } from '../services/events.js'
 import { EventInsert, EventUpdate } from '../types/events.js'
 
 
@@ -38,6 +38,18 @@ export const useUpdateEvent = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: ({ id, updates }: UpdateEventProps) => updateEvent(id, updates),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['events']
+      })
+    }
+  })
+}
+
+export const useDeleteEvent = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => deleteEvent(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['events']
