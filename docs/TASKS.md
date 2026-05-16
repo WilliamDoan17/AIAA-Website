@@ -7,17 +7,22 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Refactor the uses of `Routes` and `Layout` ✅
   - Apply schema and RLS for `events` ✅
   - Write service functions and hook for events  
-<<<<<<< Updated upstream
-    - Write service functions for events 
-    - Plan on hooks for events using React Query and update the docs
-    - Implement hoosk for events 
-=======
     - Write types for events ✅
     - Write service functions for events ✅
     - Plan on hooks for events using React Query and update the docs ✅
     - Implement hooks for events  ✅
->>>>>>> Stashed changes
 
+  - naming convention fix: ✅
+    - (domain)Input -> (domain)Insert for types ✅
+    - add a (domain)Update type using `Partial<(domain)Insert>` for each domain needs it ✅
+    - decide naming on (domain) with `s` or no `s` for domain naming files ✅
+    - service naming conventions: ✅
+      - use byId instead of get(domain)Info (excluding clubInfo) ✅
+    - document everything ✅
+
+  - folder structure (architecture) refactor: 
+    - group by feature (domain) vs. group by attributes (decide)
+    - implement
 
 </details>
 
