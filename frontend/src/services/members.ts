@@ -1,5 +1,5 @@
 import supabase from "../supabase/supabase";
-import type { Member, MemberInsert, MemberUpdate } from "../types/member";
+import type { Member, MemberInsert, MemberUpdate } from "../types/members";
 
 export const getAllMembers = async (): Promise<Member[]> => {
   const { data, error } = await supabase

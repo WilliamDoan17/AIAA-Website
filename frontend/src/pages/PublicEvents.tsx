@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import useEvents from '../hooks/useEvents'
-import type { Event } from '../types/event'
+import useEvents from '../hooks/events'
+import type { Event } from '../types/events'
 
 const EventCard = ({ event }: { event: Event }) => {
   const start = new Date(event.start_time)

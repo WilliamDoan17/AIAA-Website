@@ -1,6 +1,6 @@
 import { deleteMember, getAllMembers, getMemberById, inviteMember, updateMember } from "../services/members"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import type { MemberInsert, MemberUpdate } from "../types/member"
+import type { MemberInsert, MemberUpdate } from "../types/members"
 
 export const useMembers = () => {
   return useQuery({

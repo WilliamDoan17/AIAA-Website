@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useMembers } from '../hooks/members'
-import type { Member } from '../types/member'
+import type { Member } from '../types/members'
 
 const PresidentCard = ({ president }: { president: Member }) => {
   return (
