@@ -1,5 +1,5 @@
 import supabase from "../supabase/supabase";
-import type { Member, MemberInput } from "../types/member";
+import type { Member, MemberInsert, MemberUpdate } from "../types/member";
 
 export const getAllMembers = async (): Promise<Member[]> => {
   const { data, error } = await supabase
@@ -10,7 +10,7 @@ export const getAllMembers = async (): Promise<Member[]> => {
   return data ?? []
 }
 
-export const getMemberInfo = async (id: string): Promise<Member> => {
+export const getMemberById = async (id: string): Promise<Member> => {
   const { data, error } = await supabase
     .from('club_members')
     .select('*')
@@ -21,14 +21,14 @@ export const getMemberInfo = async (id: string): Promise<Member> => {
   return data
 }
 
-export const inviteMember = async (info: MemberInput): Promise<void> => {
+export const inviteMember = async (info: MemberInsert): Promise<void> => {
   const { error } = await supabase.functions.invoke('invite-member', {
     body: info,
   })
   if (error) throw error
 }
 
-export const updateMember = async (id: string, updates: Partial<Member>): Promise<void> => {
+export const updateMember = async (id: string, updates: MemberUpdate): Promise<void> => {
   const { error } = await supabase
     .from('club_members')
     .update(updates)

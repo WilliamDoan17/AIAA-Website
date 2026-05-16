@@ -1,6 +1,6 @@
-import { deleteMember, getAllMembers, getMemberInfo, inviteMember, updateMember } from "../services/members"
+import { deleteMember, getAllMembers, getMemberById, inviteMember, updateMember } from "../services/members"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import type { Member, MemberInput } from "../types/member"
+import type { MemberInsert, MemberUpdate } from "../types/member"
 
 export const useMembers = () => {
   return useQuery({
@@ -12,14 +12,14 @@ export const useMembers = () => {
 export const useMember = (id: string) => {
   return useQuery({
     queryKey: ['members', id],
-    queryFn: () => getMemberInfo(id),
+    queryFn: () => getMemberById(id),
   })
 }
 
 export const useInviteMember = () => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (info: MemberInput) => inviteMember(info),
+    mutationFn: (info: MemberInsert) => inviteMember(info),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['members'],
@@ -31,7 +31,7 @@ export const useInviteMember = () => {
 
 interface UpdateMemberProps {
   id: string,
-  updates: Partial<Member>
+  updates: MemberUpdate
 }
 
 export const useUpdateMember = () => {
