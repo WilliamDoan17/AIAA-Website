@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import supabase from '../supabase/supabase';
 import type { User } from '../types/auth';
-import { getMemberInfo } from '../services/members';
+import { getMemberById } from '../services/members';
 import type { Member } from '../types/members';
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +12,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const userIdRef = useRef<string | null>(null);
 
   const fetchMemberInfo = useCallback(async (id: string) => {
-    const currMember = await getMemberInfo(id);
+    const currMember = await getMemberById(id);
     setMember(currMember);
   }, [])
 
