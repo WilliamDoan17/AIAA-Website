@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import type React from 'react'
 import useProjects from '../hooks/useProjects'
-import type { Project } from '../types/project'
+import type { Project } from '../types/projects'
 
 type FilterOptions = Record<string, string[]>
 type Filters = { category: string; status: string }

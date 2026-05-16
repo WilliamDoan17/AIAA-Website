@@ -12,4 +12,5 @@ export interface Member {
   is_setup: boolean
 }
 
-export type MemberInput = Omit<Member, 'id' | 'created_at' | 'is_setup'>
+export type MemberInsert = Omit<Member, 'id' | 'created_at' | 'is_setup'>
+export type MemberUpdate = Partial<MemberInsert>
