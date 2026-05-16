@@ -33,7 +33,7 @@ Reads from `ClubInfoContext` (provided by `ClubInfoProvider`).
 
 ## Members (`hooks/members.ts`)
 
-All member hooks use **TanStack Query**. Queries are cached for 1 minute (`staleTime: 60s`). Mutations invalidate the relevant cache entries instead of triggering manual refetches.
+All member hooks use **TanStack Query**. Mutations invalidate the relevant cache entries instead of triggering manual refetches.
 
 Query keys:
 - List: `['members']`
@@ -42,40 +42,40 @@ Query keys:
 ### `useMembers`
 Fetches all club members.
 
-| Return     | Type     | Notes                              |
-|------------|----------|------------------------------------|
-| data       | Member[] | undefined while loading            |
-| isLoading  | boolean  |                                    |
-| isError    | boolean  |                                    |
-| error      | Error \| null |                               |
+| Return     | Type               | Notes                   |
+|------------|--------------------|-------------------------|
+| data       | Member\[]          | undefined while loading |
+| isLoading  | boolean            |                         |
+| isError    | boolean            |                         |
+| error      | Error \| null      |                         |
 
 ### `useMember(id)`
 Fetches a single member by id.
 
-| Return     | Type          | Notes                   |
-|------------|---------------|-------------------------|
-| data       | Member \| undefined |                   |
-| isLoading  | boolean       |                         |
-| isError    | boolean       |                         |
+| Return     | Type                  | Notes |
+|------------|-----------------------|-------|
+| data       | Member \| undefined   |       |
+| isLoading  | boolean               |       |
+| isError    | boolean               |       |
 
 ### `useInviteMember`
 Invites a new member via the `invite-member` edge function. Invalidates `['members']` (list only) on success.
 
 ```tsx
 const { mutate: invite, isPending, error } = useInviteMember()
-invite(info)   // info: MemberInput
+invite(info)   // info: MemberInsert
 ```
 
 ### `useUpdateMember`
-Updates a member's fields. Invalidates `['members', id]` (that member's detail) on success.
+Updates a member's fields. Invalidates all `['members']` queries (list + any cached details) on success.
 
 ```tsx
 const { mutate: update, isPending, error } = useUpdateMember()
-update({ id, updates })   // updates: Partial<Member>
+update({ id, updates })   // updates: MemberUpdate
 ```
 
 ### `useDeleteMember`
-Deletes a member. Invalidates `['members']` (full prefix — list + any cached details) on success.
+Deletes a member. Invalidates all `['members']` queries on success.
 
 ```tsx
 const { mutate: remove, isPending, variables } = useDeleteMember()
@@ -85,18 +85,56 @@ remove(id)
 
 ---
 
-## Events
+## Events (`hooks/events.ts`)
+
+All event hooks use **TanStack Query**. Mutations invalidate the relevant cache entries on success.
+
+Query keys:
+- List: `['events']`
+- Single: `['events', id]`
 
 ### `useEvents`
-Fetches all events from Supabase.
+Fetches all events.
 
-| Return  | Type    | Notes |
-|---------|---------|-------|
-| data    | Event[] |       |
-| loading | boolean |       |
-| error   | Error \| null | |
+| Return     | Type              | Notes                   |
+|------------|-------------------|-------------------------|
+| data       | Event\[]          | undefined while loading |
+| isLoading  | boolean           |                         |
+| isError    | boolean           |                         |
+| error      | Error \| null     |                         |
 
-> Uses `useState` + `useEffect`. Not yet migrated to TanStack Query.
+### `useEvent(id)`
+Fetches a single event by id.
+
+| Return     | Type                | Notes |
+|------------|---------------------|-------|
+| data       | Event \| undefined  |       |
+| isLoading  | boolean             |       |
+| isError    | boolean             |       |
+
+### `useCreateEvent`
+Creates a new event. Invalidates `['events']` (list only) on success.
+
+```tsx
+const { mutate: create, isPending, error } = useCreateEvent()
+create(info)   // info: EventInsert
+```
+
+### `useUpdateEvent`
+Updates an event's fields. Invalidates all `['events']` queries (list + any cached details) on success.
+
+```tsx
+const { mutate: update, isPending, error } = useUpdateEvent()
+update({ id, updates })   // updates: EventUpdate
+```
+
+### `useDeleteEvent`
+Deletes an event. Invalidates all `['events']` queries on success.
+
+```tsx
+const { mutate: remove, isPending, variables } = useDeleteEvent()
+remove(id)
+```
 
 ---
 

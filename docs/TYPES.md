@@ -6,6 +6,8 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ## ClubInfo
 
+`src/types/club.ts`
+
 | Field       | Type   | Notes                |
 |-------------|--------|----------------------|
 | id          | string | uuid                 |
@@ -17,36 +19,45 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ## Member
 
+`src/types/members.ts`
+
 | Field      | Type        | Notes                  |
 |------------|-------------|------------------------|
 | id         | string      | uuid, references auth  |
 | created_at | string      | ISO 8601 timestamptz   |
+| email      | string      |                        |
 | name       | string      |                        |
 | role       | ClubRole    |                        |
 | title      | string      |                        |
-| photo      | string\|null | url or storage ref    |
+| photo      | string      | url or storage ref     |
 | bio        | string      |                        |
+| is_setup   | boolean     |                        |
 
 ### ClubRole
 `'admin'` | `'officer'`
 
-### MemberInput
-`Omit<Member, 'id' | 'created_at'`
+### MemberInsert
+`Omit<Member, 'id' | 'created_at' | 'is_setup'>`
+
+### MemberUpdate
+`Partial<MemberInsert>`
 
 ---
 
 ## Event
+
+`src/types/events.ts`
 
 | Field       | Type         | Notes                  |
 |-------------|--------------|------------------------|
 | id          | string       | uuid                   |
 | created_at  | string       | ISO 8601 timestamptz   |
 | name        | string       |                        |
-| summary     | string       |                        |
 | description | string       |                        |
-| cover_image | string        | url or storage ref     |
+| content     | string       |                        |
+| cover_image | string       | url or storage ref     |
 | location    | string       |                        |
-| url         | string\|null  |                        |
+| url         | string\|null |                        |
 | start_time  | string       | ISO 8601 timestamptz   |
 | end_time    | string       | ISO 8601 timestamptz   |
 | status      | EventStatus  |                        |
@@ -54,18 +65,27 @@ Shared data types used across hooks, services, and components. Derived from the 
 ### EventStatus
 `'upcoming'` | `'ongoing'` | `'completed'`
 
+### EventInsert
+`Omit<Event, 'id' | 'created_at'>`
+
+### EventUpdate
+`Partial<EventInsert>`
+
 ---
 
 ## Project
+
+`src/types/projects.ts`
 
 | Field       | Type            | Notes                |
 |-------------|-----------------|----------------------|
 | id          | string          | uuid                 |
 | created_at  | string          | ISO 8601 timestamptz |
+| updated_at  | string          | ISO 8601 timestamptz |
 | name        | string          |                      |
 | summary     | string          |                      |
 | description | string          |                      |
-| cover_image | string           | url or storage ref   |
+| cover_image | string          | url or storage ref   |
 | status      | ProjectStatus   |                      |
 | category    | ProjectCategory |                      |
 
@@ -74,3 +94,9 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ### ProjectCategory
 `'competition'` | `'research'`
+
+### ProjectInsert
+`Omit<Project, 'id' | 'created_at' | 'updated_at'>`
+
+### ProjectUpdate
+`Partial<ProjectInsert>`
