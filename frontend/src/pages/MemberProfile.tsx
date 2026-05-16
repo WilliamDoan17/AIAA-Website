@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useAuth from '../hooks/useAuth'
-import { updateMember } from '../services/members'
+import { useMember, useUpdateMember } from '../hooks/members'
 import { resetPassword } from '../services/auth'
 
 // ── Field ─────────────────────────────────────────────────────────────────────
@@ -31,7 +31,9 @@ const Field = ({ label, type = 'text', value, onChange, disabled, placeholder }:
 // ── Edit Profile Section ──────────────────────────────────────────────────────
 
 const EditProfileSection = () => {
-  const { member, refetchMember } = useAuth()
+  const { user, refetchMember } = useAuth()
+  const { data: member } = useMember(user?.id ?? '')
+  const { mutate: update, isPending: saving, error: updateError } = useUpdateMember()
   const isAdmin = member?.role === 'admin'
 
   const [form, setForm] = useState({
@@ -40,33 +42,28 @@ const EditProfileSection = () => {
     bio: member?.bio ?? '',
     title: member?.title ?? '',
   })
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
 
   const setField = (key: keyof typeof form) => (value: string) =>
     setForm(f => ({ ...f, [key]: value }))
 
-  const handleSave = async () => {
+  const handleSave = () => {
     if (!member) return
-    setSaving(true)
-    setError(null)
-    setSuccess(false)
-    try {
-      const updates: Record<string, string> = {
-        name: form.name.trim(),
-        photo: form.photo.trim(),
-        bio: form.bio.trim(),
-      }
-      if (isAdmin) updates.title = form.title.trim()
-      await updateMember(member.id, updates)
-      await refetchMember()
-      setSuccess(true)
-    } catch {
-      setError('Failed to save changes')
-    } finally {
-      setSaving(false)
+    const updates: Record<string, string> = {
+      name: form.name.trim(),
+      photo: form.photo.trim(),
+      bio: form.bio.trim(),
     }
+    if (isAdmin) updates.title = form.title.trim()
+    update(
+      { id: member.id, updates },
+      {
+        onSuccess: () => {
+          refetchMember()
+          setSuccess(true)
+        },
+      }
+    )
   }
 
   if (!member) return null
@@ -102,7 +99,7 @@ const EditProfileSection = () => {
         )}
       </div>
 
-      {error && <p className="text-red-400 text-xs font-body">{error}</p>}
+      {updateError && <p className="text-red-400 text-xs font-body">Failed to save changes</p>}
       {success && <p className="text-accent text-xs font-body">Profile updated.</p>}
 
       <button
