@@ -11,24 +11,28 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [member, setMember] = useState<Member | null>(null);
   const userIdRef = useRef<string | null>(null);
 
-  const fetchMemberInfo = useCallback(async (id: string) => {
-    const currMember = await getMemberById(id);
-    setMember(currMember);
+  const fetchMemberInfo = useCallback(async (id: string): Promise<Member> => {
+    return await getMemberById(id);
   }, [])
 
   const refetchMember = useCallback(async () => {
     if (!userIdRef.current) return
-    await fetchMemberInfo(userIdRef.current)
+    const currMember = await fetchMemberInfo(userIdRef.current)
+    setMember(currMember)
   }, [fetchMemberInfo])
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       const currUser = session?.user ?? null;
-      setUser(currUser)
       userIdRef.current = currUser?.id ?? null
       if (currUser) {
-        fetchMemberInfo(currUser.id).finally(() => setLoading(false));
+        fetchMemberInfo(currUser.id).then(currMember => {
+          setUser(currUser)
+          setMember(currMember)
+          setLoading(false)
+        })
       } else {
+        setUser(null)
         setMember(null);
         setLoading(false);
       }
