@@ -1,4 +1,4 @@
-import type { Project } from '../types/project'
+import type { Project } from '../types/projects'
 
 const mockProjects: Project[] = [
   {
@@ -8,7 +8,7 @@ const mockProjects: Project[] = [
     name: "SUAS",
     summary: "Autonomous drone system built for the AUVSI SUAS competition.",
     description: "The SUAS (Small Unmanned Aerial System) project designs and builds an autonomous drone to compete in the annual AUVSI SUAS competition. The system performs autonomous flight, object detection, and payload delivery tasks.",
-    cover_image: null,
+    cover_image: '',
     status: "in_progress",
     category: "competition",
   },
@@ -19,7 +19,7 @@ const mockProjects: Project[] = [
     name: "COSMIC Satellite",
     summary: "CubeSat project focused on space system design and orbital research.",
     description: "The COSMIC (Club Operated Small Mission In orbit CubeSat) project develops a small satellite for research purposes. The team handles systems engineering, structural design, power management, and communication subsystems.",
-    cover_image: null,
+    cover_image: '',
     status: "in_progress",
     category: "competition",
   },

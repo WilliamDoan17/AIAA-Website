@@ -12,3 +12,6 @@ export interface Project {
   status: ProjectStatus
   category: ProjectCategory
 }
+
+export type ProjectInsert = Omit<Project, 'id' | 'created_at' | 'updated_at'>
+export type ProjectUpdate = Partial<ProjectInsert>

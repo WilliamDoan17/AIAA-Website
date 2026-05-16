@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import useProjects from "../hooks/useProjects"
-import useEvents from '../hooks/useEvents'
+import { useEvents } from '../hooks/events'
 import { useMembers } from "../hooks/members"
 import useClubInfo from '../hooks/useClubInfo'
-import type { Member } from '../types/member'
-import type { Event } from '../types/event'
-import type { Project } from '../types/project'
+import type { Member } from '../types/members'
+import type { Event } from '../types/events'
+import type { Project } from '../types/projects'
 import type { ClubInfo } from '../types/club'
 
 const MemberCard = ({ member }: { member: Member }) => {

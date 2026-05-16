@@ -18,7 +18,6 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## Member
-
 `src/types/members.ts`
 
 | Field      | Type        | Notes                  |
@@ -45,7 +44,6 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## Event
-
 `src/types/events.ts`
 
 | Field       | Type         | Notes                  |
@@ -74,7 +72,6 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## Project
-
 `src/types/projects.ts`
 
 | Field       | Type            | Notes                |

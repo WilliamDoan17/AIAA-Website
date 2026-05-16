@@ -1,4 +1,4 @@
-import type { Member } from '../types/member'
+import type { Member } from '../types/members'
 
 const mockMembers: Member[] = [
   {
@@ -10,6 +10,7 @@ const mockMembers: Member[] = [
     title: "President",
     photo: "",
     bio: "",
+    is_setup: false,
   },
   {
     id: "f4a5b6c7-0002-4d8e-9f1a-2b3c4d5e6f7a",
@@ -20,6 +21,7 @@ const mockMembers: Member[] = [
     title: "Vice President",
     photo: "",
     bio: "",
+    is_setup: false,
   },
   {
     id: "a7b8c9d0-0003-4e5f-8a1b-3c4d5e6f7a8b",
@@ -30,6 +32,7 @@ const mockMembers: Member[] = [
     title: "Treasurer",
     photo: "",
     bio: "",
+    is_setup: false,
   },
   {
     id: "d0e1f2a3-0004-4b6c-9d1e-4f5a6b7c8d9e",
@@ -40,6 +43,7 @@ const mockMembers: Member[] = [
     title: "Officer",
     photo: "",
     bio: "",
+    is_setup: false,
   },
 ]
 
