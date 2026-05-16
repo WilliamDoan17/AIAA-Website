@@ -26,9 +26,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Public Event Cards link to the detail page ✅
 
   - Admin Events Page
-    - Admin can view all events at `/admin/events` 
+    - Admin can view all events at `/admin/events` ✅
     - Admin can create new events
     - Admin can edit or delete any event at `/admin/events/:id` 
+
+  - fix syncing update profile problem ✅
 
   - folder structure (architecture) refactor: 
     - group by feature (domain) vs. group by attributes (decide)

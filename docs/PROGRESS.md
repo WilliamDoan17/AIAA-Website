@@ -64,7 +64,7 @@
 | Write service functions and hook | ✅ |
 | Replace `useEvents` mock data with Supabase query | ✅ |
 | Public `/events/:id` detail page | ✅ |
-| Admin can view all events at `/admin/events` | ⬜ |
+| Admin can view all events at `/admin/events` | ✅ |
 | Admin can create a new event | ⬜ |
 | Admin can edit or delete any event at `/admin/events/:id` | ⬜ |
 
