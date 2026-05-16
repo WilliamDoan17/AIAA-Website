@@ -19,6 +19,7 @@ import PublicEventDetail from './pages/PublicEventDetail'
 import Login from './pages/Login'
 import AdminClub from './pages/AdminClub'
 import AdminMembers from './pages/AdminMembers'
+import AdminEvents from './pages/AdminEvents'
 import MemberProfile from './pages/MemberProfile'
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                     <Route index element={null}></Route>
                     <Route path="club" element={<AdminClub />} />
                     <Route path="members" element={<AdminMembers />} />
+                    <Route path="events" element={<AdminEvents />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>
