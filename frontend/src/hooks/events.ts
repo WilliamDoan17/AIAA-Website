@@ -1,11 +1,13 @@
-import mockEvents from '../data/events.js'
+import { useQuery } from '@tanstack/react-query'
+import { getAllEvents } from '../services/events.js'
 
-const useEvents = () => {
-  return {
-    data: mockEvents,
-    loading: false,
-    error: null,
-  }
+
+export const useEvents = () => {
+  return useQuery({
+    queryKey: ['events'],
+    queryFn: getAllEvents,
+  })
 }
 
-export default useEvents
+
+
