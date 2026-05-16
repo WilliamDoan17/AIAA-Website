@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import useEvents from '../hooks/events'
+import { useEvents } from '../hooks/events'
 import type { Event } from '../types/events'
 
 const EventCard = ({ event }: { event: Event }) => {

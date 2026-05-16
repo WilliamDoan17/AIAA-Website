@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import useProjects from "../hooks/useProjects"
-import useEvents from '../hooks/events'
+import { useEvents } from '../hooks/events'
 import { useMembers } from "../hooks/members"
 import useClubInfo from '../hooks/useClubInfo'
 import type { Member } from '../types/members'
