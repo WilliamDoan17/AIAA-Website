@@ -13,9 +13,15 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - same-day: `Date · startTime – endTime` ✅
     - cross-day: `Date1, startTime – Date2, endTime` ✅
   
-  - Sort the events seen at `/admin/events/:id` by time ✅
+  - Sort events on `/admin/events` by start time, then end time ✅
 
-  - Remove event status column ✅
+  - Remove event status column — compute from `start_time` / `end_time` ✅
+
+  - AdminClub refactor ✅
+    - Migrate club info to React Query (`hooks/club.ts`) ✅
+    - `useClubInfo` — cached, no re-fetch on navigation ✅
+    - `useUpdateClubInfo` — invalidates cache after save ✅
+    - Drop `ClubInfoProvider`, `ClubInfoContext`, `hooks/useClubInfo.ts` ✅
 
 </details>
 
