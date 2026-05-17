@@ -101,4 +101,4 @@ Deletes the corresponding `auth.users` row when a `club_members` record is delet
 **Used by trigger:** `enforce_self_title_restriction`
 
 **Description:**  
-Prevents a member from updating their own `title` field. Raises an exception if `auth.uid() = OLD.id` and `title` has changed. Admins updating other members and service role calls are unaffected.
+Prevents a non-admin member from updating their own `title` field. Raises an exception if `auth.uid() = OLD.id`, `title` has changed, and `OLD.role != 'admin'`. Admins updating their own or other members' titles and service role calls are unaffected.

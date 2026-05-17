@@ -21,7 +21,7 @@ This document outlines the features to be implemented for the AIAA-Website, orga
   - Edit member's role and title
   - Remove members
 - Officer features:
-  - Edit own name, photo, and bio (cannot modify email, role, or title)
+  - Edit own name, photo, and bio (cannot modify email, role, or title — title is set by an admin only)
 
 - Onboarding flow:
   1. Admin invites member; user receives an invite link
