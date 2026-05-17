@@ -124,9 +124,16 @@ This document details the data model, validations, and access (RLS) controls for
 | project_posts         | content       | not empty, 2–4096 chars         |
 | project_post_comments | content       | not empty, 2–2048 chars         |
 
+### Triggers
+| Table           | Trigger name              | Function                                        | Event         |
+|-----------------|---------------------------|-------------------------------------------------|---------------|
+| projects        | on_project_update         | set_project_updated_at()                        | BEFORE UPDATE |
+| project_members | on_project_member_update  | prevent_project_member_project_id_change()      | BEFORE UPDATE |
+
 ### RLS Policies
-- projects: SELECT public and all users — INSERT/UPDATE/DELETE admin only
-- project_members: SELECT project members & admin — INSERT/UPDATE/DELETE project admin or club admin
+- projects: SELECT public and all users — INSERT/DELETE club admin only, UPDATE project admin or club admin
+- project_members: SELECT project members & admin — INSERT/DELETE project admin or club admin, UPDATE project admin or
+club admin, cannot change project_id 
 - project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 - project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 

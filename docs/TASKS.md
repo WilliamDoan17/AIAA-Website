@@ -6,7 +6,7 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
   - P2-5 - Projects
     - Apply schema and RLS for `projects`, `project_members`, `project_posts`, `project_post_comments`
-      - `projects`
+      - `projects` & `project_members`
 
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
