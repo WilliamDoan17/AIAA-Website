@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useEvents, useCreateEvent, useUpdateEvent, useDeleteEvent } from '../hooks/events'
 import type { Event, EventInsert, EventUpdate, EventStatus } from '../types/events'
+import { formatEventTime } from '../utils/formatEventTime'
 
 const getEventStatus = (event: Event): EventStatus => {
   const now = Date.now()
@@ -362,11 +363,7 @@ const AdminEvents = () => {
           <div className="flex flex-col gap-2">
             {filtered.map(event => {
               const status = getEventStatus(event)
-              const start = new Date(event.start_time)
-              const end = new Date(event.end_time)
-              const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-              const startTime = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-              const endTime = end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+              const eventTime = formatEventTime(event.start_time, event.end_time)
 
               return (
                 <div
@@ -376,7 +373,7 @@ const AdminEvents = () => {
                   <div className="flex-1 min-w-0">
                     <p className="font-body text-sm font-medium text-copy truncate">{event.name}</p>
                     <p className="font-body text-xs text-muted truncate">
-                      {date} · {startTime} – {endTime} · {event.location}
+                      {eventTime} · {event.location}
                     </p>
                   </div>
 
