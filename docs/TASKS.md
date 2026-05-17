@@ -5,17 +5,17 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>May 16, 2026</summary>
 
-  - Admin Events Page
-    - Admin can create new events
-    - Admin can edit or delete any event at `/admin/events/:id`
+  - Admin Events Page ✅
+    - Admin can create new events ✅
+    - Admin can edit or delete any event at `/admin/events/:id` ✅
 
-  - fix time display for cross-day events (public + admin)
-    - same-day: `Date · startTime – endTime`
-    - cross-day: `Date1, startTime – Date2, endTime`
+  - fix time display for cross-day events (public + admin) ✅
+    - same-day: `Date · startTime – endTime` ✅
+    - cross-day: `Date1, startTime – Date2, endTime` ✅
   
-  - Sort the events seen at `/admin/events/:id` by time
+  - Sort the events seen at `/admin/events/:id` by time ✅
 
-  - Remove event status column
+  - Remove event status column ✅
 
   - folder structure (architecture) refactor:
     - group by feature (domain) vs. group by attributes (decide)
