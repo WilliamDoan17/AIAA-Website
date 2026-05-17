@@ -17,10 +17,6 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
   - Remove event status column ✅
 
-  - folder structure (architecture) refactor:
-    - group by feature (domain) vs. group by attributes (decide)
-    - implement
-
 </details>
 
 <details>
