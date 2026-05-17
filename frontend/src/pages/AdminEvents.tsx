@@ -46,7 +46,18 @@ const validateEventForm = (form: EventInsert): EventFieldErrors => {
   return errors
 }
 
-const toDatetimeLocal = (iso: string) => iso ? iso.slice(0, 16) : ''
+// UTC ISO → local datetime-local string for <input type="datetime-local">
+const toDatetimeLocal = (iso: string): string => {
+  if (!iso) return ''
+  const date = new Date(iso)
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 16)
+}
+
+// local datetime-local string → UTC ISO for Supabase
+const fromDatetimeLocal = (local: string): string =>
+  local ? new Date(local).toISOString() : ''
 
 // ── Create Modal ──────────────────────────────────────────────────────────────
 
@@ -73,7 +84,13 @@ const CreateModal = ({ onClose }: CreateModalProps) => {
     const errors = validateEventForm(form)
     if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
     create(
-      { ...form, cover_image: form.cover_image.trim(), url: form.url?.trim() || null },
+      {
+        ...form,
+        cover_image: form.cover_image.trim(),
+        url: form.url?.trim() || null,
+        start_time: fromDatetimeLocal(form.start_time),
+        end_time: fromDatetimeLocal(form.end_time),
+      },
       { onSuccess: onClose }
     )
   }
@@ -125,7 +142,13 @@ const EditModal = ({ event, onClose }: EditModalProps) => {
   const handleSubmit = () => {
     const errors = validateEventForm(form)
     if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
-    const updates: EventUpdate = { ...form, cover_image: form.cover_image.trim(), url: form.url?.trim() || null }
+    const updates: EventUpdate = {
+      ...form,
+      cover_image: form.cover_image.trim(),
+      url: form.url?.trim() || null,
+      start_time: fromDatetimeLocal(form.start_time),
+      end_time: fromDatetimeLocal(form.end_time),
+    }
     update({ id: event.id, updates }, { onSuccess: onClose })
   }
 
