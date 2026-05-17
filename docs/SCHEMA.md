@@ -125,7 +125,7 @@ This document details the data model, validations, and access (RLS) controls for
 | project_post_comments | content       | not empty, 2–2048 chars         |
 
 ### RLS Policies
-- projects: SELECT all users — INSERT/UPDATE/DELETE admin only
+- projects: SELECT public and all users — INSERT/UPDATE/DELETE admin only
 - project_members: SELECT project members & admin — INSERT/UPDATE/DELETE project admin or club admin
 - project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 - project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin

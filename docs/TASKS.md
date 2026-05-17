@@ -1,6 +1,18 @@
 # TASKS
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
+<details>
+  <summary>May 17, 2026</summary>
+
+  - P2-5 - Projects
+    - Apply schema and RLS for `projects`, `project_members`, `project_posts`, `project_post_comments`
+      - `projects`
+
+  - check database implementation for constraints and fix it 
+  - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
+  - add column of `updated_at` and update trigger for each db domain
+
+</details>
 
 <details>
   <summary>May 16, 2026</summary>
