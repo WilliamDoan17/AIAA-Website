@@ -1,7 +1,6 @@
 import './App.css'
 import QueryProvider from './providers/QueryProvider'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ClubInfoProvider from './providers/ClubInfoProvider'
 import AuthProvider from './providers/AuthProvider'
 import PublicRoute from './routes/PublicRoute'
 import ProtectedRoute, { ProtectedIndex } from './routes/ProtectedRoute'
@@ -28,8 +27,7 @@ function App() {
     <QueryProvider>
       <BrowserRouter>
         <AuthProvider>
-          <ClubInfoProvider>
-            <Routes>
+          <Routes>
               <Route path="/" element={<PublicRoute />}>
                 <Route element={<PublicLayout />}>
                   <Route index element={<Landing />} />
@@ -60,7 +58,6 @@ function App() {
                 </Route>
               </Route>
             </Routes>
-          </ClubInfoProvider>
         </AuthProvider>
       </BrowserRouter>
     </QueryProvider >

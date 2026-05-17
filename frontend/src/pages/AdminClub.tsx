@@ -1,42 +1,18 @@
 import { useState, useEffect } from 'react'
-import { getClubInfo, updateClubInfo } from '../services/club'
-import type { ClubInfo } from '../types/club'
+import { useClubInfo, useUpdateClubInfo } from '../hooks/club'
 
 const AdminClub = () => {
-  const [info, setInfo] = useState<ClubInfo | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
-  const [saving, setSaving] = useState<boolean>(false)
-  const [saved, setSaved] = useState<boolean>(false)
+  const { data: clubInfo, isLoading } = useClubInfo()
+  const { mutate: save, isPending: saving, isSuccess: saved, error: saveError } = useUpdateClubInfo()
+
+  const [form, setForm] = useState({ name: '', cover_image: '', about: '' })
 
   useEffect(() => {
-    getClubInfo()
-      .then(setInfo)
-      .catch(() => setError('Failed to load club info'))
-      .finally(() => setLoading(false))
-  }, [])
+    if (clubInfo) setForm({ name: clubInfo.name, cover_image: clubInfo.cover_image, about: clubInfo.about })
+  }, [clubInfo])
 
-  const handleSave = async () => {
-    if (!info) return
-    setSaving(true)
-    setError(null)
-    setSaved(false)
-    try {
-      await updateClubInfo({ name: info.name, cover_image: info.cover_image, about: info.about })
-      setSaved(true)
-    } catch {
-      setError('Failed to save changes')
-    } finally {
-      setSaving(false)
-    }
-  }
-
-  if (loading) return (
+  if (isLoading) return (
     <p className="text-muted font-body text-sm">Loading...</p>
-  )
-
-  if (!info) return (
-    <p className="text-muted font-body text-sm">{error ?? 'No club info found'}</p>
   )
 
   return (
@@ -52,8 +28,8 @@ const AdminClub = () => {
             Name
           </label>
           <input
-            value={info.name}
-            onChange={e => setInfo({ ...info, name: e.target.value })}
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
           />
         </div>
@@ -63,13 +39,13 @@ const AdminClub = () => {
             Cover Image URL
           </label>
           <input
-            value={info.cover_image}
-            onChange={e => setInfo({ ...info, cover_image: e.target.value })}
+            value={form.cover_image}
+            onChange={e => setForm(f => ({ ...f, cover_image: e.target.value }))}
             className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
           />
-          {info.cover_image && (
+          {form.cover_image && (
             <img
-              src={info.cover_image}
+              src={form.cover_image}
               alt="Cover preview"
               className="mt-2 h-32 w-full object-cover rounded border border-rim"
             />
@@ -81,8 +57,8 @@ const AdminClub = () => {
             About
           </label>
           <textarea
-            value={info.about}
-            onChange={e => setInfo({ ...info, about: e.target.value })}
+            value={form.about}
+            onChange={e => setForm(f => ({ ...f, about: e.target.value }))}
             rows={5}
             className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 resize-none"
           />
@@ -90,18 +66,14 @@ const AdminClub = () => {
 
         <div className="flex items-center gap-4 pt-2">
           <button
-            onClick={handleSave}
+            onClick={() => save(form)}
             disabled={saving}
             className="relative overflow-hidden px-6 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             {saving ? 'Saving...' : 'Save Changes'}
           </button>
-          {saved && (
-            <span className="text-accent text-sm font-body">Saved</span>
-          )}
-          {error && (
-            <span className="text-red-400 text-sm font-body">{error}</span>
-          )}
+          {saved && <span className="text-accent text-sm font-body">Saved</span>}
+          {saveError && <span className="text-red-400 text-sm font-body">Failed to save changes</span>}
         </div>
 
       </div>

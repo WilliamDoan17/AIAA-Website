@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import useProjects from "../hooks/useProjects"
 import { useEvents } from '../hooks/events'
 import { useMembers } from "../hooks/members"
-import useClubInfo from '../hooks/useClubInfo'
+import { useClubInfo } from '../hooks/club'
 import type { Member } from '../types/members'
 import type { Event } from '../types/events'
 import type { Project } from '../types/projects'
@@ -132,7 +132,7 @@ const ProjectSection = () => {
   )
 }
 
-const HeroSection = ({ clubInfo }: { clubInfo: ClubInfo | null }) => {
+const HeroSection = ({ clubInfo }: { clubInfo: ClubInfo | null | undefined }) => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-center py-24 px-8 z-[1] overflow-hidden hero-glow hero-line">
       <h1 className="font-display text-[clamp(1.8rem,5vw,3.8rem)] font-black uppercase tracking-[0.06em] leading-[1.15] max-w-[900px] mb-6 heading-gradient fade-up-slow">
@@ -165,7 +165,7 @@ const AboutSection = ({ clubInfo }: { clubInfo: ClubInfo }) => {
 }
 
 const Landing = () => {
-  const { clubInfo } = useClubInfo()
+  const { data: clubInfo } = useClubInfo()
 
   return (
     <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative starfield">
