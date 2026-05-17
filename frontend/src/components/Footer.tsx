@@ -1,7 +1,7 @@
-import useClubInfo from '../hooks/useClubInfo'
+import { useClubInfo } from '../hooks/club'
 
 const Footer = () => {
-  const { clubInfo } = useClubInfo()
+  const { data: clubInfo } = useClubInfo()
 
   return (
     <div className="relative z-[1] py-16 px-10 border-t border-rim flex flex-col items-center bg-void text-center gap-4 overflow-hidden footer-wrap">
