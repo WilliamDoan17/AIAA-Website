@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEvent } from '../hooks/events'
+import { formatEventTime } from '../utils/formatEventTime'
 
 const PublicEventDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -20,11 +21,7 @@ const PublicEventDetail = () => {
     </div>
   )
 
-  const start = new Date(event.start_time)
-  const end = new Date(event.end_time)
-  const date = start.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
-  const startTime = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-  const endTime = end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+  const eventTime = formatEventTime(event.start_time, event.end_time, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
 
   return (
     <div className="min-h-screen bg-void text-copy starfield pb-24">
@@ -45,7 +42,7 @@ const PublicEventDetail = () => {
           )}
 
           <p className="font-display text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-gold mb-3">
-            {date} | {startTime} – {endTime}
+            {eventTime}
           </p>
           <p className="font-display text-[0.65rem] uppercase tracking-[0.3em] text-muted mb-6">
             {event.location}

@@ -2,14 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useEvents } from '../hooks/events'
 import type { Event } from '../types/events'
+import { formatEventTime } from '../utils/formatEventTime'
 
 const EventCard = ({ event }: { event: Event }) => {
-  const start = new Date(event.start_time)
-  const end = new Date(event.end_time)
-  const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-  const startTime = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-  const endTime = end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-
   return (
     <Link to={`/events/${event.id}`} className="bg-panel border border-rim overflow-hidden relative transition-[border-color,box-shadow,transform] duration-300 cursor-pointer hover:border-gold hover:shadow-[0_0_30px_rgba(240,165,0,0.08)] hover:-translate-y-1 fade-up group">
       <div className="w-full aspect-video overflow-hidden">
@@ -19,7 +14,7 @@ const EventCard = ({ event }: { event: Event }) => {
         }
       </div>
       <h4 className="font-display text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-gold mx-6 mt-5 mb-1">
-        {date} | {startTime} - {endTime}
+        {formatEventTime(event.start_time, event.end_time, { month: 'short', day: 'numeric' })}
       </h4>
       <h4 className="font-display text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-muted mx-6 mb-0">
         {event.location}

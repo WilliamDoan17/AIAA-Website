@@ -8,6 +8,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Admin Events Page
     - Admin can create new events
     - Admin can edit or delete any event at `/admin/events/:id`
+
+  - fix time display for cross-day events (public + admin)
+    - same-day: `Date · startTime – endTime`
+    - cross-day: `Date1, startTime – Date2, endTime`
   
   - Sort the events seen at `/admin/events/:id` by time
 
