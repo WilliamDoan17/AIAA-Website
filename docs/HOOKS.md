@@ -19,15 +19,23 @@ Reads from `AuthContext` (provided by `AuthProvider`).
 
 ---
 
-## Club Info
+## Club Info (`hooks/club.ts`)
+
+All club hooks use **TanStack Query**.
+
+Query key: `['clubInfo']`
 
 ### `useClubInfo`
-Reads from `ClubInfoContext` (provided by `ClubInfoProvider`).
+| Return | Type                    | Notes                    |
+|--------|-------------------------|--------------------------|
+| data   | ClubInfo \| undefined   | Cached, no reload on nav |
+| isLoading | boolean              |                          |
 
-| Return   | Type             | Notes                          |
-|----------|------------------|--------------------------------|
-| clubInfo | ClubInfo \| null | Fetched once at app level      |
-| loading  | boolean          |                                |
+### `useUpdateClubInfo`
+| Prop      | Type                              |
+|-----------|-----------------------------------|
+| mutationFn | `updateClubInfo(updates)`        |
+| onSuccess | invalidates `['clubInfo']`        |
 
 ---
 

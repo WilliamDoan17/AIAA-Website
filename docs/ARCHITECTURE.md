@@ -11,13 +11,12 @@ frontend/src/
 ├── App.tsx                 — router + provider composition
 ├── components/             — shared UI (Navbar, Footer)
 ├── contexts/
-│   ├── AuthContext.ts      — { user, member, loading }
-│   └── ClubInfoContext.ts  — { clubInfo, loading }
+│   └── AuthContext.ts      — { user, member, loading }
 ├── hooks/                  — data access hooks, one file per resource domain
+│   ├── club.ts             — useClubInfo, useUpdateClubInfo
 │   ├── members.ts          — useMembers, useMember, useInviteMember, useUpdateMember, useDeleteMember
+│   ├── events.ts           — useEvents, useEvent, useCreateEvent, useUpdateEvent, useDeleteEvent
 │   ├── useAuth.ts          — reads AuthContext
-│   ├── useClubInfo.ts      — reads ClubInfoContext
-│   ├── useEvents.ts        — fetches events from Supabase
 │   └── useProjects.ts      — fetches projects from Supabase
 ├── layouts/
 │   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
@@ -35,7 +34,6 @@ frontend/src/
 │   └── AdminMembers.tsx
 ├── providers/
 │   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
-│   ├── ClubInfoProvider.tsx — fetches club_info once at app level
 │   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient
 ├── routes/
 │   ├── AdminRoute.tsx      — role guard for admin pages
@@ -75,10 +73,10 @@ On first login:
 
 1. **Pages** — route-level components. Fetch data via hooks, compose section components, own filter/UI state.
 2. **Components** — shared UI across pages (`Navbar`, `Footer`). Domain-specific cards and modals live inside `pages/` until reused.
-3. **Hooks** — one file per resource domain. Member hooks use TanStack Query for caching and mutation management. Context hooks (`useAuth`, `useClubInfo`) read from providers. Other hooks (`useEvents`, `useProjects`) use `useState` + `useEffect` and will be migrated to TanStack Query.
+3. **Hooks** — one file per resource domain. `club.ts`, `members.ts`, and `events.ts` use TanStack Query for caching and mutation management. `useAuth` reads from `AuthContext`. `useProjects` uses `useState` + `useEffect`.
 4. **Layouts** — auth-gated wrappers. `AdminLayout` enforces `role = 'admin'`; `OfficerLayout` enforces any authenticated session.
 5. **Services** — plain async functions that call Supabase. No React. Used directly by hooks as `queryFn`/`mutationFn`. Never import the Supabase client outside of services.
-6. **Providers** — `QueryProvider` wraps the entire app and holds the `QueryClient`. `AuthProvider` and `ClubInfoProvider` sit inside it.
+6. **Providers** — `QueryProvider` wraps the entire app and holds the `QueryClient`. `AuthProvider` sits inside it.
 
 ---
 
@@ -98,7 +96,9 @@ Query key shape for members:
 `invalidateQueries({ queryKey: ['members', id] })` targets one member's detail.
 
 ### Context state
-`club_info` and auth session are fetched once by providers and exposed via context. These don't use TanStack Query because they're app-global singletons managed by Supabase auth events.
+Auth session is fetched once by `AuthProvider` and exposed via `AuthContext`. This doesn't use TanStack Query because it's driven by Supabase auth events, not polling.
+
+`club_info` uses TanStack Query (`['clubInfo']`) — cached on first fetch, invalidated after `useUpdateClubInfo` mutates.
 
 ### Filter state
 - Filter state is local `useState` inside the page that owns it.
