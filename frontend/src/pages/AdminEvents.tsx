@@ -2,7 +2,16 @@ import { useState, useMemo } from 'react'
 import { useEvents, useCreateEvent, useUpdateEvent, useDeleteEvent } from '../hooks/events'
 import type { Event, EventInsert, EventUpdate, EventStatus } from '../types/events'
 
-const statusLabel: Record<Event['status'], string> = {
+const getEventStatus = (event: Event): EventStatus => {
+  const now = Date.now()
+  const start = new Date(event.start_time).getTime()
+  const end = new Date(event.end_time).getTime()
+  if (now < start) return 'upcoming'
+  if (now > end) return 'completed'
+  return 'ongoing'
+}
+
+const statusLabel: Record<EventStatus, string> = {
   upcoming: 'Upcoming',
   ongoing: 'Ongoing',
   completed: 'Completed',
@@ -15,7 +24,7 @@ type EventFieldErrors = Partial<Record<
   string
 >>
 
-const validateEventForm = (form: Omit<EventInsert, 'status'>): EventFieldErrors => {
+const validateEventForm = (form: EventInsert): EventFieldErrors => {
   const errors: EventFieldErrors = {}
   if (!form.name.trim()) errors.name = 'Name is required'
   if (!form.description.trim()) errors.description = 'Description is required'
@@ -47,7 +56,7 @@ interface CreateModalProps {
 const CreateModal = ({ onClose }: CreateModalProps) => {
   const [form, setForm] = useState<EventInsert>({
     name: '', description: '', content: '', cover_image: '',
-    location: '', url: '', start_time: '', end_time: '', status: 'upcoming',
+    location: '', url: '', start_time: '', end_time: '',
   })
   const [fieldErrors, setFieldErrors] = useState<EventFieldErrors>({})
   const { mutate: create, isPending, error: createError } = useCreateEvent()
@@ -101,7 +110,6 @@ const EditModal = ({ event, onClose }: EditModalProps) => {
     url: event.url ?? '',
     start_time: toDatetimeLocal(event.start_time),
     end_time: toDatetimeLocal(event.end_time),
-    status: event.status,
   })
   const [fieldErrors, setFieldErrors] = useState<EventFieldErrors>({})
   const { mutate: update, isPending, error: updateError } = useUpdateEvent()
@@ -223,19 +231,6 @@ const EventFormModal = ({
         })}
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="font-body text-xs font-medium text-muted uppercase tracking-widest">Status</label>
-        <select
-          value={form.status}
-          onChange={e => onField('status', e.target.value as EventStatus)}
-          className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
-        >
-          <option value="upcoming">Upcoming</option>
-          <option value="ongoing">Ongoing</option>
-          <option value="completed">Completed</option>
-        </select>
-      </div>
-
       {serverError && <p className="text-red-400 text-xs font-body">{serverError}</p>}
 
       <div className="flex gap-3 pt-1">
@@ -313,7 +308,7 @@ const AdminEvents = () => {
 
   const filtered = useMemo(() => events
     .filter(e => e.name.toLowerCase().includes(search.toLowerCase()))
-    .filter(e => statusFilter === 'all' || e.status === statusFilter)
+    .filter(e => statusFilter === 'all' || getEventStatus(e) === statusFilter)
     .sort((a, b) => {
       const byStart = new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
       return byStart !== 0 ? byStart : new Date(a.end_time).getTime() - new Date(b.end_time).getTime()
@@ -366,6 +361,7 @@ const AdminEvents = () => {
         ) : (
           <div className="flex flex-col gap-2">
             {filtered.map(event => {
+              const status = getEventStatus(event)
               const start = new Date(event.start_time)
               const end = new Date(event.end_time)
               const date = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -384,13 +380,13 @@ const AdminEvents = () => {
                     </p>
                   </div>
 
-                  <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 ${event.status === 'ongoing'
+                  <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 ${status === 'ongoing'
                     ? 'text-gold border-gold/30'
-                    : event.status === 'upcoming'
+                    : status === 'upcoming'
                       ? 'text-accent border-accent/30'
                       : 'text-muted border-rim'
                     }`}>
-                    {statusLabel[event.status]}
+                    {statusLabel[status]}
                   </span>
 
                   <div className="flex gap-2 flex-shrink-0">

@@ -13,7 +13,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-02-26T18:00:00-05:00",
     end_time: "2026-02-26T20:00:00-05:00",
-    status: "completed",
   },
   {
     id: "b2c3d4e5-0002-4f6a-9b1c-2d3e4f5a6b7c",
@@ -26,7 +25,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-02T18:00:00-05:00",
     end_time: "2026-03-02T19:00:00-05:00",
-    status: "completed",
   },
   {
     id: "c3d4e5f6-0003-4a7b-8c1d-3e4f5a6b7c8d",
@@ -39,7 +37,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-02T18:00:00-05:00",
     end_time: "2026-03-02T20:00:00-05:00",
-    status: "completed",
   },
   {
     id: "a1b2c3d4-0007-4e5f-8a9b-0c1d2e3f4a5b",
@@ -52,7 +49,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-09T18:00:00-04:00",
     end_time: "2026-03-09T20:00:00-04:00",
-    status: "completed",
   },
   // --- Upcoming ---
   {
@@ -66,7 +62,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-12T18:00:00-04:00",
     end_time: "2026-03-12T19:00:00-04:00",
-    status: "upcoming",
   },
   {
     id: "a3b4c5d6-0009-4a7b-8c0d-2e3f4a5b6c7d",
@@ -79,7 +74,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-12T18:00:00-04:00",
     end_time: "2026-03-12T20:00:00-04:00",
-    status: "upcoming",
   },
   {
     id: "d4e5f6a7-0004-4b8c-9d1e-4f5a6b7c8d9e",
@@ -92,7 +86,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-16T18:00:00-04:00",
     end_time: "2026-03-16T20:00:00-04:00",
-    status: "upcoming",
   },
   {
     id: "e5f6a7b8-0005-4c9d-8e1f-5a6b7c8d9e0f",
@@ -105,7 +98,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-19T18:00:00-04:00",
     end_time: "2026-03-19T19:00:00-04:00",
-    status: "upcoming",
   },
   {
     id: "f6a7b8c9-0006-4d0e-9f1a-6b7c8d9e0f1a",
@@ -118,7 +110,6 @@ const mockEvents: Event[] = [
     url: null,
     start_time: "2026-03-19T18:00:00-04:00",
     end_time: "2026-03-19T20:00:00-04:00",
-    status: "upcoming",
   },
 ]
 

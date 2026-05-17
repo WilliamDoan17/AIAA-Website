@@ -11,7 +11,6 @@ export interface Event {
   url: string | null
   start_time: string
   end_time: string
-  status: EventStatus
 }
 
 export type EventInsert = Omit<Event, 'id' | 'created_at'>
