@@ -19,6 +19,7 @@ The official website for the American Institute of Aeronautics and Astronautics 
 | Frontend | React (Vite) + TypeScript |
 | Routing | React Router v7 |
 | Styling | Tailwind CSS v4 |
+| Server State | TanStack Query v5 |
 | Backend | Supabase (PostgreSQL + Auth) |
 | Deployment | Vercel |
 
@@ -31,31 +32,34 @@ The official website for the American Institute of Aeronautics and Astronautics 
 - Deep-space design system with custom Tailwind theme
 - Soft-launched on Vercel
 
-### Phase 2 — Backend & Auth (in progress)
-- ✅ Supabase Auth — invite-based login, protected routes, AuthProvider
-- ✅ Login page (`/login`)
-- ✅ Club info schema and RLS
-- ✅ Club members schema and RLS
-- ⬜ Admin dashboard
-- ⬜ Member, event, and project management
-- ⬜ Public detail pages (`/projects/:id`, `/events/:id`, `/members/:id`)
+### Phase 2 — Backend, Auth & Admin (in progress)
+- ✅ Supabase Auth — invite-based login, protected routes
+- ✅ Club info — admin can edit name, cover image, and about text
+- ✅ Members — admin can invite, edit, and remove members; member onboarding flow
+- ✅ Events — admin can create, edit, and delete events; public detail pages
+- ⬜ Projects — schema, admin dashboard, contributor flow
 - ⬜ Public launch
 
 ---
 
 ## Pages
 
-| Route | Page | Status |
-|---|---|---|
-| `/` | Landing | ✅ |
-| `/projects` | Projects index | ✅ |
-| `/events` | Events index | ✅ |
-| `/members` | Members index | ✅ |
-| `/login` | Login | ✅ |
-| `/projects/:id` | Project detail | ⬜ |
-| `/events/:id` | Event detail | ⬜ |
-| `/members/:id` | Member detail | ⬜ |
-| `/admin/*` | Admin dashboard | ⬜ |
+| Route | Page | Audience | Status |
+|---|---|---|---|
+| `/` | Landing | Public | ✅ |
+| `/projects` | Projects index | Public | ✅ |
+| `/events` | Events index | Public | ✅ |
+| `/events/:id` | Event detail | Public | ✅ |
+| `/members` | Members index | Public | ✅ |
+| `/members/:id` | Member detail | Public | ✅ |
+| `/login` | Login | Public | ✅ |
+| `/u/admin/club` | Edit club info | Admin | ✅ |
+| `/u/admin/members` | Manage members | Admin | ✅ |
+| `/u/admin/events` | Manage events | Admin | ✅ |
+| `/u/admin/profile` | Edit own profile | Admin | ✅ |
+| `/u/officer/profile` | Edit own profile | Officer | ✅ |
+| `/projects/:id` | Project detail | Public | ⬜ |
+| `/u/admin/projects` | Manage projects | Admin | ⬜ |
 
 ---
 
@@ -67,7 +71,8 @@ The official website for the American Institute of Aeronautics and Astronautics 
 4. Create a `.env` file with your Supabase credentials:
 ```
 VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_CLUB_INFO_ID=your_club_info_row_id
 ```
 5. Start the dev server: `npm run dev`
 
@@ -87,6 +92,9 @@ All project docs live in [`docs/`](./docs/):
 | [HOOKS.md](./docs/HOOKS.md) | Custom React hooks |
 | [TYPES.md](./docs/TYPES.md) | TypeScript types |
 | [PAGES.md](./docs/PAGES.md) | Routes and page-level features |
+| [SERVICES.md](./docs/SERVICES.md) | Supabase service functions |
+| [TRIGGERS.md](./docs/TRIGGERS.md) | Database triggers |
+| [SUPABASE_FUNCTIONS.md](./docs/SUPABASE_FUNCTIONS.md) | Edge functions and DB functions |
 
 ---
 
