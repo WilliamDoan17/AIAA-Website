@@ -58,10 +58,8 @@ Shared data types used across hooks, services, and components. Derived from the 
 | url         | string\|null |                        |
 | start_time  | string       | ISO 8601 timestamptz   |
 | end_time    | string       | ISO 8601 timestamptz   |
-| status      | EventStatus  |                        |
 
-### EventStatus
-`'upcoming'` | `'ongoing'` | `'completed'`
+> Status (`upcoming` | `ongoing` | `completed`) is computed client-side from `start_time` and `end_time`.
 
 ### EventInsert
 `Omit<Event, 'id' | 'created_at'>`
