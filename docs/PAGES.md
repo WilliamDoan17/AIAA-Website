@@ -15,7 +15,7 @@ A list of application pages and their role in the AIAA-Website.
 - `/members`: Public. List all members. → `PublicMembers`
 - `/members/:id`: Public. Member detail. → `PublicMemberDetail`
 - `/projects`: Public. List all projects with status and category filters. → `PublicProjects`
-- `/events`: Public. List all events with time, location, and status. → `PublicEvents`
+- `/events`: Public. List all events with time and location. → `PublicEvents`
 
 ---
 

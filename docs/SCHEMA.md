@@ -147,9 +147,6 @@ This document details the data model, validations, and access (RLS) controls for
 | url         | text              | nullable                     |
 | start_time  | timestamptz       | not null                     |
 | end_time    | timestamptz       | not null, end_time > start_time |
-| status      | event_status enum | not null, default 'upcoming' |
-
-> `event_status`: `upcoming` | `ongoing` | `completed`
 
 ### Validation
 | Field       | Validation                            |
@@ -162,7 +159,6 @@ This document details the data model, validations, and access (RLS) controls for
 | url         | valid URL (HTTPS preferred)           |
 | start_time  | required, future time (on create)     |
 | end_time    | required, end > start                 |
-| status      | enum only                             |
 
 ### RLS Policies
 - SELECT: public (all users)

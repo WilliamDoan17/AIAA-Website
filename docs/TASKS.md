@@ -8,6 +8,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Admin Events Page
     - Admin can create new events
     - Admin can edit or delete any event at `/admin/events/:id`
+  
+  - Sort the events seen at `/admin/events/:id` by time
+
+  - Remove event status column
 
   - folder structure (architecture) refactor:
     - group by feature (domain) vs. group by attributes (decide)
