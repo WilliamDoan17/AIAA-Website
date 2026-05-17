@@ -23,6 +23,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - `useUpdateClubInfo` — invalidates cache after save ✅
     - Drop `ClubInfoProvider`, `ClubInfoContext`, `hooks/useClubInfo.ts` ✅
 
+  - fix event create/edit form showing UTC instead of local time ✅
+    - `toDatetimeLocal` converts UTC → local for display ✅
+    - `fromDatetimeLocal` converts local → UTC on submit ✅
+
 </details>
 
 <details>
