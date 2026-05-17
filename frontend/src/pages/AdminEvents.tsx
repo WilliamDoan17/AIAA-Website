@@ -314,6 +314,10 @@ const AdminEvents = () => {
   const filtered = useMemo(() => events
     .filter(e => e.name.toLowerCase().includes(search.toLowerCase()))
     .filter(e => statusFilter === 'all' || e.status === statusFilter)
+    .sort((a, b) => {
+      const byStart = new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
+      return byStart !== 0 ? byStart : new Date(a.end_time).getTime() - new Date(b.end_time).getTime()
+    })
     , [events, search, statusFilter])
 
   return (
