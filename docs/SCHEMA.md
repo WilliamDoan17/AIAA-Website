@@ -92,7 +92,7 @@ This document details the data model, validations, and access (RLS) controls for
 |------------|-------------|---------------------------------|
 | id         | uuid        | primary key, auto-generated     |
 | project_id | uuid        | not null, references projects   |
-| author_id  | uuid        | not null, references auth.users |
+| author_id  | uuid        | not null, references club_members(id) |
 | title      | text        | not null, not empty             |
 | content    | text        | not null, not empty             |
 | created_at | timestamptz | not null, default now()         |
@@ -103,7 +103,7 @@ This document details the data model, validations, and access (RLS) controls for
 |-------------|-------------|------------------------------------------|
 | id          | uuid        | primary key, auto-generated              |
 | post_id     | uuid        | not null, references project_posts       |
-| author_id   | uuid        | not null, references auth.users          |
+| author_id   | uuid        | not null, references club_members(id)          |
 | content     | text        | not null, not empty                      |
 | reply_to_id | uuid        | nullable, references project_post_comments |
 | created_at  | timestamptz | not null, default now()                  |
@@ -133,8 +133,8 @@ This document details the data model, validations, and access (RLS) controls for
 ### RLS Policies
 - projects: SELECT public — INSERT/DELETE club admin only, UPDATE project admin or club admin
 - project_members: SELECT public — INSERT/UPDATE/DELETE project admin or club admin, cannot change project_id
-- project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
-- project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
+- project_posts: SELECT assigned members — INSERT project members — UPDATE author - DELETE author or admin
+- project_post_comments: SELECT assigned members — INSERT project members — UPDATE author - DELETE author or admin
 
 > `is_project_admin()` (`SECURITY DEFINER`) is used by policies on `projects` and `project_members` INSERT/UPDATE/DELETE to avoid infinite recursion. The `project_members` SELECT policy uses `using (true)` (public) so no helper function is needed.
 

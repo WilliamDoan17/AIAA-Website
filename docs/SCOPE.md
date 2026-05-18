@@ -60,4 +60,8 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 ---
 
+
+## Future 
+- Messages
+
 (See SCHEMA.md for technical/database implementation, validation, and RLS details. See PAGES.md for page-by-page breakdown.)
