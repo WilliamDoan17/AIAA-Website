@@ -76,8 +76,8 @@ Shared data types used across hooks, services, and components. Derived from the 
 |-------------|-----------------|----------------------|
 | id          | string          | uuid                 |
 | created_at  | string          | ISO 8601 timestamptz |
-| updated_at  | string          | ISO 8601 timestamptz |
 | name        | string          |                      |
+| updated_at  | string          | ISO 8601 timestamptz |
 | summary     | string          |                      |
 | description | string          |                      |
 | cover_image | string          | url or storage ref   |
