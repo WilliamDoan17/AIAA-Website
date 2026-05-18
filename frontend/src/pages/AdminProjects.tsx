@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
-import { useProjects, useCreateProject, useUpdateProject, useDeleteProject } from '../hooks/projects/projects'
-import type { Project, ProjectInsert, ProjectUpdate, ProjectStatus, ProjectCategory } from '../types/projects/projects'
+import { Link } from 'react-router-dom'
+import { useProjects, useCreateProject, useDeleteProject } from '../hooks/projects/projects'
+import type { Project, ProjectInsert, ProjectStatus, ProjectCategory } from '../types/projects/projects'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',
@@ -195,50 +196,6 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
   )
 }
 
-// ── Edit Modal ────────────────────────────────────────────────────────────────
-
-const EditModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-  const [form, setForm] = useState<ProjectInsert>({
-    name: project.name,
-    summary: project.summary,
-    description: project.description,
-    cover_image: project.cover_image,
-    status: project.status,
-    category: project.category,
-  })
-  const [fieldErrors, setFieldErrors] = useState<ProjectFieldErrors>({})
-  const { mutate: update, isPending, error: updateError } = useUpdateProject()
-
-  const setField = (key: keyof ProjectInsert, value: string) => {
-    setForm(f => ({ ...f, [key]: value }))
-    if (fieldErrors[key as keyof ProjectFieldErrors]) {
-      setFieldErrors(e => ({ ...e, [key]: undefined }))
-    }
-  }
-
-  const handleSubmit = () => {
-    const errors = validateProjectForm(form)
-    if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
-    const updates: ProjectUpdate = { ...form, name: form.name.trim(), cover_image: form.cover_image.trim() }
-    update({ id: project.id, updates }, { onSuccess: onClose })
-  }
-
-  return (
-    <ProjectFormModal
-      title="Edit Project"
-      form={form}
-      fieldErrors={fieldErrors}
-      isPending={isPending}
-      submitLabel="Save Changes"
-      pendingLabel="Saving..."
-      serverError={updateError ? 'Failed to save changes' : null}
-      onField={setField}
-      onSubmit={handleSubmit}
-      onClose={onClose}
-    />
-  )
-}
-
 // ── Delete Modal ──────────────────────────────────────────────────────────────
 
 const DeleteModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
@@ -283,7 +240,6 @@ const DeleteModal = ({ project, onClose }: { project: Project; onClose: () => vo
 const AdminProjects = () => {
   const { data: projects = [], isLoading } = useProjects()
   const [showCreate, setShowCreate] = useState(false)
-  const [editing, setEditing] = useState<Project | null>(null)
   const [deleting, setDeleting] = useState<Project | null>(null)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<ProjectStatus | 'all'>('all')
@@ -299,7 +255,6 @@ const AdminProjects = () => {
   return (
     <>
       {showCreate && <CreateModal onClose={() => setShowCreate(false)} />}
-      {editing && <EditModal project={editing} onClose={() => setEditing(null)} />}
       {deleting && <DeleteModal project={deleting} onClose={() => setDeleting(null)} />}
 
       <div className="max-w-4xl">
@@ -356,10 +311,10 @@ const AdminProjects = () => {
                 key={project.id}
                 className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40"
               >
-                <div className="flex-1 min-w-0">
+                <Link to={`/u/admin/projects/${project.id}`} className="flex-1 min-w-0 hover:text-accent transition-colors duration-200">
                   <p className="font-body text-sm font-medium text-copy truncate">{project.name}</p>
                   <p className="font-body text-xs text-muted truncate">{project.summary}</p>
-                </div>
+                </Link>
 
                 <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 text-muted border-rim">
                   {categoryLabel[project.category]}
@@ -370,12 +325,6 @@ const AdminProjects = () => {
                 </span>
 
                 <div className="flex gap-2 flex-shrink-0">
-                  <button
-                    onClick={() => setEditing(project)}
-                    className="font-body text-xs text-muted hover:text-copy transition-colors duration-200 px-2 py-1"
-                  >
-                    Edit
-                  </button>
                   <button
                     onClick={() => setDeleting(project)}
                     className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1"
