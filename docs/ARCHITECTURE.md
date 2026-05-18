@@ -9,7 +9,10 @@ This document describes the structure and conventions of the AIAA Website fronte
 frontend/src/
 ├── main.tsx                — React entry point
 ├── App.tsx                 — router + provider composition
-├── components/             — shared UI (Navbar, Footer)
+├── components/             — shared UI (Navbar, Footer) and domain tab components
+│   └── projects/
+│       ├── ProjectInfoTab.tsx     — inline editable form (canEdit) or read-only display
+│       └── ProjectMembersTab.tsx  — member list with add/edit/remove (canManage) or read-only
 ├── contexts/
 │   └── AuthContext.ts      — { user, member, loading }
 ├── hooks/                  — data access hooks, one file per resource domain
@@ -33,8 +36,11 @@ frontend/src/
 │   ├── PublicMembers.tsx
 │   ├── PublicMemberDetail.tsx
 │   ├── PublicProjects.tsx
+│   ├── PublicProjectDetail.tsx  — Info + Members tabs (canEdit=false, canManage=false)
 │   ├── AdminClub.tsx
-│   └── AdminMembers.tsx
+│   ├── AdminMembers.tsx
+│   ├── AdminProjects.tsx
+│   └── AdminProjectDetail.tsx   — Info + Members tabs (canEdit=true, canManage=true)
 ├── providers/
 │   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
 │   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient

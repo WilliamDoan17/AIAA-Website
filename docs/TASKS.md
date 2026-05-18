@@ -18,8 +18,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Club admin can view all projects at `/admin/projects`  ✅
     - Club admin can create, edit, or delete any project  ✅
     - Public `/projects/:id` detail page ✅
-    - Club admin can view project details at `/admin/projects/:id`
-    - Club admin can assign members with role and title 
+    - Club admin can view project details at `/admin/projects/:id` ✅
+    - Club admin can assign members with role and title ✅
+    - `/projects/:id/members` — role-aware member tab (project admin manages, contributor reads) ✅
+    - Public `/projects/:id` — Info + Members tabs (read-only) ✅
 
   - UI polish:
     - add a dashboard for members
