@@ -81,7 +81,7 @@
 | Club admin can view and edit project details at `/admin/projects/:id` | ✅ |
 | Club admin can assign members with role and title | ✅ |
 | `/projects/:id/members` — role-aware member tab (project admin manages, contributor reads) | ✅ |
-| Members can view their assigned projects at `/u/projects` | ⬜ |
+| Members can view their assigned projects at `/u/officer/projects` | ✅ |
 
 ### P2-5b — Projects: Posts & Comments
 

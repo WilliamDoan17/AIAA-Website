@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom"
 import { logout } from "../services/auth"
 
 const navItems = [
+  { label: 'Projects', to: '/u/officer/projects' },
   { label: 'Profile', to: '/u/officer/profile' },
 ]
 
