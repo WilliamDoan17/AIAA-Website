@@ -6,7 +6,7 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
   - P2-5b — Projects: Posts & Comments
     - Apply schema and RLS for `project_posts`, `project_post_comments`
-    - Write service functions and hooks for posts and comments
+    - Write types, service functions and hooks for posts and comments
     - `/projects/:id/posts` — unified role-aware route: project admin has full control, contributors manage own posts only
     - `/projects/:id/posts/:postId` — post detail with comments
     - Contributor can comment on any post in assigned projects
