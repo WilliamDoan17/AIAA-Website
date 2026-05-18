@@ -24,6 +24,7 @@ import AdminProjects from './pages/AdminProjects'
 import AdminProjectDetail from './pages/AdminProjectDetail'
 import MemberProfile from './pages/MemberProfile'
 import MemberProjects from './pages/MemberProjects'
+import OfficerProjectDetail from './pages/OfficerProjectDetail'
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
                   <Route element={<OfficerLayout />}>
                     <Route index element={null}></Route>
                     <Route path="projects" element={<MemberProjects />} />
+                    <Route path="projects/:id" element={<OfficerProjectDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>

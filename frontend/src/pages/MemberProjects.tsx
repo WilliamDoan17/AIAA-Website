@@ -41,7 +41,7 @@ const MemberProjects = () => {
           {projects.map(project => (
             <Link
               key={project.id}
-              to={`/projects/${project.id}`}
+              to={`/u/officer/projects/${project.id}`}
               className="flex items-center gap-5 bg-surface border border-rim rounded px-5 py-4 hover:border-accent/50 transition-colors duration-200 group"
             >
               <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded bg-rim">
