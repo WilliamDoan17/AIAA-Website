@@ -188,16 +188,14 @@ const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProp
       )}
 
       <div className="flex flex-col gap-4">
-        {canManage && (
-          <div className="flex justify-end">
-            <button
-              onClick={() => setCreating(true)}
-              className="px-4 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
-            >
-              + New Post
-            </button>
-          </div>
-        )}
+        <div className="flex justify-end">
+          <button
+            onClick={() => setCreating(true)}
+            className="px-4 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
+          >
+            + New Post
+          </button>
+        </div>
 
         {posts.length === 0 ? (
           <p className="text-muted font-body text-sm">No posts yet.</p>

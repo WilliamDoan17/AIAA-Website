@@ -8,10 +8,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Apply schema and RLS for `project_posts`, `project_post_comments`
     - Write types, service functions and hooks for posts and comments
     - Add tab `Posts` to `ProjectDetail` that can fetch to project posts for members (role aware)
-    - Create, edit, and delete post (role aware)
+    - Create, edit, and delete post (role aware) (uses hooks from `hooks/projects/project-posts.ts`)
     - Wire hooks to `ProjectPostsTab` (role aware)
     - `/projects/:id/posts/:postId` — post detail with comments (role-aware)
-      - `pages/ProjectPostDetail.tsx` (uses `useProjectPost(postId)` and `services/project/project-post-comments.ts`)
+      - `pages/ProjectPostDetail.tsx` (uses `useProjectPost(postId)` and `hooks/projects/project-post-comments.ts`)
       - project members and admin can create, edit, delete comments 
 
   - Carried over from May 17:
