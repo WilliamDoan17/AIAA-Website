@@ -17,7 +17,10 @@ frontend/src/
 │   ├── members.ts          — useMembers, useMember, useInviteMember, useUpdateMember, useDeleteMember
 │   ├── events.ts           — useEvents, useEvent, useCreateEvent, useUpdateEvent, useDeleteEvent
 │   ├── useAuth.ts          — reads AuthContext
-│   └── useProjects.ts      — fetches projects from Supabase
+│   ├── useProjects.ts      — fetches projects from Supabase (pre-TanStack, to be migrated)
+│   └── projects/           — TanStack Query hooks for projects domain
+│       ├── projects.ts
+│       └── project-members.ts
 ├── layouts/
 │   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
 │   ├── OfficerLayout.tsx   — layout for officer/contributor routes
@@ -43,15 +46,22 @@ frontend/src/
 ├── services/               — Supabase query functions, one file per domain
 │   ├── auth.ts
 │   ├── club.ts
-│   └── members.ts
+│   ├── members.ts
+│   ├── events.ts
+│   └── projects/
+│       ├── projects.ts
+│       └── project-members.ts
 ├── supabase/
 │   └── supabase.ts         — Supabase client (single instance)
 └── types/
     ├── auth.ts
     ├── club.ts
-    ├── event.ts
-    ├── member.ts
-    └── project.ts
+    ├── members.ts
+    ├── events.ts
+    ├── projects.ts             — re-exports from projects/
+    └── projects/
+        ├── projects.ts
+        └── project-members.ts
 ```
 
 ---
@@ -73,7 +83,7 @@ On first login:
 
 1. **Pages** — route-level components. Fetch data via hooks, compose section components, own filter/UI state.
 2. **Components** — shared UI across pages (`Navbar`, `Footer`). Domain-specific cards and modals live inside `pages/` until reused.
-3. **Hooks** — one file per resource domain. `club.ts`, `members.ts`, and `events.ts` use TanStack Query for caching and mutation management. `useAuth` reads from `AuthContext`. `useProjects` uses `useState` + `useEffect`.
+3. **Hooks** — one file per resource domain. `club.ts`, `members.ts`, `events.ts`, and the `projects/` folder use TanStack Query for caching and mutation management. `useAuth` reads from `AuthContext`. `useProjects.ts` is a legacy hook (useState + useEffect) to be replaced by `projects/projects.ts`.
 4. **Layouts** — auth-gated wrappers. `AdminLayout` enforces `role = 'admin'`; `OfficerLayout` enforces any authenticated session.
 5. **Services** — plain async functions that call Supabase. No React. Used directly by hooks as `queryFn`/`mutationFn`. Never import the Supabase client outside of services.
 6. **Providers** — `QueryProvider` wraps the entire app and holds the `QueryClient`. `AuthProvider` sits inside it.
