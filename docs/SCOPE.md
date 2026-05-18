@@ -62,6 +62,8 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 
 ## Future 
+- Onboarding to club:
+  - Custom email sending
 - Upload pictures for `cover-image`s & `photo`s
 - Messages
 - See others profile (member) `/u/profile/:id`
