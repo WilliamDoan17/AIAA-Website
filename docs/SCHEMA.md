@@ -81,7 +81,7 @@ This document details the data model, validations, and access (RLS) controls for
 | Field      | Type                      | Notes                              |
 |------------|---------------------------|------------------------------------|
 | project_id | uuid                      | PK, references projects            |
-| member_id  | uuid                      | PK, references auth.users          |
+| member_id  | uuid                      | PK, references club_members(id) on delete cascade |
 | role       | project_member_role enum  | not null, default 'contributor'    |
 | title      | text                      | not null, not empty                |
 
