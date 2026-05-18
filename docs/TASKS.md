@@ -2,6 +2,26 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 18, 2026</summary>
+
+  - P2-5b — Projects: Posts & Comments
+    - Apply schema and RLS for `project_posts`, `project_post_comments`
+    - Write service functions and hooks for posts and comments
+    - `/projects/:id/posts` — unified role-aware route: project admin has full control, contributors manage own posts only
+    - `/projects/:id/posts/:postId` — post detail with comments
+    - Contributor can comment on any post in assigned projects
+
+  - Carried over from May 17:
+    - UI polish:
+      - add a dashboard for members
+      - change the UI so it makes the unique style for each (members, projects, etc.)
+    - check database implementation for constraints and fix it
+    - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
+    - add column of `updated_at` and update trigger for each db domain
+
+</details>
+
+<details>
   <summary>May 17, 2026</summary>
 
   - P2-5a - Projects: Detail & Members
