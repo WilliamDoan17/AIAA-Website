@@ -131,10 +131,12 @@ This document details the data model, validations, and access (RLS) controls for
 | project_members | on_project_member_update  | prevent_project_member_project_id_change()      | BEFORE UPDATE |
 
 ### RLS Policies
-- projects: SELECT public and all users — INSERT/DELETE club admin only, UPDATE project admin or club admin
-- project_members: SELECT project members & admin — INSERT/DELETE project admin or club admin, UPDATE project admin or club admin, cannot change project_id 
+- projects: SELECT public — INSERT/DELETE club admin only, UPDATE project admin or club admin
+- project_members: SELECT project members & admin — INSERT/UPDATE/DELETE project admin or club admin, cannot change project_id
 - project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 - project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
+
+> Policies referencing `project_members` use `is_project_admin()` and `is_project_member()` (`SECURITY DEFINER`) to avoid infinite recursion.
 
 ---
 

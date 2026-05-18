@@ -13,9 +13,18 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Write service functions and hooks for projects and project_members 
       - Service functions ✅
       - Hooks ✅
-    - `PublicProjects` uses `useProjects` instead of mock data
-    - Seed database of projects  with mock data
+    - `PublicProjects` uses `useProjects` instead of mock data ✅
+    - Seed database of projects  with mock data ✅
+    - Club admin can view all projects at `/admin/projects`  ✅
+    - Club admin can create, edit, or delete any project  
+    - Public `/projects/:id` detail page 
+    - Club admin can assign members with role and title 
 
+
+
+  - UI polish:
+    - add a dashboard for members
+    - change the UI so it makes the unique style for each (members, projects, etc.)
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
   - add column of `updated_at` and update trigger for each db domain

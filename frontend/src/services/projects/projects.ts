@@ -45,10 +45,9 @@ export const updateProject = async (id: string, updates: ProjectUpdate): Promise
     .from('projects')
     .update(updates)
     .eq('id', id)
-
+    .select()
   if (error) throw error
 }
-
 export const deleteProject = async (id: string): Promise<void> => {
   const { error } = await supabase
     .from('projects')
