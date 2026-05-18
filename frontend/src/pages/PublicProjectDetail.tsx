@@ -85,14 +85,14 @@ const PublicProjectDetail = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {members.map(member => (
                 <div
-                  key={member.member_id}
+                  key={member.id}
                   className="bg-surface border border-rim px-5 py-4 flex flex-col gap-1"
                 >
                   <p className="font-display text-[0.6rem] uppercase tracking-widest text-accent">
                     {member.title}
                   </p>
                   <p className="font-body text-sm text-copy font-medium">
-                    {member.member_id}
+                    {member.name}
                   </p>
                   <p className="font-display text-[0.55rem] uppercase tracking-widest text-muted">
                     {member.role}
