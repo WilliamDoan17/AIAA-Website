@@ -132,8 +132,7 @@ This document details the data model, validations, and access (RLS) controls for
 
 ### RLS Policies
 - projects: SELECT public and all users — INSERT/DELETE club admin only, UPDATE project admin or club admin
-- project_members: SELECT project members & admin — INSERT/DELETE project admin or club admin, UPDATE project admin or
-club admin, cannot change project_id 
+- project_members: SELECT project members & admin — INSERT/DELETE project admin or club admin, UPDATE project admin or club admin, cannot change project_id 
 - project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 - project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 
