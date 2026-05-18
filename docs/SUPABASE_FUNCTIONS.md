@@ -109,18 +109,8 @@ Prevents a non-admin member from updating their own `title` field. Raises an exc
 
 **Returns:** `boolean`  
 **Security:** `SECURITY DEFINER`  
-**Used by:** RLS policies on `projects`, `project_members`
+**Used by:** RLS policies on `projects`
 
 **Description:**  
 Returns `true` if the calling user (`auth.uid()`) has `role = 'admin'` in `project_members` for the given project. Uses `SECURITY DEFINER` to bypass RLS on `project_members`, preventing infinite recursion when policies on `projects` or `project_members` need to check project-level admin status.
 
----
-
-### `is_project_member(p_project_id uuid)`
-
-**Returns:** `boolean`  
-**Security:** `SECURITY DEFINER`  
-**Used by:** `project_members_select` RLS policy
-
-**Description:**  
-Returns `true` if the calling user (`auth.uid()`) is any member of the given project. Uses `SECURITY DEFINER` to bypass RLS on `project_members`, preventing infinite recursion in the `project_members_select` policy which would otherwise self-reference the same table it is guarding.
