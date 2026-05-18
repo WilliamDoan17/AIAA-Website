@@ -70,7 +70,7 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## Project
-`src/types/projects.ts`
+`src/types/projects/projects.ts`
 
 | Field       | Type            | Notes                |
 |-------------|-----------------|----------------------|
@@ -95,3 +95,24 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ### ProjectUpdate
 `Partial<ProjectInsert>`
+
+---
+
+## ProjectMember
+`src/types/projects/project-members.ts`
+
+| Field      | Type              | Notes                       |
+|------------|-------------------|-----------------------------|
+| project_id | string            | uuid, references projects   |
+| member_id  | string            | uuid, references auth.users |
+| role       | ProjectMemberRole |                             |
+| title      | string            |                             |
+
+### ProjectMemberRole
+`'admin'` | `'contributor'`
+
+### ProjectMemberInsert
+`ProjectMember` (all fields required on insert, no auto-generated fields)
+
+### ProjectMemberUpdate
+`Pick<ProjectMember, 'role' | 'title'>` — `project_id` and `member_id` are immutable
