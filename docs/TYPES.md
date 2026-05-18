@@ -101,6 +101,8 @@ Shared data types used across hooks, services, and components. Derived from the 
 ## ProjectMember
 `src/types/projects/project-members.ts`
 
+Raw DB record — used for insert/update operations.
+
 | Field      | Type              | Notes                       |
 |------------|-------------------|-----------------------------|
 | project_id | string            | uuid, references projects   |
@@ -110,6 +112,9 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ### ProjectMemberRole
 `'admin'` | `'contributor'`
+
+### ProjectMemberDetail
+`ProjectMember` + `member: Member` — enriched type returned by `getMembersByProjectId`. Used for display; includes the full club member profile nested under `member`.
 
 ### ProjectMemberInsert
 `ProjectMember` (all fields required on insert, no auto-generated fields)
