@@ -248,3 +248,107 @@ Removes a member from a project. Invalidates `['projectMembers', projectId]` on 
 const { mutate: remove, isPending, variables } = useRemoveProjectMember()
 remove({ projectId, memberId })
 ```
+
+---
+
+## Project Posts (`hooks/projects/project-posts.ts`)
+
+All project post hooks use **TanStack Query**.
+
+Query keys:
+- By project: `['projectPosts', projectId]`
+- Single: `['projectPosts', postId]`
+
+### `useProjectPosts(projectId)`
+Fetches all posts for a project, ordered newest first.
+
+| Return    | Type               | Notes |
+|-----------|--------------------|-------|
+| data      | ProjectPost\[]     |       |
+| isLoading | boolean            |       |
+| isError   | boolean            |       |
+
+### `useProjectPost(postId)`
+Fetches a single post by id.
+
+| Return    | Type                      | Notes |
+|-----------|---------------------------|-------|
+| data      | ProjectPost \| undefined  |       |
+| isLoading | boolean                   |       |
+| isError   | boolean                   |       |
+
+### `useCreateProjectPost`
+Creates a new post. Invalidates `['projectPosts', projectId]` on success.
+
+```tsx
+const { mutate: create, isPending, error } = useCreateProjectPost()
+create(info)   // info: ProjectPostInsert
+```
+
+### `useUpdateProjectPost`
+Updates a post's title or content. Invalidates `['projectPosts', postId]` and `['projectPosts', projectId]` on success.
+
+```tsx
+const { mutate: update, isPending, error } = useUpdateProjectPost()
+update({ postId, updates })   // updates: ProjectPostUpdate
+```
+
+### `useDeleteProjectPost`
+Deletes a post. Invalidates `['projectPosts', projectId]` on success.
+
+```tsx
+const { mutate: remove, isPending, variables } = useDeleteProjectPost()
+remove({ postId, projectId })
+```
+
+---
+
+## Project Post Comments (`hooks/projects/project-post-comments.ts`)
+
+All project post comment hooks use **TanStack Query**.
+
+Query keys:
+- By post: `['projectPostComments', postId]`
+- Single: `['projectPostComments', commentId]`
+
+### `useProjectPostComments(postId)`
+Fetches all comments for a post, ordered oldest first (chronological thread order).
+
+| Return    | Type                        | Notes |
+|-----------|-----------------------------|-------|
+| data      | ProjectPostCommentDetail\[] |       |
+| isLoading | boolean                     |       |
+| isError   | boolean                     |       |
+
+### `useProjectPostComment(commentId)`
+Fetches a single comment by id. Used when rendering a reply target.
+
+| Return    | Type                                   | Notes |
+|-----------|----------------------------------------|-------|
+| data      | ProjectPostCommentDetail \| undefined  |       |
+| isLoading | boolean                                |       |
+| isError   | boolean                                |       |
+
+### `useCreateProjectPostComment`
+Creates a comment. Pass `reply_to_id` in `info` to create a reply. Invalidates `['projectPostComments', postId]` on success.
+
+```tsx
+const { mutate: create, isPending, error } = useCreateProjectPostComment()
+create(info)   // info: ProjectPostCommentInsert (reply_to_id: null | string)
+```
+
+### `useUpdateProjectPostComment`
+Updates a comment's content. Invalidates `['projectPostComments', postId]` on success.
+
+```tsx
+const { mutate: update, isPending, error } = useUpdateProjectPostComment()
+update({ commentId, postId, updates })   // updates: ProjectPostCommentUpdate
+```
+
+### `useDeleteProjectPostComment`
+Deletes a comment. Invalidates `['projectPostComments', postId]` on success.
+
+```tsx
+const { mutate: remove, isPending, variables } = useDeleteProjectPostComment()
+remove({ commentId, postId })
+```
