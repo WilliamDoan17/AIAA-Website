@@ -133,8 +133,8 @@ This document details the data model, validations, and access (RLS) controls for
 ### RLS Policies
 - projects: SELECT public — INSERT/DELETE club admin only, UPDATE project admin or club admin
 - project_members: SELECT public — INSERT/UPDATE/DELETE project admin or club admin, cannot change project_id
-- project_posts: SELECT assigned members — INSERT project members — UPDATE author - DELETE author or admin
-- project_post_comments: SELECT assigned members — INSERT project members — UPDATE author - DELETE author or admin
+- project_posts: SELECT assigned members and club admin — INSERT project members, club admin — UPDATE author - DELETE author, project admin, club admin
+- project_post_comments: SELECT assigned members, club admin — INSERT project members, club admin — UPDATE author - DELETE author, project admin, club admin
 
 > `is_project_admin()` (`SECURITY DEFINER`) is used by policies on `projects` and `project_members` INSERT/UPDATE/DELETE to avoid infinite recursion. The `project_members` SELECT policy uses `using (true)` (public) so no helper function is needed.
 
