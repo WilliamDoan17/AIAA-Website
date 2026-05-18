@@ -2,17 +2,16 @@ import type { Member } from '../members'
 
 export type ProjectMemberRole = 'admin' | 'contributor'
 
-export interface ProjectMember extends Omit<Member, 'role' | 'title'> {
-  project_id: string
-  role: ProjectMemberRole
-  title: string
-}
-
-export type ProjectMemberInsert = {
+export interface ProjectMember {
   project_id: string
   member_id: string
   role: ProjectMemberRole
   title: string
 }
 
-export type ProjectMemberUpdate = Pick<ProjectMemberInsert, 'role' | 'title'>
+export interface ProjectMemberDetail extends ProjectMember {
+  member: Member
+}
+
+export type ProjectMemberInsert = ProjectMember
+export type ProjectMemberUpdate = Pick<ProjectMember, 'role' | 'title'>

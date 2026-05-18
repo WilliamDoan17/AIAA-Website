@@ -1,8 +1,8 @@
 import supabase from "../../supabase/supabase";
 import type { Member } from "../../types/members";
-import type { ProjectMember, ProjectMemberInsert, ProjectMemberUpdate } from "../../types/projects/project-members";
+import type { ProjectMemberDetail, ProjectMemberInsert, ProjectMemberUpdate } from "../../types/projects/project-members";
 
-export const getMembersByProjectId = async (projectId: string): Promise<ProjectMember[]> => {
+export const getMembersByProjectId = async (projectId: string): Promise<ProjectMemberDetail[]> => {
   const { data, error } = await supabase
     .from('project_members')
     .select('*, club_members(*)')
@@ -10,10 +10,11 @@ export const getMembersByProjectId = async (projectId: string): Promise<ProjectM
 
   if (error) throw error
   return (data ?? []).map(row => ({
-    ...(row.club_members as unknown as Member),
     project_id: row.project_id,
+    member_id: row.member_id,
     role: row.role,
     title: row.title,
+    member: row.club_members as unknown as Member,
   }))
 }
 
