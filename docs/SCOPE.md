@@ -43,6 +43,10 @@ This document outlines the features to be implemented for the AIAA-Website, orga
   - Create, edit, or delete their own posts in assigned projects
   - Comment on any post within assigned projects
 
+- Page structure: unified role-aware routes — a single `/projects/:id` renders different controls based on the
+  user's role in that specific project (club admin > project admin > contributor). No separate `/contributor/`
+  or `/admin/` project routes; role is resolved per project at render time.
+
 ---
 
 ## events

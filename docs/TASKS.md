@@ -4,9 +4,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>May 17, 2026</summary>
 
-  - P2-5 - Projects
-    - Apply schema and RLS for `projects`, `project_members`, `project_posts`, `project_post_comments`
-      - `projects` & `project_members`
+  - P2-5a - Projects: Detail & Members
+    - Apply schema and RLS for `projects`, `project_members` ✅
+      - `projects` schema, trigger, RLS ✅
+      - `project_members` schema, trigger, RLS ✅
+    - Decided on unified role-aware routes (no separate `/contributor/` routes) ✅
 
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`

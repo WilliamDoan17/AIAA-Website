@@ -68,20 +68,27 @@
 | Admin can create a new event | ✅ |
 | Admin can edit or delete any event at `/admin/events/:id` | ✅ |
 
-### P2-5 — Projects
+### P2-5a — Projects: Detail & Members
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `projects`, `project_members`, `project_posts`, `project_post_comments` | ⬜ |
-| Write service functions and hooks | ⬜ |
+| Apply schema and RLS for `projects`, `project_members` | ⬜ |
+| Write service functions and hooks for projects and project_members | ⬜ |
 | Replace `useProjects` mock data with Supabase query | ⬜ |
 | Public `/projects/:id` detail page | ⬜ |
 | Club admin can view all projects at `/admin/projects` | ⬜ |
 | Club admin can create, edit, or delete any project | ⬜ |
 | Club admin can assign members with role and title | ⬜ |
-| Project admin can manage members and posts at `/admin/projects/:id` | ⬜ |
-| Contributor can view assigned projects at `/contributor/projects` | ⬜ |
-| Contributor can create, edit, and delete own posts | ⬜ |
+| `/projects/:id/members` — role-aware member view (project admin manages, contributor reads) | ⬜ |
+
+### P2-5b — Projects: Posts & Comments
+
+| Task | Status |
+|------|--------|
+| Apply schema and RLS for `project_posts`, `project_post_comments` | ⬜ |
+| Write service functions and hooks for posts and comments | ⬜ |
+| `/projects/:id/posts` — role-aware post list (project admin full control, contributor own posts only) | ⬜ |
+| `/projects/:id/posts/:postId` — post detail with comments | ⬜ |
 | Contributor can comment on posts in assigned projects | ⬜ |
 
 ### P2-6 — Public Launch
