@@ -45,7 +45,17 @@ Supabase and related backend services for the AIAA-Website.
 ### projects
 `src/services/projects/projects.ts`
 
-- `getAllProjects()` 
+- `getAllProjects()` -> `Project[]` : get all projects
+- `getProjectsByMemberId(memberId: string)` -> `Project[]` : get projects by member id
+- `getProjectById(id: string)` -> `Project` : get a project by id
+- `createProject(info: ProjectInsert)` -> `void` : create a new project
+- `updateProject(id: string, updates: ProjectUpdate)` -> `void` : update a project
+- `deleteProject(id: string)` -> `void` : delete a project
 
 ### project-members
 `src/services/projects/project-members.ts`
+
+- `getMembersByProjectId(projectId: string)` -> `ProjectMember[]`: get all members of a project
+- `addProjectMember(info: ProjectMemberInsert)` -> `void`: add a club member to a project with role and title
+- `updateProjectMember(projectId: string, memberId: string, updates: ProjectMemberUpdate)` -> `void`: update a project member's role or title
+- `removeProjectMember(projectId: string, memberId: string)` -> `void`: remove a member from a project

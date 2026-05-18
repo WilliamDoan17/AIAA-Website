@@ -9,8 +9,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - `projects` schema, trigger, RLS ✅
       - `project_members` schema, trigger, RLS ✅
     - Decided on unified role-aware routes (no separate `/contributor/` routes) ✅
-    - Document and implement types for projects and project_members
+    - Document and implement types for projects and project_members ✅
     - Write service functions and hooks for projects and project_members
+      - Service functions
+      - Hooks
 
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
