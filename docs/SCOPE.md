@@ -62,6 +62,9 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 
 ## Future 
+- Upload pictures for `cover-image`s & `photo`s
 - Messages
+- See others profile (member) `/u/profile/:id`
+- Upload file & pictures to posts & messages 
 
 (See SCHEMA.md for technical/database implementation, validation, and RLS details. See PAGES.md for page-by-page breakdown.)
