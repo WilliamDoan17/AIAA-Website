@@ -12,7 +12,9 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Document and implement types for projects and project_members ✅
     - Write service functions and hooks for projects and project_members 
       - Service functions ✅
-      - Hooks
+      - Hooks ✅
+    - `PublicProjects` uses `useProjects` instead of mock data
+    - Seed database of projects  with mock data
 
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
