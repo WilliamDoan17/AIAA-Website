@@ -70,14 +70,14 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## Project
-`src/types/projects.ts`
+`src/types/projects/projects.ts`
 
 | Field       | Type            | Notes                |
 |-------------|-----------------|----------------------|
 | id          | string          | uuid                 |
 | created_at  | string          | ISO 8601 timestamptz |
-| updated_at  | string          | ISO 8601 timestamptz |
 | name        | string          |                      |
+| updated_at  | string          | ISO 8601 timestamptz |
 | summary     | string          |                      |
 | description | string          |                      |
 | cover_image | string          | url or storage ref   |
@@ -95,3 +95,29 @@ Shared data types used across hooks, services, and components. Derived from the 
 
 ### ProjectUpdate
 `Partial<ProjectInsert>`
+
+---
+
+## ProjectMember
+`src/types/projects/project-members.ts`
+
+Raw DB record — used for insert/update operations.
+
+| Field      | Type              | Notes                       |
+|------------|-------------------|-----------------------------|
+| project_id | string            | uuid, references projects   |
+| member_id  | string            | uuid, references auth.users |
+| role       | ProjectMemberRole |                             |
+| title      | string            |                             |
+
+### ProjectMemberRole
+`'admin'` | `'contributor'`
+
+### ProjectMemberDetail
+`ProjectMember` + `member: Member` — enriched type returned by `getMembersByProjectId`. Used for display; includes the full club member profile nested under `member`.
+
+### ProjectMemberInsert
+`ProjectMember` (all fields required on insert, no auto-generated fields)
+
+### ProjectMemberUpdate
+`Pick<ProjectMember, 'role' | 'title'>` — `project_id` and `member_id` are immutable

@@ -15,11 +15,16 @@ import PublicEvents from './pages/PublicEvents'
 import PublicMembers from './pages/PublicMembers'
 import PublicMemberDetail from './pages/PublicMemberDetail'
 import PublicEventDetail from './pages/PublicEventDetail'
+import PublicProjectDetail from './pages/PublicProjectDetail'
 import Login from './pages/Login'
 import AdminClub from './pages/AdminClub'
 import AdminMembers from './pages/AdminMembers'
 import AdminEvents from './pages/AdminEvents'
+import AdminProjects from './pages/AdminProjects'
+import AdminProjectDetail from './pages/AdminProjectDetail'
 import MemberProfile from './pages/MemberProfile'
+import MemberProjects from './pages/MemberProjects'
+import OfficerProjectDetail from './pages/OfficerProjectDetail'
 
 function App() {
 
@@ -32,6 +37,7 @@ function App() {
                 <Route element={<PublicLayout />}>
                   <Route index element={<Landing />} />
                   <Route path="projects" element={<PublicProjects />} />
+                  <Route path="projects/:id" element={<PublicProjectDetail />} />
                   <Route path="events" element={<PublicEvents />} />
                   <Route path="events/:id" element={<PublicEventDetail />} />
                   <Route path="members" element={<PublicMembers />} />
@@ -47,12 +53,16 @@ function App() {
                     <Route path="club" element={<AdminClub />} />
                     <Route path="members" element={<AdminMembers />} />
                     <Route path="events" element={<AdminEvents />} />
+                    <Route path="projects" element={<AdminProjects />} />
+                    <Route path="projects/:id" element={<AdminProjectDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>
                 <Route path="officer" element={<OfficerRoute />}>
                   <Route element={<OfficerLayout />}>
                     <Route index element={null}></Route>
+                    <Route path="projects" element={<MemberProjects />} />
+                    <Route path="projects/:id" element={<OfficerProjectDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>

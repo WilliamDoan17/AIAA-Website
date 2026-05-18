@@ -9,8 +9,24 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - `projects` schema, trigger, RLS ✅
       - `project_members` schema, trigger, RLS ✅
     - Decided on unified role-aware routes (no separate `/contributor/` routes) ✅
-    - Write service functions and hooks for projects and project_members
+    - Document and implement types for projects and project_members ✅
+    - Write service functions and hooks for projects and project_members 
+      - Service functions ✅
+      - Hooks ✅
+    - `PublicProjects` uses `useProjects` instead of mock data ✅
+    - Seed database of projects  with mock data ✅
+    - Club admin can view all projects at `/admin/projects`  ✅
+    - Club admin can create, edit, or delete any project  ✅
+    - Public `/projects/:id` detail page ✅
+    - Club admin can view project details at `/admin/projects/:id` ✅
+    - Club admin can assign members with role and title ✅
+    - `/projects/:id/members` — role-aware member tab (project admin manages, contributor reads) ✅
+    - Public `/projects/:id` — Info + Members tabs (read-only) ✅
+    - Members can view their assigned projects at `/u/officer/projects` ✅
 
+  - UI polish:
+    - add a dashboard for members
+    - change the UI so it makes the unique style for each (members, projects, etc.)
   - check database implementation for constraints and fix it 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
   - add column of `updated_at` and update trigger for each db domain

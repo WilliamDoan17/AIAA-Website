@@ -72,14 +72,16 @@
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `projects`, `project_members` | ⬜ |
-| Write service functions and hooks for projects and project_members | ⬜ |
-| Replace `useProjects` mock data with Supabase query | ⬜ |
-| Public `/projects/:id` detail page | ⬜ |
-| Club admin can view all projects at `/admin/projects` | ⬜ |
-| Club admin can create, edit, or delete any project | ⬜ |
-| Club admin can assign members with role and title | ⬜ |
-| `/projects/:id/members` — role-aware member view (project admin manages, contributor reads) | ⬜ |
+| Apply schema and RLS for `projects`, `project_members` | ✅ |
+| Write service functions and hooks for projects and project_members | ✅ |
+| Replace `useProjects` mock data with Supabase query | ✅ |
+| Public `/projects/:id` detail page (Info + Members tabs) | ✅ |
+| Club admin can view all projects at `/admin/projects` | ✅ |
+| Club admin can create, edit, or delete any project | ✅ |
+| Club admin can view and edit project details at `/admin/projects/:id` | ✅ |
+| Club admin can assign members with role and title | ✅ |
+| `/projects/:id/members` — role-aware member tab (project admin manages, contributor reads) | ✅ |
+| Members can view their assigned projects at `/u/officer/projects` | ✅ |
 
 ### P2-5b — Projects: Posts & Comments
 

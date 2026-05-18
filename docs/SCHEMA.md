@@ -81,7 +81,7 @@ This document details the data model, validations, and access (RLS) controls for
 | Field      | Type                      | Notes                              |
 |------------|---------------------------|------------------------------------|
 | project_id | uuid                      | PK, references projects            |
-| member_id  | uuid                      | PK, references auth.users          |
+| member_id  | uuid                      | PK, references club_members(id) on delete cascade |
 | role       | project_member_role enum  | not null, default 'contributor'    |
 | title      | text                      | not null, not empty                |
 
@@ -131,10 +131,12 @@ This document details the data model, validations, and access (RLS) controls for
 | project_members | on_project_member_update  | prevent_project_member_project_id_change()      | BEFORE UPDATE |
 
 ### RLS Policies
-- projects: SELECT public and all users — INSERT/DELETE club admin only, UPDATE project admin or club admin
-- project_members: SELECT project members & admin — INSERT/DELETE project admin or club admin, UPDATE project admin or club admin, cannot change project_id 
+- projects: SELECT public — INSERT/DELETE club admin only, UPDATE project admin or club admin
+- project_members: SELECT public — INSERT/UPDATE/DELETE project admin or club admin, cannot change project_id
 - project_posts: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
 - project_post_comments: SELECT assigned members — INSERT project members — UPDATE/DELETE author or admin
+
+> `is_project_admin()` (`SECURITY DEFINER`) is used by policies on `projects` and `project_members` INSERT/UPDATE/DELETE to avoid infinite recursion. The `project_members` SELECT policy uses `using (true)` (public) so no helper function is needed.
 
 ---
 

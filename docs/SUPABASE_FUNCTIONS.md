@@ -102,3 +102,15 @@ Deletes the corresponding `auth.users` row when a `club_members` record is delet
 
 **Description:**  
 Prevents a non-admin member from updating their own `title` field. Raises an exception if `auth.uid() = OLD.id`, `title` has changed, and `OLD.role != 'admin'`. Admins updating their own or other members' titles and service role calls are unaffected.
+
+---
+
+### `is_project_admin(p_project_id uuid)`
+
+**Returns:** `boolean`  
+**Security:** `SECURITY DEFINER`  
+**Used by:** RLS policies on `projects`
+
+**Description:**  
+Returns `true` if the calling user (`auth.uid()`) has `role = 'admin'` in `project_members` for the given project. Uses `SECURITY DEFINER` to bypass RLS on `project_members`, preventing infinite recursion when policies on `projects` or `project_members` need to check project-level admin status.
+

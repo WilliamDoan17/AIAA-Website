@@ -115,6 +115,11 @@ body {
 }
 
 /* ─── CTA button fill on hover ───────────────── */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+}
+
 .cta-btn::before {
   content: '';
   position: absolute;

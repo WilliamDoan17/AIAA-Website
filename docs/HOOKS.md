@@ -146,15 +146,105 @@ remove(id)
 
 ---
 
-## Projects
+## Projects (`hooks/projects/projects.ts`)
+
+All project hooks use **TanStack Query**. Mutations invalidate the relevant cache entries on success.
+
+Query keys:
+- List: `['projects']`
+- By member: `['projects', 'member', memberId]`
+- Single: `['projects', id]`
 
 ### `useProjects`
-Fetches all projects from Supabase.
+Fetches all projects.
 
-| Return  | Type      | Notes |
-|---------|-----------|-------|
-| data    | Project[] |       |
-| loading | boolean   |       |
-| error   | Error \| null | |
+| Return    | Type            | Notes                   |
+|-----------|-----------------|-------------------------|
+| data      | Project\[]      | undefined while loading |
+| isLoading | boolean         |                         |
+| isError   | boolean         |                         |
+| error     | Error \| null   |                         |
 
-> Uses `useState` + `useEffect`. Not yet migrated to TanStack Query.
+### `useMemberProjects(memberId)`
+Fetches all projects a member is assigned to.
+
+| Return    | Type            | Notes |
+|-----------|-----------------|-------|
+| data      | Project\[]      |       |
+| isLoading | boolean         |       |
+| isError   | boolean         |       |
+
+### `useProject(id)`
+Fetches a single project by id.
+
+| Return    | Type                  | Notes |
+|-----------|-----------------------|-------|
+| data      | Project \| undefined  |       |
+| isLoading | boolean               |       |
+| isError   | boolean               |       |
+
+### `useCreateProject`
+Creates a new project. Invalidates `['projects']` (list only) on success.
+
+```tsx
+const { mutate: create, isPending, error } = useCreateProject()
+create(info)   // info: ProjectInsert
+```
+
+### `useUpdateProject`
+Updates a project's fields. Invalidates all `['projects']` queries on success.
+
+```tsx
+const { mutate: update, isPending, error } = useUpdateProject()
+update({ id, updates })   // updates: ProjectUpdate
+```
+
+### `useDeleteProject`
+Deletes a project. Invalidates all `['projects']` queries on success.
+
+```tsx
+const { mutate: remove, isPending, variables } = useDeleteProject()
+remove(id)
+```
+
+---
+
+## Project Members (`hooks/projects/project-members.ts`)
+
+All project member hooks use **TanStack Query**.
+
+Query key:
+- By project: `['projectMembers', projectId]`
+
+### `useProjectMembers(projectId)`
+Fetches all members of a project.
+
+| Return    | Type                  | Notes |
+|-----------|-----------------------|-------|
+| data      | ProjectMember\[]      |       |
+| isLoading | boolean               |       |
+| isError   | boolean               |       |
+
+### `useAddProjectMember`
+Adds a club member to a project. Invalidates `['projectMembers', projectId]` on success.
+
+```tsx
+const { mutate: add, isPending, error } = useAddProjectMember()
+add(info)   // info: ProjectMemberInsert
+```
+
+### `useUpdateProjectMember`
+Updates a project member's role or title. Invalidates `['projectMembers', projectId]` on success.
+
+```tsx
+const { mutate: update, isPending, error } = useUpdateProjectMember()
+update({ projectId, memberId, updates })   // updates: ProjectMemberUpdate
+```
+
+### `useRemoveProjectMember`
+Removes a member from a project. Invalidates `['projectMembers', projectId]` on success.
+
+```tsx
+const { mutate: remove, isPending, variables } = useRemoveProjectMember()
+remove({ projectId, memberId })
+```
