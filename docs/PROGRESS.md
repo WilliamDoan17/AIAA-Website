@@ -78,6 +78,7 @@
 | Public `/projects/:id` detail page | ⬜ |
 | Club admin can view all projects at `/admin/projects` | ⬜ |
 | Club admin can create, edit, or delete any project | ⬜ |
+| Club admin can view project details at `/admin/projects/:id` | ⬜ |
 | Club admin can assign members with role and title | ⬜ |
 | Project admin can edit project details | ⬜ |
 | `/projects/:id/members` — role-aware member view (project admin manages, contributor reads) | ⬜ |
