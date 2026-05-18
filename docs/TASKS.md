@@ -16,7 +16,7 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - `PublicProjects` uses `useProjects` instead of mock data ✅
     - Seed database of projects  with mock data ✅
     - Club admin can view all projects at `/admin/projects`  ✅
-    - Club admin can create, edit, or delete any project  
+    - Club admin can create, edit, or delete any project  ✅
     - Public `/projects/:id` detail page 
     - Club admin can assign members with role and title 
 

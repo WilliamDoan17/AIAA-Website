@@ -15,6 +15,7 @@ import PublicEvents from './pages/PublicEvents'
 import PublicMembers from './pages/PublicMembers'
 import PublicMemberDetail from './pages/PublicMemberDetail'
 import PublicEventDetail from './pages/PublicEventDetail'
+import PublicProjectDetail from './pages/PublicProjectDetail'
 import Login from './pages/Login'
 import AdminClub from './pages/AdminClub'
 import AdminMembers from './pages/AdminMembers'
@@ -33,6 +34,7 @@ function App() {
                 <Route element={<PublicLayout />}>
                   <Route index element={<Landing />} />
                   <Route path="projects" element={<PublicProjects />} />
+                  <Route path="projects/:id" element={<PublicProjectDetail />} />
                   <Route path="events" element={<PublicEvents />} />
                   <Route path="events/:id" element={<PublicEventDetail />} />
                   <Route path="members" element={<PublicMembers />} />

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import type React from 'react'
+import { Link } from 'react-router-dom'
 import { useProjects } from '../hooks/projects/projects'
 import type { Project } from '../types/projects'
 
@@ -14,7 +15,7 @@ const FilterTag = ({ value }: { value: string }) => (
 
 const ProjectCard = ({ project, filterOptions }: { project: Project; filterOptions: FilterOptions }) => {
   return (
-    <div className="flex flex-col md:flex-row items-stretch w-full bg-panel border border-rim overflow-hidden relative transition-[border-color,transform] duration-300 cursor-pointer mb-4 card-accent hover:border-accent hover:translate-x-1 fade-up group">
+    <Link to={`/projects/${project.id}`} className="flex flex-col md:flex-row items-stretch w-full bg-panel border border-rim overflow-hidden relative transition-[border-color,transform] duration-300 mb-4 card-accent hover:border-accent hover:translate-x-1 fade-up group">
       <div className="w-full md:w-[280px] flex-shrink-0 overflow-hidden">
         {project.cover_image
           ? <img className="w-full h-full object-cover block [filter:brightness(0.75)_saturate(0.8)] transition-[filter] duration-300 group-hover:[filter:brightness(0.9)_saturate(1)]" src={project.cover_image} alt={project.name} />
@@ -34,7 +35,7 @@ const ProjectCard = ({ project, filterOptions }: { project: Project; filterOptio
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
