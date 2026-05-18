@@ -137,8 +137,8 @@ const AdminProjectDetail = () => {
           ))}
         </div>
 
-        {activeTab === 'info' && <ProjectInfoTab project={project} canEdit={true} />}
-        {activeTab === 'members' && <ProjectMembersTab projectId={project.id} canManage={true} />}
+        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={true} /></div>
+        <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={true} /></div>
       </div>
     </>
   )

@@ -84,8 +84,8 @@ const PublicProjectDetail = () => {
           ))}
         </div>
 
-        {activeTab === 'info' && <ProjectInfoTab project={project} canEdit={false} />}
-        {activeTab === 'members' && <ProjectMembersTab projectId={project.id} canManage={false} />}
+        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={false} /></div>
+        <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={false} /></div>
 
       </div>
     </div>
