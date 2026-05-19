@@ -17,14 +17,11 @@ interface ReplyFormProps {
   postId: string
   memberId: string
   replyToId: string
-  replyToAuthorId: string
-  replyToAuthorName: string
   onClose: () => void
 }
 
-const ReplyForm = ({ postId, memberId, replyToId, replyToAuthorId, replyToAuthorName, onClose }: ReplyFormProps) => {
-  const prefix = replyToAuthorId !== memberId ? `@${replyToAuthorName} ` : ''
-  const [content, setContent] = useState(prefix)
+const ReplyForm = ({ postId, memberId, replyToId, onClose }: ReplyFormProps) => {
+  const [content, setContent] = useState('')
   const [error, setError] = useState<string>()
   const { mutate: create, isPending } = useCreateProjectPostComment()
 
@@ -73,7 +70,7 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
   const { member } = useAuth()
   const { data: comments = [], isLoading } = useProjectPostComments(postId)
   const { data: projectMembers = [] } = useProjectMembers(projectId)
-  const [replyingTo, setReplyingTo] = useState<ProjectPostCommentDetail | null>(null)
+  const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [newComment, setNewComment] = useState('')
   const [newCommentError, setNewCommentError] = useState<string>()
   const { mutate: create, isPending: isPosting } = useCreateProjectPostComment()
@@ -130,15 +127,13 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
               <CommentCard
                 comment={comment}
                 canAct={canActOn(comment)}
-                onReply={() => setReplyingTo(replyingTo?.id === comment.id ? null : comment)}
+                onReply={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
               />
-              {replyingTo?.id === comment.id && (
+              {replyingTo === comment.id && (
                 <ReplyForm
                   postId={postId}
                   memberId={memberId}
                   replyToId={comment.id}
-                  replyToAuthorId={comment.author_id}
-                  replyToAuthorName={comment.author.name}
                   onClose={() => setReplyingTo(null)}
                 />
               )}
@@ -147,16 +142,14 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
                   <CommentCard
                     comment={reply}
                     canAct={canActOn(reply)}
-                    onReply={() => setReplyingTo(replyingTo?.id === reply.id ? null : reply)}
+                    onReply={() => setReplyingTo(replyingTo === reply.id ? null : reply.id)}
                     isIndented
                   />
-                  {replyingTo?.id === reply.id && (
+                  {replyingTo === reply.id && (
                     <ReplyForm
                       postId={postId}
                       memberId={memberId}
                       replyToId={reply.id}
-                      replyToAuthorId={reply.author_id}
-                      replyToAuthorName={reply.author.name}
                       onClose={() => setReplyingTo(null)}
                     />
                   )}
