@@ -13,10 +13,17 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - Remove Edit buttons from `ProjectPostCard` (split `ProjectPostCard` from `ProjectPostTab`)
       - Types & Services: Create a `ProjectPostDetail` that has author info and rewire hooks & service to use that 
       - `ProjectPostCard` now uses `ProjectPostDetail` and has author info, (name, cover_image)
-    - Wire hooks to `ProjectPostsTab` (role aware)
     - `/projects/:id/posts/:postId` — post detail with comments (role-aware)
       - `pages/ProjectPostDetail.tsx` (uses `useProjectPost(postId)` and `hooks/projects/project-post-comments.ts`)
-      - project members and admin can create, edit, delete comments 
+      - `ProjectPostCard` links to `ProjectPostDetail` on click
+      - has edit button that turns on the form (no modal, the form replaces the normal appearance of the post) if
+      editable
+      - split into components in `/src/components`
+      - a comment section that resembles facebook/reddit
+      - project members and admin can create comments
+      - `CommentCard` has a reply button, a ... button at the side for delete/edit
+        - edit uses inline form
+        - delete has a modal
 
   - Carried over from May 17:
     - UI polish:
