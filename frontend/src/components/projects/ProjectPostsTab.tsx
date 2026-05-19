@@ -208,7 +208,6 @@ const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProp
                 <ProjectPostCard
                   key={post.id}
                   post={post}
-                  onEdit={canAct ? () => setEditing(post) : undefined}
                   onDelete={canAct ? () => setDeleting(post) : undefined}
                 />
               )

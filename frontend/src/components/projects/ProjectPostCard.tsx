@@ -2,11 +2,10 @@ import type { ProjectPostDetail } from '../../types/projects/project-posts'
 
 interface ProjectPostCardProps {
   post: ProjectPostDetail
-  onEdit?: () => void
   onDelete?: () => void
 }
 
-const ProjectPostCard = ({ post, onEdit, onDelete }: ProjectPostCardProps) => {
+const ProjectPostCard = ({ post, onDelete }: ProjectPostCardProps) => {
   return (
     <div className="flex items-start gap-4 bg-surface border border-rim rounded px-5 py-4">
       <div className="w-8 h-8 flex-shrink-0 rounded-full overflow-hidden bg-rim">
@@ -24,25 +23,13 @@ const ProjectPostCard = ({ post, onEdit, onDelete }: ProjectPostCardProps) => {
         <p className="font-body text-sm font-medium text-copy">{post.title}</p>
         <p className="font-body text-xs text-muted line-clamp-2 leading-relaxed">{post.content}</p>
       </div>
-      {(onEdit || onDelete) && (
-        <div className="flex gap-1 flex-shrink-0">
-          {onEdit && (
-            <button
-              onClick={onEdit}
-              className="font-body text-xs text-muted hover:text-copy transition-colors duration-200 px-2 py-1"
-            >
-              Edit
-            </button>
-          )}
-          {onDelete && (
-            <button
-              onClick={onDelete}
-              className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1"
-            >
-              Delete
-            </button>
-          )}
-        </div>
+      {onDelete && (
+        <button
+          onClick={onDelete}
+          className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1 flex-shrink-0"
+        >
+          Delete
+        </button>
       )}
     </div>
   )
