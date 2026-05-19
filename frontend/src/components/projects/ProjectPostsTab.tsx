@@ -7,6 +7,7 @@ interface ProjectPostsTabProps {
   projectId: string
   memberId: string
   canManage: boolean
+  basePath: string
 }
 
 // ── Create / Edit Modal ───────────────────────────────────────────────────────
@@ -168,7 +169,7 @@ const DeletePostModal = ({ post, projectId, onClose }: DeletePostModalProps) => 
 
 // ── Main Tab ──────────────────────────────────────────────────────────────────
 
-const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProps) => {
+const ProjectPostsTab = ({ projectId, memberId, canManage, basePath }: ProjectPostsTabProps) => {
   const { data: posts = [], isLoading } = useProjectPosts(projectId)
   const [creating, setCreating] = useState(false)
   const [editing, setEditing] = useState<ProjectPostDetail | null>(null)
@@ -208,6 +209,7 @@ const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProp
                 <ProjectPostCard
                   key={post.id}
                   post={post}
+                  to={`${basePath}/posts/${post.id}`}
                   onDelete={canAct ? () => setDeleting(post) : undefined}
                 />
               )

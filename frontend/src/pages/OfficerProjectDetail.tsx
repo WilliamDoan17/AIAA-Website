@@ -98,7 +98,7 @@ const OfficerProjectDetail = () => {
 
       <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={false} /></div>
       <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={canManage} /></div>
-      <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={canManage} /></div>
+      <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={canManage} basePath={`/u/officer/projects/${project.id}`} /></div>
     </div>
   )
 }
