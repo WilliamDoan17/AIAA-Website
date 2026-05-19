@@ -17,11 +17,14 @@ interface ReplyFormProps {
   postId: string
   memberId: string
   replyToId: string
+  replyToAuthorId: string
+  replyToAuthorName: string
   onClose: () => void
 }
 
-const ReplyForm = ({ postId, memberId, replyToId, onClose }: ReplyFormProps) => {
-  const [content, setContent] = useState('')
+const ReplyForm = ({ postId, memberId, replyToId, replyToAuthorId, replyToAuthorName, onClose }: ReplyFormProps) => {
+  const prefix = replyToAuthorId !== memberId ? `@${replyToAuthorName} ` : ''
+  const [content, setContent] = useState(prefix)
   const [error, setError] = useState<string>()
   const { mutate: create, isPending } = useCreateProjectPostComment()
 
@@ -70,7 +73,7 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
   const { member } = useAuth()
   const { data: comments = [], isLoading } = useProjectPostComments(postId)
   const { data: projectMembers = [] } = useProjectMembers(projectId)
-  const [replyingTo, setReplyingTo] = useState<string | null>(null)
+  const [replyingTo, setReplyingTo] = useState<ProjectPostCommentDetail | null>(null)
   const [newComment, setNewComment] = useState('')
   const [newCommentError, setNewCommentError] = useState<string>()
   const { mutate: create, isPending: isPosting } = useCreateProjectPostComment()
@@ -85,6 +88,7 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
     comment.author_id === memberId || isProjectAdmin || isClubAdmin
 
   const topLevel = useMemo(() => comments.filter(c => !c.reply_to_id), [comments])
+
   const repliesMap = useMemo(() => {
     const map = new Map<string, ProjectPostCommentDetail[]>()
     comments.filter(c => c.reply_to_id).forEach(c => {
@@ -93,6 +97,12 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
     })
     return map
   }, [comments])
+
+  // DFS: returns all descendants of parentId in thread order, capped at maxDepth=2 visually
+  const getAllDescendants = (parentId: string): ProjectPostCommentDetail[] => {
+    const direct = repliesMap.get(parentId) ?? []
+    return direct.flatMap(reply => [reply, ...getAllDescendants(reply.id)])
+  }
 
   const handlePostComment = () => {
     if (!newComment.trim()) { setNewCommentError('Comment cannot be empty'); return }
@@ -120,29 +130,33 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
               <CommentCard
                 comment={comment}
                 canAct={canActOn(comment)}
-                onReply={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+                onReply={() => setReplyingTo(replyingTo?.id === comment.id ? null : comment)}
               />
-              {replyingTo === comment.id && (
+              {replyingTo?.id === comment.id && (
                 <ReplyForm
                   postId={postId}
                   memberId={memberId}
                   replyToId={comment.id}
+                  replyToAuthorId={comment.author_id}
+                  replyToAuthorName={comment.author.name}
                   onClose={() => setReplyingTo(null)}
                 />
               )}
-              {(repliesMap.get(comment.id) ?? []).map(reply => (
+              {getAllDescendants(comment.id).map(reply => (
                 <div key={reply.id} className="mt-2">
                   <CommentCard
                     comment={reply}
                     canAct={canActOn(reply)}
-                    onReply={() => setReplyingTo(replyingTo === reply.id ? null : reply.id)}
+                    onReply={() => setReplyingTo(replyingTo?.id === reply.id ? null : reply)}
                     isIndented
                   />
-                  {replyingTo === reply.id && (
+                  {replyingTo?.id === reply.id && (
                     <ReplyForm
                       postId={postId}
                       memberId={memberId}
                       replyToId={reply.id}
+                      replyToAuthorId={reply.author_id}
+                      replyToAuthorName={reply.author.name}
                       onClose={() => setReplyingTo(null)}
                     />
                   )}

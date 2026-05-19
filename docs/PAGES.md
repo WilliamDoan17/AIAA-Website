@@ -34,10 +34,13 @@ A list of application pages and their role in the AIAA-Website.
 ---
 
 ## projects
-- `/admin/projects`: Admin-only. List, add, edit, and delete projects. → TBD
-- `/admin/projects/:id`: Admin-only. Manage project members, posts. → TBD
-- `/contributor/projects`: Contributors. View assigned projects. → TBD
-- `/contributor/projects/:id`: Contributors. Manage posts, comment. → TBD
+- `/projects/:id`: Public. Project detail — Info and Members tabs (read-only). → `PublicProjectDetail`
+- `/admin/projects`: Admin-only. List, create, and delete projects. → `AdminProjects`
+- `/admin/projects/:id`: Admin-only. Info (editable), Members (manageable), Posts tabs. → `AdminProjectDetail` (`ProjectInfoTab`, `ProjectMembersTab`, `ProjectPostsTab`)
+- `/admin/projects/:id/posts/:postId`: Admin-only. Full post with inline edit + comment section. → `ProjectPostDetail` (`PostDetailView`, `CommentSection`)
+- `/officer/projects`: Officers. View assigned projects. → `MemberProjects`
+- `/officer/projects/:id`: Officers. Info, Members (role-aware), Posts tabs. → `OfficerProjectDetail` (`ProjectInfoTab`, `ProjectMembersTab`, `ProjectPostsTab`)
+- `/officer/projects/:id/posts/:postId`: Officers. Full post with inline edit (if author or project admin) + threaded comment section. → `ProjectPostDetail` (`PostDetailView`, `CommentSection`)
 
 ---
 
