@@ -2,17 +2,45 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 19, 2026</summary>
+
+  - Carried over from May 18 / May 17:
+    - UI polish:
+      - split pages into components for easy management
+      - add a dashboard for members
+      - change the UI so it makes the unique style for each (members, projects, etc.)
+    - check database implementation for constraints and fix it
+    - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
+    - add column of `updated_at` and update trigger for each db domain
+
+</details>
+
+<details>
   <summary>May 18, 2026</summary>
 
-  - P2-5b — Projects: Posts & Comments
-    - Apply schema and RLS for `project_posts`, `project_post_comments`
-    - Write service functions and hooks for posts and comments
-    - `/projects/:id/posts` — unified role-aware route: project admin has full control, contributors manage own posts only
-    - `/projects/:id/posts/:postId` — post detail with comments
-    - Contributor can comment on any post in assigned projects
+  - P2-5b — Projects: Posts & Comments ✅
+    - Apply schema and RLS for `project_posts`, `project_post_comments` ✅
+    - Write types, service functions and hooks for posts and comments ✅
+    - Add tab `Posts` to `ProjectDetail` that can fetch to project posts for members (role aware) ✅
+    - Create, edit, and delete post (role aware) (uses hooks from `hooks/projects/project-posts.ts`) ✅
+    - Fix `ProjectPost` recurring problems (in many commits): ✅
+      - Remove Edit buttons from `ProjectPostCard` (split `ProjectPostCard` from `ProjectPostTab`) ✅
+      - Types & Services: Create a `ProjectPostDetail` that has author info and rewire hooks & service to use that ✅
+      - `ProjectPostCard` now uses `ProjectPostDetail` and has author info, (name, cover_image) ✅
+    - `/projects/:id/posts/:postId` — post detail with comments (role-aware) ✅
+      - `pages/ProjectPostDetail.tsx` (uses `useProjectPost(postId)` and `hooks/projects/project-post-comments.ts`) ✅
+      - `ProjectPostCard` links to `ProjectPostDetail` on click ✅
+      - has edit button that turns on the form (no modal, the form replaces the normal appearance of the post) if editable ✅
+      - split into components in `/src/components` ✅
+      - a comment section that resembles facebook/reddit ✅
+      - project members and admin can create comments ✅
+      - `CommentCard` has a reply button, a ... button at the side for delete/edit ✅
+        - edit uses inline form ✅
+        - delete has a modal ✅
 
   - Carried over from May 17:
     - UI polish:
+      - split pages into components for easy management
       - add a dashboard for members
       - change the UI so it makes the unique style for each (members, projects, etc.)
     - check database implementation for constraints and fix it

@@ -12,7 +12,12 @@ frontend/src/
 ├── components/             — shared UI (Navbar, Footer) and domain tab components
 │   └── projects/
 │       ├── ProjectInfoTab.tsx     — inline editable form (canEdit) or read-only display
-│       └── ProjectMembersTab.tsx  — member list with add/edit/remove (canManage) or read-only
+│       ├── ProjectMembersTab.tsx  — member list with add/edit/remove (canManage) or read-only
+│       ├── ProjectPostsTab.tsx    — post list with create/delete (role-aware); cards link to post detail
+│       ├── ProjectPostCard.tsx    — post summary card with author info; links to post detail
+│       ├── PostDetailView.tsx     — full post display with inline edit (canEdit); no modal
+│       ├── CommentSection.tsx     — threaded comment list, create form, reply forms with @mention
+│       └── CommentCard.tsx        — single comment with inline edit, ··· menu (edit/delete), reply button
 ├── contexts/
 │   └── AuthContext.ts      — { user, member, loading }
 ├── hooks/                  — data access hooks, one file per resource domain
@@ -23,7 +28,9 @@ frontend/src/
 │   ├── useProjects.ts      — fetches projects from Supabase (pre-TanStack, to be migrated)
 │   └── projects/           — TanStack Query hooks for projects domain
 │       ├── projects.ts
-│       └── project-members.ts
+│       ├── project-members.ts
+│       ├── project-posts.ts
+│       └── project-post-comments.ts
 ├── layouts/
 │   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
 │   ├── OfficerLayout.tsx   — layout for officer/contributor routes
@@ -40,7 +47,9 @@ frontend/src/
 │   ├── AdminClub.tsx
 │   ├── AdminMembers.tsx
 │   ├── AdminProjects.tsx
-│   └── AdminProjectDetail.tsx   — Info + Members tabs (canEdit=true, canManage=true)
+│   ├── AdminProjectDetail.tsx   — Info + Members + Posts tabs (canEdit=true, canManage=true)
+│   ├── OfficerProjectDetail.tsx — Info + Members + Posts tabs (canManage derived from project role)
+│   └── ProjectPostDetail.tsx    — full post + CommentSection; shared by officer and admin routes
 ├── providers/
 │   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
 │   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient
@@ -56,7 +65,9 @@ frontend/src/
 │   ├── events.ts
 │   └── projects/
 │       ├── projects.ts
-│       └── project-members.ts
+│       ├── project-members.ts
+│       ├── project-posts.ts
+│       └── project-post-comments.ts
 ├── supabase/
 │   └── supabase.ts         — Supabase client (single instance)
 └── types/

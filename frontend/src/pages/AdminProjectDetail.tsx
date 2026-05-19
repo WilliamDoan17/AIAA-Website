@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useProject, useDeleteProject } from '../hooks/projects/projects'
 import type { Project, ProjectStatus, ProjectCategory } from '../types/projects/projects'
+import useAuth from '../hooks/useAuth'
 import ProjectInfoTab from '../components/projects/ProjectInfoTab'
 import ProjectMembersTab from '../components/projects/ProjectMembersTab'
+import ProjectPostsTab from '../components/projects/ProjectPostsTab'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',
@@ -24,7 +26,7 @@ const statusStyle: Record<ProjectStatus, string> = {
   completed: 'text-green-400 border-green-400/30',
 }
 
-type Tab = 'info' | 'members'
+type Tab = 'info' | 'members' | 'posts'
 
 // ── Delete Modal ──────────────────────────────────────────────────────────────
 
@@ -67,6 +69,7 @@ const DeleteModal = ({ project, onClose }: { project: Project; onClose: () => vo
 
 const AdminProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
+  const { member } = useAuth()
   const { data: project, isLoading, isError } = useProject(id!)
   const [activeTab, setActiveTab] = useState<Tab>('info')
   const [deleting, setDeleting] = useState(false)
@@ -85,6 +88,7 @@ const AdminProjectDetail = () => {
   const tabs: { key: Tab; label: string }[] = [
     { key: 'info', label: 'Info' },
     { key: 'members', label: 'Members' },
+    { key: 'posts', label: 'Posts' },
   ]
 
   return (
@@ -139,6 +143,7 @@ const AdminProjectDetail = () => {
 
         <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={true} /></div>
         <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={true} /></div>
+        <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={true} basePath={`/u/admin/projects/${project.id}`} /></div>
       </div>
     </>
   )

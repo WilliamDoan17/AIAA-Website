@@ -5,7 +5,6 @@ Shared data types used across hooks, services, and components. Derived from the 
 ---
 
 ## ClubInfo
-
 `src/types/club.ts`
 
 | Field       | Type   | Notes                |
@@ -121,3 +120,55 @@ Raw DB record — used for insert/update operations.
 
 ### ProjectMemberUpdate
 `Pick<ProjectMember, 'role' | 'title'>` — `project_id` and `member_id` are immutable
+
+## ProjectPost
+`src/types/projects/project-posts.ts`
+
+### ProjectPost
+
+| Field      | Type   | Notes                              |
+|------------|--------|------------------------------------|
+| id         | string | uuid                               |
+| project_id | string | uuid, references projects          |
+| author_id  | string | uuid, references club_members      |
+| title      | string |                                    |
+| content    | string |                                    |
+| created_at | string | ISO 8601 timestamptz               |
+| updated_at | string | ISO 8601 timestamptz               |
+
+### ProjectPostDetail
+`ProjectPost` + `author: Member` — enriched type returned by `getProjectPostsByProjectId` and `getProjectPostById`. Used for display; includes the full club member profile nested under `author`.
+
+### ProjectPostInsert
+`Omit<ProjectPost, 'id' | 'created_at' | 'updated_at'>`
+
+### ProjectPostUpdate
+`Pick<ProjectPost, 'title' | 'content'>`
+
+---
+
+## ProjectPostComment
+`src/types/projects/project-post-comments.ts`
+
+### ProjectPostComment
+
+Raw DB record — used for insert/update operations.
+
+| Field       | Type        | Notes                                       |
+|-------------|-------------|---------------------------------------------|
+| id          | string      | uuid                                        |
+| post_id     | string      | uuid, references project_posts              |
+| author_id   | string      | uuid, references club_members               |
+| content     | string      |                                             |
+| reply_to_id | string\|null | uuid, references project_post_comments     |
+| created_at  | string      | ISO 8601 timestamptz                        |
+| updated_at  | string      | ISO 8601 timestamptz                        |
+
+### ProjectPostCommentDetail
+`ProjectPostComment` + `author: Member` — enriched type returned by `getCommentsByPostId` and `getProjectPostCommentById`. Used for display; includes the full club member profile nested under `author`.
+
+### ProjectPostCommentInsert
+`Omit<ProjectPostComment, 'id' | 'created_at' | 'updated_at'>` — `reply_to_id` is optional (null when not a reply)
+
+### ProjectPostCommentUpdate
+`Pick<ProjectPostComment, 'content'>`

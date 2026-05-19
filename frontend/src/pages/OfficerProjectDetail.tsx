@@ -6,6 +6,7 @@ import useAuth from '../hooks/useAuth'
 import type { ProjectStatus, ProjectCategory } from '../types/projects/projects'
 import ProjectInfoTab from '../components/projects/ProjectInfoTab'
 import ProjectMembersTab from '../components/projects/ProjectMembersTab'
+import ProjectPostsTab from '../components/projects/ProjectPostsTab'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',
@@ -26,7 +27,7 @@ const statusStyle: Record<ProjectStatus, string> = {
   completed: 'text-green-400 border-green-400/30',
 }
 
-type Tab = 'info' | 'members'
+type Tab = 'info' | 'members' | 'posts'
 
 const OfficerProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -54,6 +55,7 @@ const OfficerProjectDetail = () => {
   const tabs: { key: Tab; label: string }[] = [
     { key: 'info', label: 'Info' },
     { key: 'members', label: 'Members' },
+    { key: 'posts', label: 'Posts' },
   ]
 
   return (
@@ -96,6 +98,7 @@ const OfficerProjectDetail = () => {
 
       <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={false} /></div>
       <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={canManage} /></div>
+      <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={canManage} basePath={`/u/officer/projects/${project.id}`} /></div>
     </div>
   )
 }

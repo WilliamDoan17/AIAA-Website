@@ -25,6 +25,7 @@ import AdminProjectDetail from './pages/AdminProjectDetail'
 import MemberProfile from './pages/MemberProfile'
 import MemberProjects from './pages/MemberProjects'
 import OfficerProjectDetail from './pages/OfficerProjectDetail'
+import ProjectPostDetail from './pages/ProjectPostDetail'
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
                     <Route path="events" element={<AdminEvents />} />
                     <Route path="projects" element={<AdminProjects />} />
                     <Route path="projects/:id" element={<AdminProjectDetail />} />
+                    <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>
@@ -63,6 +65,7 @@ function App() {
                     <Route index element={null}></Route>
                     <Route path="projects" element={<MemberProjects />} />
                     <Route path="projects/:id" element={<OfficerProjectDetail />} />
+                    <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
                   </Route>
                 </Route>

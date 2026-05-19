@@ -60,4 +60,16 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 ---
 
+
+## Future 
+- Notifications for comments (realtime database)
+- Onboarding to club:
+  - Custom email sending
+- Upload pictures for `cover-image`s & `photo`s
+- Messages
+- See others profile (member) `/u/profile/:id`
+- Upload file & pictures to posts & messages
+- Comment section: cap visual indent at depth 2 (replies to replies render at same indent level as depth-1)
+- Comment section: @mention pre-fill when replying to another user's comment
+
 (See SCHEMA.md for technical/database implementation, validation, and RLS details. See PAGES.md for page-by-page breakdown.)
