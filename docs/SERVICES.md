@@ -63,8 +63,8 @@ Supabase and related backend services for the AIAA-Website.
 ### project-posts
 `src/services/projects/project-posts.ts`
 
-- `getProjectPostsByProjectId(projectId: string)` -> `ProjectPost[]`: get all posts of a project
-- `getProjectPostById(postId: string)` -> `ProjectPost`: get single post detail
+- `getProjectPostsByProjectId(projectId: string)` -> `ProjectPostDetail[]`: get all posts of a project, joined with club_members
+- `getProjectPostById(postId: string)` -> `ProjectPostDetail`: get single post detail, joined with club_members
 - `createProjectPost(info: ProjectPostInsert)` -> `void`: create a post
 - `updateProjectPost(postId: string, updates: ProjectPostUpdate)` -> `void`: update a post
 - `deleteProjectPost(postId: string)` -> `void`: delete a post

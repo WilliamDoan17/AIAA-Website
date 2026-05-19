@@ -9,6 +9,10 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - Write types, service functions and hooks for posts and comments
     - Add tab `Posts` to `ProjectDetail` that can fetch to project posts for members (role aware)
     - Create, edit, and delete post (role aware) (uses hooks from `hooks/projects/project-posts.ts`)
+    - Fix `ProjectPost` recurring problems (in many commits): 
+      - Remove Edit buttons from `ProjectPostCard` (split `ProjectPostCard` from `ProjectPostTab`)
+      - Types & Services: Create a `ProjectPostDetail` that has author info and rewire hooks & service to use that 
+      - `ProjectPostCard` now uses `ProjectPostDetail` and has author info, (name, cover_image)
     - Wire hooks to `ProjectPostsTab` (role aware)
     - `/projects/:id/posts/:postId` — post detail with comments (role-aware)
       - `pages/ProjectPostDetail.tsx` (uses `useProjectPost(postId)` and `hooks/projects/project-post-comments.ts`)

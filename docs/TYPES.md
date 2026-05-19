@@ -136,6 +136,9 @@ Raw DB record — used for insert/update operations.
 | created_at | string | ISO 8601 timestamptz               |
 | updated_at | string | ISO 8601 timestamptz               |
 
+### ProjectPostDetail
+`ProjectPost` + `author: Member` — enriched type returned by `getProjectPostsByProjectId` and `getProjectPostById`. Used for display; includes the full club member profile nested under `author`.
+
 ### ProjectPostInsert
 `Omit<ProjectPost, 'id' | 'created_at' | 'updated_at'>`
 

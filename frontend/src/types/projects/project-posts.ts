@@ -1,3 +1,5 @@
+import type { Member } from '../members'
+
 export interface ProjectPost {
   id: string
   project_id: string
@@ -6,6 +8,10 @@ export interface ProjectPost {
   content: string
   created_at: string
   updated_at: string
+}
+
+export interface ProjectPostDetail extends ProjectPost {
+  author: Member
 }
 
 export type ProjectPostInsert = Omit<ProjectPost, 'id' | 'created_at' | 'updated_at'>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useProjectPosts, useCreateProjectPost, useUpdateProjectPost, useDeleteProjectPost } from '../../hooks/projects/project-posts'
-import type { ProjectPost, ProjectPostInsert, ProjectPostUpdate } from '../../types/projects/project-posts'
+import type { ProjectPostDetail, ProjectPostInsert, ProjectPostUpdate } from '../../types/projects/project-posts'
+import ProjectPostCard from './ProjectPostCard'
 
 interface ProjectPostsTabProps {
   projectId: string
@@ -25,7 +26,7 @@ const validatePostForm = (form: PostForm): PostFieldErrors => {
 interface PostModalProps {
   projectId: string
   memberId: string
-  post?: ProjectPost
+  post?: ProjectPostDetail
   onClose: () => void
 }
 
@@ -123,7 +124,7 @@ const PostModal = ({ projectId, memberId, post, onClose }: PostModalProps) => {
 // ── Delete Confirm Modal ──────────────────────────────────────────────────────
 
 interface DeletePostModalProps {
-  post: ProjectPost
+  post: ProjectPostDetail
   projectId: string
   onClose: () => void
 }
@@ -170,8 +171,8 @@ const DeletePostModal = ({ post, projectId, onClose }: DeletePostModalProps) => 
 const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProps) => {
   const { data: posts = [], isLoading } = useProjectPosts(projectId)
   const [creating, setCreating] = useState(false)
-  const [editing, setEditing] = useState<ProjectPost | null>(null)
-  const [deleting, setDeleting] = useState<ProjectPost | null>(null)
+  const [editing, setEditing] = useState<ProjectPostDetail | null>(null)
+  const [deleting, setDeleting] = useState<ProjectPostDetail | null>(null)
 
   if (isLoading) return <p className="text-muted font-body text-sm">Loading...</p>
 
@@ -202,19 +203,12 @@ const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProp
         ) : (
           <div className="flex flex-col gap-2">
             {posts.map(post => (
-              <div
-                key={post.id}
-                className="flex items-start gap-4 bg-surface border border-rim rounded px-5 py-4"
-              >
-                <div className="flex-1 min-w-0 flex flex-col gap-1">
-                  <p className="font-body text-sm font-medium text-copy">{post.title}</p>
-                  <p className="font-body text-xs text-muted line-clamp-2">{post.content}</p>
-                  <p className="font-body text-[0.65rem] text-muted mt-1">
-                    {new Date(post.created_at).toLocaleDateString()}
-                  </p>
+              <div key={post.id} className="flex items-start gap-3">
+                <div className="flex-1 min-w-0">
+                  <ProjectPostCard post={post} />
                 </div>
                 {(canManage || post.author_id === memberId) && (
-                  <div className="flex gap-2 flex-shrink-0">
+                  <div className="flex flex-col gap-1 flex-shrink-0 pt-3">
                     <button
                       onClick={() => setEditing(post)}
                       className="font-body text-xs text-muted hover:text-copy transition-colors duration-200 px-2 py-1"
