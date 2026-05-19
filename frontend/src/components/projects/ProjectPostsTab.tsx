@@ -202,29 +202,17 @@ const ProjectPostsTab = ({ projectId, memberId, canManage }: ProjectPostsTabProp
           <p className="text-muted font-body text-sm">No posts yet.</p>
         ) : (
           <div className="flex flex-col gap-2">
-            {posts.map(post => (
-              <div key={post.id} className="flex items-start gap-3">
-                <div className="flex-1 min-w-0">
-                  <ProjectPostCard post={post} />
-                </div>
-                {(canManage || post.author_id === memberId) && (
-                  <div className="flex flex-col gap-1 flex-shrink-0 pt-3">
-                    <button
-                      onClick={() => setEditing(post)}
-                      className="font-body text-xs text-muted hover:text-copy transition-colors duration-200 px-2 py-1"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => setDeleting(post)}
-                      className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
+            {posts.map(post => {
+              const canAct = canManage || post.author_id === memberId
+              return (
+                <ProjectPostCard
+                  key={post.id}
+                  post={post}
+                  onEdit={canAct ? () => setEditing(post) : undefined}
+                  onDelete={canAct ? () => setDeleting(post) : undefined}
+                />
+              )
+            })}
           </div>
         )}
       </div>
