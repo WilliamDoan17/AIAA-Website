@@ -8,7 +8,6 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - See others profile (member) on click to: 
     - comments name / profile picture
     - post name / profile picture
-
   - UI polish:
     - split pages into components for easy management
     - add a dashboard for members
@@ -16,6 +15,7 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   - Server: 
     - check database implementation for constraints and fix it
     - add column of `updated_at` and update trigger for each db domain
+    - take notes of current trigger and trigger functions
   - Seed database with club content
 
 </details>
