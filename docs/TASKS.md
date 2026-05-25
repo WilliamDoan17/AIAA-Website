@@ -2,16 +2,28 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 25, 2026</summary>
+
+  - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
+  - See others profile (member) on click to: 
+    - comments name / profile picture
+    - post name / profile picture
+
+  - UI polish:
+    - split pages into components for easy management
+    - add a dashboard for members
+    - change the UI so it makes the unique style for each (members, projects, etc.)
+  - Server: 
+    - check database implementation for constraints and fix it
+    - add column of `updated_at` and update trigger for each db domain
+  - Seed database with club content
+
+</details>
+
+<details>
   <summary>May 19, 2026</summary>
 
   - Carried over from May 18 / May 17:
-    - UI polish:
-      - split pages into components for easy management
-      - add a dashboard for members
-      - change the UI so it makes the unique style for each (members, projects, etc.)
-    - check database implementation for constraints and fix it
-    - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
-    - add column of `updated_at` and update trigger for each db domain
 
 </details>
 

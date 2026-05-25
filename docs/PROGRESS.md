@@ -87,11 +87,11 @@
 
 | Task | Status |
 |------|--------|
-| Apply schema and RLS for `project_posts`, `project_post_comments` | ⬜ |
-| Write service functions and hooks for posts and comments | ⬜ |
-| `/projects/:id/posts` — role-aware post list (project admin full control, contributor own posts only) | ⬜ |
-| `/projects/:id/posts/:postId` — post detail with comments | ⬜ |
-| Contributor can comment on posts in assigned projects | ⬜ |
+| Apply schema and RLS for `project_posts`, `project_post_comments` | ✅ |
+| Write service functions and hooks for posts and comments | ✅ |
+| `/projects/:id/posts` — role-aware post list (project admin full control, contributor own posts only) | ✅ |
+| `/projects/:id/posts/:postId` — post detail with comments | ✅ |
+| Contributor can comment on posts in assigned projects | ✅ |
 
 ### P2-6 — Public Launch
 
