@@ -141,7 +141,7 @@ const AdminProjectDetail = () => {
           ))}
         </div>
 
-        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={true} /></div>
+        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} /></div>
         <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={true} /></div>
         <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={true} basePath={`/u/admin/projects/${project.id}`} /></div>
       </div>

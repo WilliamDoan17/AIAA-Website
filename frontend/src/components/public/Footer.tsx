@@ -1,4 +1,4 @@
-import { useClubInfo } from '../hooks/club'
+import { useClubInfo } from '../../hooks/club'
 
 const Footer = () => {
   const { data: clubInfo } = useClubInfo()

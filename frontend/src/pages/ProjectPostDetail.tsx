@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useProjectPost } from '../hooks/projects/project-posts'
 import { useProjectMembers } from '../hooks/projects/project-members'
 import useAuth from '../hooks/useAuth'
-import PostDetailView from '../components/projects/posts/PostDetailView'
+import PostDetail from '../components/projects/posts/PostDetail'
 import CommentSection from '../components/projects/comments/CommentSection'
 
 const ProjectPostDetail = () => {
@@ -44,7 +44,7 @@ const ProjectPostDetail = () => {
         ← Back to Project
       </Link>
 
-      <PostDetailView post={post} projectId={id!} canEdit={canEdit} />
+      <PostDetail post={post} projectId={id!} canEdit={canEdit} />
 
       <div className="border-t border-rim pt-8">
         <CommentSection postId={postId!} projectId={id!} memberId={member!.id} />

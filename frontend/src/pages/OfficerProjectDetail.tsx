@@ -4,7 +4,7 @@ import { useProject } from '../hooks/projects/projects'
 import { useProjectMembers } from '../hooks/projects/project-members'
 import useAuth from '../hooks/useAuth'
 import type { ProjectStatus, ProjectCategory } from '../types/projects/projects'
-import ProjectInfoTab from '../components/projects/info/ProjectInfoTab'
+import ProjectInfoView from '../components/projects/info/ProjectInfoView'
 import ProjectMembersTab from '../components/projects/members/ProjectMembersTab'
 import ProjectPostsTab from '../components/projects/posts/ProjectPostsTab'
 
@@ -96,7 +96,7 @@ const OfficerProjectDetail = () => {
         ))}
       </div>
 
-      <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={false} /></div>
+      <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoView project={project} /></div>
       <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={canManage} /></div>
       <div className={activeTab === 'posts' ? '' : 'hidden'}><ProjectPostsTab projectId={project.id} memberId={member!.id} canManage={canManage} basePath={`/u/officer/projects/${project.id}`} /></div>
     </div>

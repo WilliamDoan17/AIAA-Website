@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useProject } from '../hooks/projects/projects'
 import type { ProjectStatus, ProjectCategory } from '../types/projects/projects'
-import ProjectInfoTab from '../components/projects/info/ProjectInfoTab'
+import ProjectInfoView from '../components/projects/info/ProjectInfoView'
 import ProjectMembersTab from '../components/projects/members/ProjectMembersTab'
 
 const statusLabel: Record<ProjectStatus, string> = {
@@ -84,7 +84,7 @@ const PublicProjectDetail = () => {
           ))}
         </div>
 
-        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoTab project={project} canEdit={false} /></div>
+        <div className={activeTab === 'info' ? '' : 'hidden'}><ProjectInfoView project={project} /></div>
         <div className={activeTab === 'members' ? '' : 'hidden'}><ProjectMembersTab projectId={project.id} canManage={false} /></div>
 
       </div>
