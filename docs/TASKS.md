@@ -4,10 +4,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
 <details>
   <summary>May 25, 2026</summary>
 
-  - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
+  - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md` ✅
   - See others profile (member) on click to: 
-    - comments name / profile picture
-    - post name / profile picture
+    - comments name / profile picture ✅
+    - post author name / profile picture ✅
+    - project member card  ✅
   - UI polish:
     - split pages into components for easy management
     - add a dashboard for members
@@ -17,13 +18,6 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - add column of `updated_at` and update trigger for each db domain
     - take notes of current trigger and trigger functions
   - Seed database with club content
-
-</details>
-
-<details>
-  <summary>May 19, 2026</summary>
-
-  - Carried over from May 18 / May 17:
 
 </details>
 
