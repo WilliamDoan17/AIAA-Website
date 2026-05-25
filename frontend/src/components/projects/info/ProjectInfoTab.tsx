@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useUpdateProject } from '../../hooks/projects/projects'
-import type { Project, ProjectInsert, ProjectStatus, ProjectCategory } from '../../types/projects/projects'
+import { useUpdateProject } from '../../../hooks/projects/projects'
+import type { Project, ProjectInsert, ProjectStatus, ProjectCategory } from '../../../types/projects/projects'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',

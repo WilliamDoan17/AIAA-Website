@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { resetPassword } from '../services/auth'
-import useAuth from '../hooks/useAuth'
+import { resetPassword } from '../../services/auth'
+import useAuth from '../../hooks/useAuth'
 
 const SetupGuardModal = () => {
   const { refetchMember } = useAuth()

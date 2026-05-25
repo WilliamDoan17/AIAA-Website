@@ -4,9 +4,9 @@ import { useProject } from '../hooks/projects/projects'
 import { useProjectMembers } from '../hooks/projects/project-members'
 import useAuth from '../hooks/useAuth'
 import type { ProjectStatus, ProjectCategory } from '../types/projects/projects'
-import ProjectInfoTab from '../components/projects/ProjectInfoTab'
-import ProjectMembersTab from '../components/projects/ProjectMembersTab'
-import ProjectPostsTab from '../components/projects/ProjectPostsTab'
+import ProjectInfoTab from '../components/projects/info/ProjectInfoTab'
+import ProjectMembersTab from '../components/projects/members/ProjectMembersTab'
+import ProjectPostsTab from '../components/projects/posts/ProjectPostsTab'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',

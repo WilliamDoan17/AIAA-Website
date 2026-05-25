@@ -23,6 +23,7 @@ import AdminEvents from './pages/AdminEvents'
 import AdminProjects from './pages/AdminProjects'
 import AdminProjectDetail from './pages/AdminProjectDetail'
 import MemberProfile from './pages/MemberProfile'
+import MemberDetail from './pages/MemberDetail'
 import MemberProjects from './pages/MemberProjects'
 import OfficerProjectDetail from './pages/OfficerProjectDetail'
 import ProjectPostDetail from './pages/ProjectPostDetail'
@@ -58,6 +59,7 @@ function App() {
                     <Route path="projects/:id" element={<AdminProjectDetail />} />
                     <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
+                    <Route path="member/:id" element={<MemberDetail />} />
                   </Route>
                 </Route>
                 <Route path="officer" element={<OfficerRoute />}>
@@ -67,6 +69,7 @@ function App() {
                     <Route path="projects/:id" element={<OfficerProjectDetail />} />
                     <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
+                    <Route path="member/:id" element={<MemberDetail />} />
                   </Route>
                 </Route>
               </Route>

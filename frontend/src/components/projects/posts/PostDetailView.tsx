@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { useUpdateProjectPost } from '../../hooks/projects/project-posts'
-import type { ProjectPostDetail, ProjectPostUpdate } from '../../types/projects/project-posts'
+import { Link } from 'react-router-dom'
+import { useUpdateProjectPost } from '../../../hooks/projects/project-posts'
+import useAuth from '../../../hooks/useAuth'
+import type { ProjectPostDetail, ProjectPostUpdate } from '../../../types/projects/project-posts'
 
 interface PostDetailViewProps {
   post: ProjectPostDetail
@@ -20,6 +22,8 @@ const validate = (title: string, content: string): FieldErrors => {
 }
 
 const PostDetailView = ({ post, projectId, canEdit }: PostDetailViewProps) => {
+  const { member } = useAuth()
+  const memberBase = member?.role === 'admin' ? '/u/admin/member' : '/u/officer/member'
   const [editing, setEditing] = useState(false)
   const [title, setTitle] = useState(post.title)
   const [content, setContent] = useState(post.content)
@@ -91,17 +95,19 @@ const PostDetailView = ({ post, projectId, canEdit }: PostDetailViewProps) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 flex-shrink-0 rounded-full overflow-hidden bg-rim">
-          {post.author.photo
-            ? <img src={post.author.photo} alt={post.author.name} className="w-full h-full object-cover" />
-            : <div className="w-full h-full bg-rim" />
-          }
-        </div>
-        <div className="flex items-center gap-2">
-          <p className="font-body text-xs font-medium text-copy">{post.author.name}</p>
-          <span className="text-muted font-body text-xs">·</span>
-          <p className="font-body text-[0.65rem] text-muted">{new Date(post.created_at).toLocaleDateString()}</p>
-        </div>
+        <Link to={`${memberBase}/${post.author.id}`} className="flex items-center gap-3 group">
+          <div className="w-8 h-8 flex-shrink-0 rounded-full overflow-hidden bg-rim group-hover:opacity-80 transition-opacity duration-200">
+            {post.author.photo
+              ? <img src={post.author.photo} alt={post.author.name} className="w-full h-full object-cover" />
+              : <div className="w-full h-full bg-rim" />
+            }
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="font-body text-xs font-medium text-copy group-hover:text-accent transition-colors duration-200">{post.author.name}</p>
+            <span className="text-muted font-body text-xs">·</span>
+            <p className="font-body text-[0.65rem] text-muted">{new Date(post.created_at).toLocaleDateString()}</p>
+          </div>
+        </Link>
         {canEdit && (
           <button
             onClick={() => setEditing(true)}

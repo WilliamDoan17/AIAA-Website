@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useProjectPosts, useCreateProjectPost, useUpdateProjectPost, useDeleteProjectPost } from '../../hooks/projects/project-posts'
-import type { ProjectPostDetail, ProjectPostInsert, ProjectPostUpdate } from '../../types/projects/project-posts'
+import { useProjectPosts, useCreateProjectPost, useUpdateProjectPost, useDeleteProjectPost } from '../../../hooks/projects/project-posts'
+import type { ProjectPostDetail, ProjectPostInsert, ProjectPostUpdate } from '../../../types/projects/project-posts'
 import ProjectPostCard from './ProjectPostCard'
 
 interface ProjectPostsTabProps {

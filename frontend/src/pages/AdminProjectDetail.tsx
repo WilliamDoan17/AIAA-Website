@@ -3,9 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useProject, useDeleteProject } from '../hooks/projects/projects'
 import type { Project, ProjectStatus, ProjectCategory } from '../types/projects/projects'
 import useAuth from '../hooks/useAuth'
-import ProjectInfoTab from '../components/projects/ProjectInfoTab'
-import ProjectMembersTab from '../components/projects/ProjectMembersTab'
-import ProjectPostsTab from '../components/projects/ProjectPostsTab'
+import ProjectInfoTab from '../components/projects/info/ProjectInfoTab'
+import ProjectMembersTab from '../components/projects/members/ProjectMembersTab'
+import ProjectPostsTab from '../components/projects/posts/ProjectPostsTab'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',

@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
-import { useProjectMembers, useAddProjectMember, useUpdateProjectMember, useRemoveProjectMember } from '../../hooks/projects/project-members'
-import { useMembers } from '../../hooks/members'
-import type { Member } from '../../types/members'
-import type { ProjectMemberDetail, ProjectMemberRole, ProjectMemberUpdate } from '../../types/projects/project-members'
+import { useProjectMembers, useAddProjectMember, useUpdateProjectMember, useRemoveProjectMember } from '../../../hooks/projects/project-members'
+import { useMembers } from '../../../hooks/members'
+import type { Member } from '../../../types/members'
+import type { ProjectMemberDetail, ProjectMemberRole, ProjectMemberUpdate } from '../../../types/projects/project-members'
 
 interface ProjectMembersTabProps {
   projectId: string

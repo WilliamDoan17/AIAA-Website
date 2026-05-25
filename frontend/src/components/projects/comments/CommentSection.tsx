@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
-import { useProjectPostComments, useCreateProjectPostComment } from '../../hooks/projects/project-post-comments'
-import { useProjectMembers } from '../../hooks/projects/project-members'
-import useAuth from '../../hooks/useAuth'
-import type { ProjectPostCommentDetail } from '../../types/projects/project-post-comments'
+import { useProjectPostComments, useCreateProjectPostComment } from '../../../hooks/projects/project-post-comments'
+import { useProjectMembers } from '../../../hooks/projects/project-members'
+import useAuth from '../../../hooks/useAuth'
+import type { ProjectPostCommentDetail } from '../../../types/projects/project-post-comments'
 import CommentCard from './CommentCard'
 
 interface CommentSectionProps {

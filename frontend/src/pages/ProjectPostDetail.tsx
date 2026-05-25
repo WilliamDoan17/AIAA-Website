@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useProjectPost } from '../hooks/projects/project-posts'
 import { useProjectMembers } from '../hooks/projects/project-members'
 import useAuth from '../hooks/useAuth'
-import PostDetailView from '../components/projects/PostDetailView'
-import CommentSection from '../components/projects/CommentSection'
+import PostDetailView from '../components/projects/posts/PostDetailView'
+import CommentSection from '../components/projects/comments/CommentSection'
 
 const ProjectPostDetail = () => {
   const { id, postId } = useParams<{ id: string; postId: string }>()
