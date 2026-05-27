@@ -58,7 +58,8 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - `AdminStatCard`: compact stat widget (label + value) ✅
       - reuses `DashboardEventCard` for events section ✅
     - change the UI style to `WattVision` (keep the color tone, but change everything)
-      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`)
+      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`) 
+        - Note: `STYLE.md` is now more detailed
       - Split in phases for updating UI
         - (Phases here) 
   - Server: 

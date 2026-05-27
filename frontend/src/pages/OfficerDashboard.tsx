@@ -77,10 +77,10 @@ const OfficerDashboard = () => {
             to="/u/officer/projects"
             className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
           >
-            All Projects
+            My Projects
           </Link>
           <Link
-            to="/u/profile"
+            to="/u/officer/profile"
             className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
           >
             Edit Profile
