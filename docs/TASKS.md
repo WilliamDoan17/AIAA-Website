@@ -5,48 +5,53 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
   <summary>May 27, 2026</summary>
 
   - UI polish:
-    - split pages into components for easy management
+    - split pages into components for easy management ✅
       - `AdminClub`:
-        - `ClubForm`: `components/club/ClubForm`
-      - `components/events/`
+        - `ClubForm`: `components/club/ClubForm` ✅
+      - `components/events/` ✅
         - `AdminEventList`:
-          - split in to Modal and Form components (`CreateEventModal, UpdateEventModal, CreateEventForm, UpdateEventForm`)
-          - use state to manage modals
-          - `AdminEventCard`
+          - split in to Modal and Form components (`CreateEventModal, UpdateEventModal, CreateEventForm, UpdateEventForm`) ✅
+          - use state to manage modals ✅
+          - `AdminEventCard` ✅
         - `PublicEventList`: 
-          - create `PublicEventCard` to substitute for in-file `EventCard` and use it 
-          - `PublicEventGroup`
-      - `components/members`:
+          - create `PublicEventCard` to substitute for in-file `EventCard` and use it ✅
+          - `PublicEventGroup` ✅
+      - `components/members` ✅
         - `AdminMemberList`:
-          - `InviteMemberModal`
-          - `UpdateMemberModal`
-          - `AdminMemberCard`
-          - use state to manage modal
+          - `InviteMemberModal` ✅
+          - `UpdateMemberModal` ✅
+          - `AdminMemberCard` ✅
+          - use state to manage modal ✅
         - `MemberProfile`:
-          - `UpdateProfileSection` to substitute `EditProfileSection` 
-          - `ResetPasswordSection`
+          - `UpdateProfileSection` to substitute `EditProfileSection` ✅
+          - `ResetPasswordSection` ✅
         - `PublicMemberList`:
-          - `PublicMemberCard`
-          - `PublicMemberContainer`
-      - `components/projects`
-        - change any `Edit` to `Update`
+          - `PublicMemberCard` ✅
+          - `PublicMemberContainer` ✅
+      - `components/projects` ✅
+        - change any `Edit` to `Update` ✅
         - `AdminProjectDetail`:
-          - `DeleteProjectModal` and state management for modals  
+          - `DeleteProjectModal` and state management for modals ✅
         - `AdminProjectList`:
-          - `CreateProjectModal`
-          - `DeleteProjectModal`
-          - `ProjectFilter`
-          - `AdminProjectCard`
-          - use state management for modals
+          - `CreateProjectModal` ✅
+          - `DeleteProjectModal` ✅
+          - `ProjectFilter` ✅
+          - `AdminProjectCard` ✅
+          - use state management for modals ✅
         - `OfficerProjectList`:
-          - `OfficerProjectCard`
+          - `OfficerProjectCard` ✅
         - `PublicProjectList`:
-          - `PublicProjectCard`
-          - `PublicProjectFilter`
-          - `PublicProjectContainer`
-        - `components/public/landing/`
-          - `Landing(domain)Card`
-    - add a dashboard for members
+          - `PublicProjectCard` ✅
+          - `PublicProjectFilter` ✅
+          - `PublicProjectContainer` ✅
+        - `components/public/landing/` ✅
+          - `Landing(domain)Card` ✅
+    - all pages use `modal` / `setModal` directly (no `closeModal` alias) ✅
+    - add a dashboard for members (`/u/officer`)
+      - `OfficerDashboard` page at `pages/projects/OfficerDashboard`
+      - sections: My Projects (up to 4), Upcoming Events (up to 3), Quick Actions
+      - `DashboardEventCard`: lightweight event card (date, name, location)
+      - reuses `OfficerProjectCard` for project rows
     - change the UI style to `WattVision` (keep the color tone, but change everything)
   - Server: 
     - check database implementation for constraints and fix it
