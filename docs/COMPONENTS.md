@@ -4,6 +4,15 @@ All reusable components in `frontend/src/components/`, organized by domain.
 
 ---
 
+## admin
+
+### `AdminStatCard`
+Compact stat widget displaying a label and numeric value. Used in the admin dashboard overview row.
+- **Props:** `label, value`
+- **Used by:** `pages/AdminDashboard`
+
+---
+
 ## officer
 
 ### `DashboardEventCard`

@@ -52,7 +52,15 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - sections: My Projects (up to 4), Upcoming Events (up to 3), Quick Actions ✅
       - `DashboardEventCard`: lightweight event card (date, name, location) ✅
       - reuses `OfficerProjectCard` for project rows ✅
+    - add a dashboard for admin ✅
+      - `AdminDashboard` page at `pages/AdminDashboard` ✅
+      - sections: Overview stats (members, projects, active, events), Upcoming Events, Quick Actions ✅
+      - `AdminStatCard`: compact stat widget (label + value) ✅
+      - reuses `DashboardEventCard` for events section ✅
     - change the UI style to `WattVision` (keep the color tone, but change everything)
+      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`)
+      - Split in phases for updating UI
+        - (Phases here) 
   - Server: 
     - check database implementation for constraints and fix it
     - add column of `updated_at` and update trigger for each db domain
