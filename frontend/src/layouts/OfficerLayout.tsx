@@ -22,9 +22,9 @@ const OfficerSidebar = () => {
             to={to}
             end={end}
             className={({ isActive }) =>
-              `px-3 py-2 rounded text-sm font-body transition-colors duration-200 ${isActive
+              `px-3 py-2 rounded-xl text-sm font-body transition-colors duration-200 ${isActive
                 ? 'bg-accent-dim text-accent'
-                : 'text-muted hover:text-copy hover:bg-rim'
+                : 'text-muted hover:text-copy hover:bg-surface'
               }`
             }
           >

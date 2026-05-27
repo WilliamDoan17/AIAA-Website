@@ -3,9 +3,9 @@ import LoginButton from './LoginButton'
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 md:px-10 h-16 bg-[rgba(4,6,15,.75)] backdrop-blur-[16px] border-b border-[rgba(26,39,68,0.8)] navbar">
+    <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 md:px-10 h-16 bg-panel/80 backdrop-blur-[16px] border-b border-rim">
       <Link to="/" className="no-underline cursor-pointer">
-        <h1 className="font-display text-[0.8rem] md:text-base font-black uppercase tracking-[0.15em] m-0 logo-text">
+        <h1 className="font-display text-[0.8rem] md:text-base font-semibold uppercase tracking-wide m-0 text-copy hover:text-accent transition-colors duration-200">
           AIAA at USF
         </h1>
       </Link>
