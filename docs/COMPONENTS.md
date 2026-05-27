@@ -118,6 +118,50 @@ Responsive grid of `PublicMemberCard`s. Renders nothing if members is empty.
 
 ---
 
+## projects
+
+### `CreateProjectModal`
+Modal for creating a new project. Owns form state, validation, and `useCreateProject` mutation.
+- **Props:** `onClose`
+- **Used by:** `pages/projects/AdminProjectList`
+
+### `DeleteProjectModal`
+Confirmation modal for deleting a project. Accepts an optional `onSuccess` callback for post-delete navigation.
+- **Props:** `project, onClose, onSuccess?`
+- **Used by:** `pages/projects/AdminProjectList`, `pages/projects/AdminProjectDetail`
+
+### `AdminProjectCard`
+Row displaying a project's name, summary, category badge, and status badge. Renders a delete action button. Links to the admin project detail route.
+- **Props:** `project, onDelete`
+- **Used by:** `pages/projects/AdminProjectList`
+
+### `ProjectFilter`
+Search input and status/category selects for filtering the admin project list.
+- **Props:** `search, onSearch, statusFilter, onStatusFilter, categoryFilter, onCategoryFilter`
+- **Used by:** `pages/projects/AdminProjectList`
+
+### `OfficerProjectCard`
+Card displaying a project's thumbnail, name, summary, category badge, and status badge. Links to the officer project detail route.
+- **Props:** `project`
+- **Used by:** `pages/projects/OfficerProjectList`
+
+### `PublicProjectCard`
+Card displaying a project's cover image, name, summary, and filter tags. Links to `/projects/:id`.
+- **Props:** `project, filterOptions`
+- **Used by:** `PublicProjectContainer`
+
+### `PublicProjectFilter`
+Filter selects for the public project list (category, status). Styled with clip-path polygon design.
+- **Props:** `filters, setFilters, filterOptions`
+- **Used by:** `pages/projects/PublicProjectList`
+
+### `PublicProjectContainer`
+Vertical list of `PublicProjectCard`s. Renders an empty state message if projects is empty.
+- **Props:** `projects, filterOptions`
+- **Used by:** `pages/projects/PublicProjectList`
+
+---
+
 ## projects/info
 
 ### `ProjectInfoTab`
@@ -140,7 +184,7 @@ Editable form for project name, summary, description, cover image, status, and c
 ## projects/members
 
 ### `ProjectMembersTab`
-Lists project members with role badges. When `canManage` is true, shows add/edit/remove actions and manages modal state for `AddMemberModal`, `EditMemberModal`, `RemoveMemberModal`.
+Lists project members with role badges. When `canManage` is true, shows add/edit/remove actions and manages modal state for `AddMemberModal`, `UpdateMemberModal`, `RemoveMemberModal`.
 - **Props:** `projectId, canManage`
 - **Used by:** `pages/projects/AdminProjectDetail`, `pages/projects/OfficerProjectDetail`, `pages/projects/PublicProjectDetail`
 
@@ -154,7 +198,7 @@ Modal for adding an existing club member to a project. Includes member search, r
 - **Props:** `projectId, existingMemberIds, onClose`
 - **Used by:** `ProjectMembersTab`
 
-### `EditMemberModal`
+### `UpdateMemberModal`
 Modal for updating a project member's role and title.
 - **Props:** `projectId, member, onClose`
 - **Used by:** `ProjectMembersTab`
