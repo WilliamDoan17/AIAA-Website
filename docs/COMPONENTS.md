@@ -4,6 +4,15 @@ All reusable components in `frontend/src/components/`, organized by domain.
 
 ---
 
+## officer
+
+### `DashboardEventCard`
+Lightweight row displaying an event's date, start time, name, and location. Used in the officer dashboard upcoming events section.
+- **Props:** `event`
+- **Used by:** `pages/projects/OfficerDashboard`
+
+---
+
 ## auth
 
 ### `SetupGuardModal`

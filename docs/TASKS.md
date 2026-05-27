@@ -47,11 +47,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
         - `components/public/landing/` ✅
           - `Landing(domain)Card` ✅
     - all pages use `modal` / `setModal` directly (no `closeModal` alias) ✅
-    - add a dashboard for members (`/u/officer`)
-      - `OfficerDashboard` page at `pages/projects/OfficerDashboard`
-      - sections: My Projects (up to 4), Upcoming Events (up to 3), Quick Actions
-      - `DashboardEventCard`: lightweight event card (date, name, location)
-      - reuses `OfficerProjectCard` for project rows
+    - add a dashboard for members (`/u/officer`) ✅
+      - `OfficerDashboard` page at `pages/projects/OfficerDashboard` ✅
+      - sections: My Projects (up to 4), Upcoming Events (up to 3), Quick Actions ✅
+      - `DashboardEventCard`: lightweight event card (date, name, location) ✅
+      - reuses `OfficerProjectCard` for project rows ✅
     - change the UI style to `WattVision` (keep the color tone, but change everything)
   - Server: 
     - check database implementation for constraints and fix it
