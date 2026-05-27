@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { Event } from '../../../types/events'
 
 type Props = { event: Event }
@@ -10,7 +11,7 @@ const LandingEventCard = ({ event }: Props) => {
   const endTime = end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
 
   return (
-    <div className="bg-panel border border-rim overflow-hidden relative transition-[border-color,box-shadow] duration-300 hover:border-gold hover:shadow-[0_0_30px_rgba(240,165,0,0.1)] group">
+    <Link to={`/events/${event.id}`} className="bg-panel border border-rim overflow-hidden relative transition-[border-color,box-shadow] duration-300 hover:border-gold hover:shadow-[0_0_30px_rgba(240,165,0,0.1)] group no-underline block">
       <div className="w-full aspect-video overflow-hidden">
         {event.cover_image
           ? <img className="w-full h-full object-cover block [filter:brightness(0.7)_saturate(0.6)] transition-[filter] duration-300 group-hover:[filter:brightness(0.85)_saturate(0.9)]" src={event.cover_image} alt={event.name} />
@@ -29,7 +30,7 @@ const LandingEventCard = ({ event }: Props) => {
       <p className="text-[0.9rem] leading-[1.65] text-muted mx-6 mb-6 font-light">
         {event.description}
       </p>
-    </div>
+    </Link>
   )
 }
 
