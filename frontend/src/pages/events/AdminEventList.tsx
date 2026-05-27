@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react'
 import { useEvents, useDeleteEvent } from '../../hooks/events'
-import type { Event, EventStatus } from '../../types/events'
-import { formatEventTime } from '../../utils/formatEventTime'
+import type { Event } from '../../types/events'
 import CreateEventModal from '../../components/events/CreateEventModal'
 import UpdateEventModal from '../../components/events/UpdateEventModal'
+import AdminEventCard from '../../components/events/AdminEventCard'
+import type { EventStatus } from '../../types/events'
 
 const getEventStatus = (event: Event): EventStatus => {
   const now = Date.now()
@@ -12,12 +13,6 @@ const getEventStatus = (event: Event): EventStatus => {
   if (now < start) return 'upcoming'
   if (now > end) return 'completed'
   return 'ongoing'
-}
-
-const statusLabel: Record<EventStatus, string> = {
-  upcoming: 'Upcoming',
-  ongoing: 'Ongoing',
-  completed: 'Completed',
 }
 
 // ── Delete Confirm Modal ──────────────────────────────────────────────────────
@@ -128,48 +123,14 @@ const AdminEventList = () => {
           <p className="text-muted font-body text-sm">No events found.</p>
         ) : (
           <div className="flex flex-col gap-2">
-            {filtered.map(event => {
-              const status = getEventStatus(event)
-              const eventTime = formatEventTime(event.start_time, event.end_time)
-
-              return (
-                <div
-                  key={event.id}
-                  className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40"
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="font-body text-sm font-medium text-copy truncate">{event.name}</p>
-                    <p className="font-body text-xs text-muted truncate">
-                      {eventTime} · {event.location}
-                    </p>
-                  </div>
-
-                  <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 ${status === 'ongoing'
-                    ? 'text-gold border-gold/30'
-                    : status === 'upcoming'
-                      ? 'text-accent border-accent/30'
-                      : 'text-muted border-rim'
-                    }`}>
-                    {statusLabel[status]}
-                  </span>
-
-                  <div className="flex gap-2 flex-shrink-0">
-                    <button
-                      onClick={() => setEditing(event)}
-                      className="font-body text-xs text-muted hover:text-copy transition-colors duration-200 px-2 py-1"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => setDeleting(event)}
-                      className="font-body text-xs text-muted hover:text-red-400 transition-colors duration-200 px-2 py-1"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              )
-            })}
+            {filtered.map(event => (
+              <AdminEventCard
+                key={event.id}
+                event={event}
+                onEdit={() => setEditing(event)}
+                onDelete={() => setDeleting(event)}
+              />
+            ))}
           </div>
         )}
       </div>
