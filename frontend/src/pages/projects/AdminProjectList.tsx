@@ -25,12 +25,10 @@ const AdminProjectList = () => {
     .sort((a, b) => a.name.localeCompare(b.name))
   , [projects, search, statusFilter, categoryFilter])
 
-  const closeModal = () => setModal(null)
-
   return (
     <>
-      {modal?.type === 'create' && <CreateProjectModal onClose={closeModal} />}
-      {modal?.type === 'delete' && <DeleteProjectModal project={modal.project} onClose={closeModal} />}
+      {modal?.type === 'create' && <CreateProjectModal onClose={() => setModal(null)} />}
+      {modal?.type === 'delete' && <DeleteProjectModal project={modal.project} onClose={() => setModal(null)} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">

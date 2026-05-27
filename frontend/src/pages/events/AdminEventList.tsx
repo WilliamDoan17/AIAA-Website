@@ -82,13 +82,11 @@ const AdminEventList = () => {
     })
     , [events, search, statusFilter])
 
-  const closeModal = () => setModal(null)
-
   return (
     <>
-      {modal?.type === 'create' && <CreateEventModal onClose={closeModal} />}
-      {modal?.type === 'update' && <UpdateEventModal event={modal.event} onClose={closeModal} />}
-      {modal?.type === 'delete' && <DeleteModal event={modal.event} onClose={closeModal} />}
+      {modal?.type === 'create' && <CreateEventModal onClose={() => setModal(null)} />}
+      {modal?.type === 'update' && <UpdateEventModal event={modal.event} onClose={() => setModal(null)} />}
+      {modal?.type === 'delete' && <DeleteModal event={modal.event} onClose={() => setModal(null)} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">

@@ -29,12 +29,10 @@ const AdminMemberList = () => {
     .filter(m => titleFilter === 'all' || m.title === titleFilter)
     , [members, search, roleFilter, titleFilter])
 
-  const closeModal = () => setModal(null)
-
   return (
     <>
-      {modal?.type === 'invite' && <InviteMemberModal onClose={closeModal} />}
-      {modal?.type === 'update' && <UpdateMemberModal member={modal.member} onClose={closeModal} />}
+      {modal?.type === 'invite' && <InviteMemberModal onClose={() => setModal(null)} />}
+      {modal?.type === 'update' && <UpdateMemberModal member={modal.member} onClose={() => setModal(null)} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">
