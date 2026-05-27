@@ -11,6 +11,12 @@ A list of application pages and their role in the AIAA-Website.
 
 ---
 
+## dashboards
+- `/u/admin`: Admin-only. Overview stats, upcoming events, quick actions. → `AdminDashboard`
+- `/u/officer`: Officer-only. Assigned projects (up to 4), upcoming events, quick actions. → `OfficerDashboard`
+
+---
+
 ## members
 - `/members`: Public. List all members. → `members/PublicMemberList`
 - `/members/:id`: Public. Member detail. → `members/PublicMemberDetail`

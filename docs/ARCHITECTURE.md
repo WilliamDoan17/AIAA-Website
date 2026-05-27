@@ -36,6 +36,8 @@ frontend/src/
 │   ├── OfficerLayout.tsx   — layout for officer/contributor routes
 │   └── PublicLayout.tsx    — Navbar + Footer + outlet for public routes
 ├── pages/                  — organized by content domain; role encoded in filename prefix
+│   ├── AdminDashboard.tsx           — admin index: stats, upcoming events, quick actions
+│   ├── OfficerDashboard.tsx         — officer index: assigned projects, upcoming events, quick actions
 │   ├── public/
 │   │   ├── Landing.tsx
 │   │   └── Login.tsx
