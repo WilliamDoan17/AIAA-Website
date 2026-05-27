@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom"
 import { logout } from "../services/auth"
 
 const navItems = [
+  { label: 'Dashboard', to: '/u/admin', end: true },
   { label: 'Club', to: '/u/admin/club' },
   { label: 'Members', to: '/u/admin/members' },
   { label: 'Projects', to: '/u/admin/projects' },
@@ -18,10 +19,11 @@ const AdminSidebar = () => {
         </span>
       </div>
       <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
-        {navItems.map(({ label, to }) => (
+        {navItems.map(({ label, to, end }) => (
           <NavLink
             key={to}
             to={to}
+            end={end}
             className={({ isActive }) =>
               `px-3 py-2 rounded text-sm font-body transition-colors duration-200 ${isActive
                 ? 'bg-accent-dim text-accent'
