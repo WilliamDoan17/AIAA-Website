@@ -59,6 +59,11 @@ Modal chrome wrapping `UpdateEventForm`.
 - **Props:** `event, onClose`
 - **Used by:** `pages/events/AdminEventList`
 
+### `AdminEventCard`
+Row displaying an event's name, time, location, and computed status badge. Renders edit and delete action buttons.
+- **Props:** `event, onEdit, onDelete`
+- **Used by:** `pages/events/AdminEventList`
+
 ### `PublicEventCard`
 Card displaying event cover image, date, location, name, and description. Links to `/events/:id`.
 - **Props:** `event`
@@ -72,6 +77,11 @@ Titled grid of `PublicEventCard`s. Supports `gold` and `muted` style variants fo
 ---
 
 ## members
+
+### `AdminMemberCard`
+Row displaying a member's avatar, name, email, title, and role badge. Renders edit and remove action buttons with loading state for the remove action.
+- **Props:** `member, onEdit, onRemove, removing?`
+- **Used by:** `pages/members/AdminMemberList`
 
 ### `InviteMemberModal`
 Modal for inviting a new member by email. Owns form state, validation, and `useInviteMember` mutation.
