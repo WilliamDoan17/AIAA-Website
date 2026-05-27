@@ -78,6 +78,11 @@ Titled grid of `PublicEventCard`s. Supports `gold` and `muted` style variants fo
 
 ## members
 
+### `PresidentCard`
+Hero-style featured card for the club president. Displays a tall portrait photo, name, and "PRESIDENT" label.
+- **Props:** `president`
+- **Used by:** `pages/members/PublicMemberList`
+
 ### `AdminMemberCard`
 Row displaying a member's avatar, name, email, title, and role badge. Renders edit and remove action buttons with loading state for the remove action.
 - **Props:** `member, onEdit, onRemove, removing?`
