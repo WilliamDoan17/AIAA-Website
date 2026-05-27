@@ -35,45 +35,45 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-              <Route path="/" element={<PublicRoute />}>
-                <Route element={<PublicLayout />}>
-                  <Route index element={<Landing />} />
-                  <Route path="projects" element={<PublicProjectList />} />
-                  <Route path="projects/:id" element={<PublicProjectDetail />} />
-                  <Route path="events" element={<PublicEventList />} />
-                  <Route path="events/:id" element={<PublicEventDetail />} />
-                  <Route path="members" element={<PublicMemberList />} />
-                  <Route path="members/:id" element={<PublicMemberDetail />} />
-                  <Route path="login" element={<Login />} />
+            <Route path="/" element={<PublicRoute />}>
+              <Route element={<PublicLayout />}>
+                <Route index element={<Landing />} />
+                <Route path="projects" element={<PublicProjectList />} />
+                <Route path="projects/:id" element={<PublicProjectDetail />} />
+                <Route path="events" element={<PublicEventList />} />
+                <Route path="events/:id" element={<PublicEventDetail />} />
+                <Route path="members" element={<PublicMemberList />} />
+                <Route path="members/:id" element={<PublicMemberDetail />} />
+                <Route path="login" element={<Login />} />
+              </Route>
+            </Route>
+            <Route path="/u" element={<ProtectedRoute />}>
+              <Route index element={<ProtectedIndex />} />
+              <Route path="admin" element={<AdminRoute />}>
+                <Route element={<AdminLayout />}>
+                  <Route index element={null}></Route>
+                  <Route path="club" element={<AdminClub />} />
+                  <Route path="members" element={<AdminMemberList />} />
+                  <Route path="events" element={<AdminEventList />} />
+                  <Route path="projects" element={<AdminProjectList />} />
+                  <Route path="projects/:id" element={<AdminProjectDetail />} />
+                  <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
+                  <Route path="profile" element={<MemberProfile />} />
+                  <Route path="member/:id" element={<MemberDetail />} />
                 </Route>
               </Route>
-              <Route path="/u" element={<ProtectedRoute />}>
-                <Route index element={<ProtectedIndex />} />
-                <Route path="admin" element={<AdminRoute />}>
-                  <Route element={<AdminLayout />}>
-                    <Route index element={null}></Route>
-                    <Route path="club" element={<AdminClub />} />
-                    <Route path="members" element={<AdminMemberList />} />
-                    <Route path="events" element={<AdminEventList />} />
-                    <Route path="projects" element={<AdminProjectList />} />
-                    <Route path="projects/:id" element={<AdminProjectDetail />} />
-                    <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
-                    <Route path="profile" element={<MemberProfile />} />
-                    <Route path="member/:id" element={<MemberDetail />} />
-                  </Route>
-                </Route>
-                <Route path="officer" element={<OfficerRoute />}>
-                  <Route element={<OfficerLayout />}>
-                    <Route index element={null}></Route>
-                    <Route path="projects" element={<OfficerProjectList />} />
-                    <Route path="projects/:id" element={<OfficerProjectDetail />} />
-                    <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
-                    <Route path="profile" element={<MemberProfile />} />
-                    <Route path="member/:id" element={<MemberDetail />} />
-                  </Route>
+              <Route path="officer" element={<OfficerRoute />}>
+                <Route element={<OfficerLayout />}>
+                  <Route index element={null}></Route>
+                  <Route path="projects" element={<OfficerProjectList />} />
+                  <Route path="projects/:id" element={<OfficerProjectDetail />} />
+                  <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
+                  <Route path="profile" element={<MemberProfile />} />
+                  <Route path="member/:id" element={<MemberDetail />} />
                 </Route>
               </Route>
-            </Routes>
+            </Route>
+          </Routes>
         </AuthProvider>
       </BrowserRouter>
     </QueryProvider >
