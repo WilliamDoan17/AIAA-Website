@@ -29,7 +29,7 @@ const Landing = () => {
         <h3 className="font-body font-light text-[clamp(1rem,2.5vw,1.4rem)] tracking-[0.25em] uppercase text-accent mb-10">
           Become part of our vibrant community
         </h3>
-        <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300">
+        <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300 cta-btn">
           Join Now
         </button>
       </div>
