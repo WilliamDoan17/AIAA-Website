@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import useAuth from '../hooks/useAuth'
-import { useMember, useUpdateMember } from '../hooks/members'
-import { resetPassword } from '../services/auth'
+import useAuth from '../../hooks/useAuth'
+import { useMember, useUpdateMember } from '../../hooks/members'
+import { resetPassword } from '../../services/auth'
 
 // ── Field ─────────────────────────────────────────────────────────────────────
 

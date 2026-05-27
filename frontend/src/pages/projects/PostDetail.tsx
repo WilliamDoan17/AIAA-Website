@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useProjectPost } from '../hooks/projects/project-posts'
-import { useProjectMembers } from '../hooks/projects/project-members'
-import useAuth from '../hooks/useAuth'
-import PostDetail from '../components/projects/posts/PostDetail'
-import CommentSection from '../components/projects/comments/CommentSection'
+import { useProjectPost } from '../../hooks/projects/project-posts'
+import { useProjectMembers } from '../../hooks/projects/project-members'
+import useAuth from '../../hooks/useAuth'
+import PostDetail from '../../components/projects/posts/PostDetail'
+import CommentSection from '../../components/projects/comments/CommentSection'
 
 const ProjectPostDetail = () => {
   const { id, postId } = useParams<{ id: string; postId: string }>()

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import { useMembers, useInviteMember, useUpdateMember, useDeleteMember } from '../hooks/members'
-import type { Member } from '../types/members'
-import type { ClubRole } from '../types/members'
+import { useMembers, useInviteMember, useUpdateMember, useDeleteMember } from '../../hooks/members'
+import type { Member } from '../../types/members'
+import type { ClubRole } from '../../types/members'
 
 // ── Invite Modal ──────────────────────────────────────────────────────────────
 

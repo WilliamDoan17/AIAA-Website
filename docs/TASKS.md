@@ -2,6 +2,20 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
+  <summary>May 27, 2026</summary>
+
+  - UI polish:
+    - split pages into components for easy management
+    - add a dashboard for members
+    - change the UI style to `WattVision` (keep the color tone, but change everything)
+  - Server: 
+    - check database implementation for constraints and fix it
+    - add column of `updated_at` and update trigger for each db domain
+    - take notes of current trigger and trigger functions
+  - Seed database with club content
+</details>
+
+<details>
   <summary>May 25, 2026</summary>
 
   - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md` ✅
@@ -9,16 +23,6 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
     - comments name / profile picture ✅
     - post author name / profile picture ✅
     - project member card  ✅
-  - UI polish:
-    - split pages into components for easy management
-    - add a dashboard for members
-    - change the UI so it makes the unique style for each (members, projects, etc.)
-  - Server: 
-    - check database implementation for constraints and fix it
-    - add column of `updated_at` and update trigger for each db domain
-    - take notes of current trigger and trigger functions
-  - Seed database with club content
-
 </details>
 
 <details>

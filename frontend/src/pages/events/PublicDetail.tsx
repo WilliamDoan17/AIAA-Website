@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
-import { useEvent } from '../hooks/events'
-import { formatEventTime } from '../utils/formatEventTime'
+import { useEvent } from '../../hooks/events'
+import { formatEventTime } from '../../utils/formatEventTime'
 
 const PublicEventDetail = () => {
   const { id } = useParams<{ id: string }>()

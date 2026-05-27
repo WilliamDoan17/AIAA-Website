@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useClubInfo, useUpdateClubInfo } from '../hooks/club'
+import { useClubInfo, useUpdateClubInfo } from '../../hooks/club'
 
 const AdminClub = () => {
   const { data: clubInfo, isLoading } = useClubInfo()

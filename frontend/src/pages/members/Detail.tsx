@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useMember } from '../hooks/members'
+import { useMember } from '../../hooks/members'
 
 const MemberDetail = () => {
   const { id } = useParams<{ id: string }>()

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useEvents } from '../hooks/events'
-import type { Event } from '../types/events'
-import { formatEventTime } from '../utils/formatEventTime'
+import { useEvents } from '../../hooks/events'
+import type { Event } from '../../types/events'
+import { formatEventTime } from '../../utils/formatEventTime'
 
 const EventCard = ({ event }: { event: Event }) => {
   return (

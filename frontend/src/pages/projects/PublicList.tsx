@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import type React from 'react'
 import { Link } from 'react-router-dom'
-import { useProjects } from '../hooks/projects/projects'
-import type { Project } from '../types/projects'
+import { useProjects } from '../../hooks/projects/projects'
+import type { Project } from '../../types/projects'
 
 type FilterOptions = Record<string, string[]>
 type Filters = { category: string; status: string }

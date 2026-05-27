@@ -1,6 +1,6 @@
-import { login } from "../services/auth"
+import { login } from "../../services/auth"
 import { useState } from "react"
-import useAuth from "../hooks/useAuth"
+import useAuth from "../../hooks/useAuth"
 import { Navigate } from "react-router-dom"
 
 const Login = () => {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
-import { useMemberProjects } from '../hooks/projects/projects'
-import type { ProjectStatus, ProjectCategory } from '../types/projects/projects'
+import useAuth from '../../hooks/useAuth'
+import { useMemberProjects } from '../../hooks/projects/projects'
+import type { ProjectStatus, ProjectCategory } from '../../types/projects/projects'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',

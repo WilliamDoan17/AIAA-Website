@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import { useEvents, useCreateEvent, useUpdateEvent, useDeleteEvent } from '../hooks/events'
-import type { Event, EventInsert, EventUpdate, EventStatus } from '../types/events'
-import { formatEventTime } from '../utils/formatEventTime'
+import { useEvents, useCreateEvent, useUpdateEvent, useDeleteEvent } from '../../hooks/events'
+import type { Event, EventInsert, EventUpdate, EventStatus } from '../../types/events'
+import { formatEventTime } from '../../utils/formatEventTime'
 
 const getEventStatus = (event: Event): EventStatus => {
   const now = Date.now()

@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useMember } from '../hooks/members'
+import { useMember } from '../../hooks/members'
 
 const PublicMemberDetail = () => {
   const { id } = useParams<{ id: string }>()

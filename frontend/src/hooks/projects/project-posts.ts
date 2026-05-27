@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getProjectPostsByProjectId, getProjectPostById, createProjectPost, updateProjectPost, deleteProjectPost } from '../../services/projects/project-posts'
-import type { ProjectPostDetail, ProjectPostInsert, ProjectPostUpdate } from '../../types/projects/project-posts'
+import type { ProjectPostInsert, ProjectPostUpdate } from '../../types/projects/project-posts'
 
 export const useProjectPosts = (projectId: string) => {
   return useQuery({
