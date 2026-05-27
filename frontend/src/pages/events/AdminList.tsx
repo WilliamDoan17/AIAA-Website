@@ -322,7 +322,7 @@ const DeleteModal = ({ event, onClose }: DeleteModalProps) => {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
-const AdminEvents = () => {
+const AdminEventList = () => {
   const { data: events = [], isLoading: loading } = useEvents()
   const [showCreate, setShowCreate] = useState(false)
   const [editing, setEditing] = useState<Event | null>(null)
@@ -433,4 +433,4 @@ const AdminEvents = () => {
   )
 }
 
-export default AdminEvents
+export default AdminEventList

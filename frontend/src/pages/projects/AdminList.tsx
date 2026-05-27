@@ -237,7 +237,7 @@ const DeleteModal = ({ project, onClose }: { project: Project; onClose: () => vo
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
-const AdminProjects = () => {
+const AdminProjectList = () => {
   const { data: projects = [], isLoading } = useProjects()
   const [showCreate, setShowCreate] = useState(false)
   const [deleting, setDeleting] = useState<Project | null>(null)
@@ -341,4 +341,4 @@ const AdminProjects = () => {
   )
 }
 
-export default AdminProjects
+export default AdminProjectList

@@ -53,7 +53,7 @@ const MemberContainer = ({ members }: { members: Member[] }) => {
   )
 }
 
-const Members = () => {
+const PublicMemberList = () => {
   const { data = [] } = useMembers()
   const president = data.find(member => member.title === 'President')
   const crews = data.filter(member => member.title !== 'President')
@@ -72,4 +72,4 @@ const Members = () => {
   )
 }
 
-export default Members
+export default PublicMemberList

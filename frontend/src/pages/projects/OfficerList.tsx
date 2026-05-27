@@ -22,7 +22,7 @@ const statusStyle: Record<ProjectStatus, string> = {
   completed: 'text-green-400 border-green-400/30',
 }
 
-const MemberProjects = () => {
+const OfficerProjectList = () => {
   const { member } = useAuth()
   const { data: projects = [], isLoading } = useMemberProjects(member!.id)
 
@@ -72,4 +72,4 @@ const MemberProjects = () => {
   )
 }
 
-export default MemberProjects
+export default OfficerProjectList

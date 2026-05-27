@@ -45,7 +45,7 @@ const EventGroup = ({ title, events, gold = false, muted = false }: { title: str
   )
 }
 
-const Events = () => {
+const PublicEventList = () => {
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false)
   const { data = [] } = useEvents()
   const now = new Date()
@@ -76,4 +76,4 @@ const Events = () => {
   )
 }
 
-export default Events
+export default PublicEventList

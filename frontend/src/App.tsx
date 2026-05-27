@@ -11,21 +11,21 @@ import AdminLayout from './layouts/AdminLayout'
 import OfficerLayout from './layouts/OfficerLayout'
 import Landing from './pages/public/Landing'
 import Login from './pages/public/Login'
-import PublicProjects from './pages/projects/PublicList'
+import PublicProjectList from './pages/projects/PublicList'
 import PublicProjectDetail from './pages/projects/PublicDetail'
-import AdminProjects from './pages/projects/AdminList'
+import AdminProjectList from './pages/projects/AdminList'
 import AdminProjectDetail from './pages/projects/AdminDetail'
-import MemberProjects from './pages/projects/OfficerList'
+import OfficerProjectList from './pages/projects/OfficerList'
 import OfficerProjectDetail from './pages/projects/OfficerDetail'
 import ProjectPostDetail from './pages/projects/PostDetail'
-import PublicMembers from './pages/members/PublicList'
+import PublicMemberList from './pages/members/PublicList'
 import PublicMemberDetail from './pages/members/PublicDetail'
-import AdminMembers from './pages/members/AdminList'
+import AdminMemberList from './pages/members/AdminList'
 import MemberDetail from './pages/members/Detail'
 import MemberProfile from './pages/members/Profile'
-import PublicEvents from './pages/events/PublicList'
+import PublicEventList from './pages/events/PublicList'
 import PublicEventDetail from './pages/events/PublicDetail'
-import AdminEvents from './pages/events/AdminList'
+import AdminEventList from './pages/events/AdminList'
 import AdminClub from './pages/club/Admin'
 
 function App() {
@@ -38,11 +38,11 @@ function App() {
               <Route path="/" element={<PublicRoute />}>
                 <Route element={<PublicLayout />}>
                   <Route index element={<Landing />} />
-                  <Route path="projects" element={<PublicProjects />} />
+                  <Route path="projects" element={<PublicProjectList />} />
                   <Route path="projects/:id" element={<PublicProjectDetail />} />
-                  <Route path="events" element={<PublicEvents />} />
+                  <Route path="events" element={<PublicEventList />} />
                   <Route path="events/:id" element={<PublicEventDetail />} />
-                  <Route path="members" element={<PublicMembers />} />
+                  <Route path="members" element={<PublicMemberList />} />
                   <Route path="members/:id" element={<PublicMemberDetail />} />
                   <Route path="login" element={<Login />} />
                 </Route>
@@ -53,9 +53,9 @@ function App() {
                   <Route element={<AdminLayout />}>
                     <Route index element={null}></Route>
                     <Route path="club" element={<AdminClub />} />
-                    <Route path="members" element={<AdminMembers />} />
-                    <Route path="events" element={<AdminEvents />} />
-                    <Route path="projects" element={<AdminProjects />} />
+                    <Route path="members" element={<AdminMemberList />} />
+                    <Route path="events" element={<AdminEventList />} />
+                    <Route path="projects" element={<AdminProjectList />} />
                     <Route path="projects/:id" element={<AdminProjectDetail />} />
                     <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />
@@ -65,7 +65,7 @@ function App() {
                 <Route path="officer" element={<OfficerRoute />}>
                   <Route element={<OfficerLayout />}>
                     <Route index element={null}></Route>
-                    <Route path="projects" element={<MemberProjects />} />
+                    <Route path="projects" element={<OfficerProjectList />} />
                     <Route path="projects/:id" element={<OfficerProjectDetail />} />
                     <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
                     <Route path="profile" element={<MemberProfile />} />

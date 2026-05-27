@@ -80,7 +80,7 @@ const FilterBar = ({ filters, setFilters, filterOptions }: { filters: Filters; s
   )
 }
 
-const Projects = () => {
+const PublicProjectList = () => {
   const { data = [] } = useProjects()
 
   const filterOptions = useMemo(() => ({
@@ -114,4 +114,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default PublicProjectList

@@ -205,7 +205,7 @@ const EditModal = ({ member, onClose }: EditModalProps) => {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
-const AdminMembers = () => {
+const AdminMemberList = () => {
   const { data: members = [], isLoading: loading } = useMembers()
   const { mutate: remove, isPending: isDeleting, variables: deletingId } = useDeleteMember()
   const [showInvite, setShowInvite] = useState(false)
@@ -326,4 +326,4 @@ const AdminMembers = () => {
   )
 }
 
-export default AdminMembers
+export default AdminMemberList
