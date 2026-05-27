@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useProjectMembers } from '../../../hooks/projects/project-members'
 import type { ProjectMemberDetail } from '../../../types/projects/project-members'
 import AddMemberModal from './AddMemberModal'
-import EditMemberModal from './EditMemberModal'
+import UpdateMemberModal from './UpdateMemberModal'
 import RemoveMemberModal from './RemoveMemberModal'
 import ProjectMemberCard from './ProjectMemberCard'
 
@@ -30,7 +30,7 @@ const ProjectMembersTab = ({ projectId, canManage }: ProjectMembersTabProps) => 
         <AddMemberModal projectId={projectId} existingMemberIds={existingMemberIds} onClose={() => setModal(null)} />
       )}
       {canManage && modal?.type === 'edit' && (
-        <EditMemberModal projectId={projectId} member={modal.member} onClose={() => setModal(null)} />
+        <UpdateMemberModal projectId={projectId} member={modal.member} onClose={() => setModal(null)} />
       )}
       {canManage && modal?.type === 'remove' && (
         <RemoveMemberModal projectId={projectId} member={modal.member} onClose={() => setModal(null)} />

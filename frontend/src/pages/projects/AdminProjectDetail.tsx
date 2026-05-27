@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { useProject, useDeleteProject } from '../../hooks/projects/projects'
-import type { Project, ProjectStatus, ProjectCategory } from '../../types/projects/projects'
+import { useProject } from '../../hooks/projects/projects'
+import type { ProjectStatus, ProjectCategory } from '../../types/projects/projects'
 import useAuth from '../../hooks/useAuth'
 import ProjectInfoTab from '../../components/projects/info/ProjectInfoTab'
 import ProjectMembersTab from '../../components/projects/members/ProjectMembersTab'
 import ProjectPostsTab from '../../components/projects/posts/ProjectPostsTab'
+import DeleteProjectModal from '../../components/projects/DeleteProjectModal'
 
 const statusLabel: Record<ProjectStatus, string> = {
   not_started: 'Not Started',
@@ -27,52 +28,15 @@ const statusStyle: Record<ProjectStatus, string> = {
 }
 
 type Tab = 'info' | 'members' | 'posts'
-
-// ── Delete Modal ──────────────────────────────────────────────────────────────
-
-const DeleteModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-  const navigate = useNavigate()
-  const { mutate: remove, isPending, error: deleteError } = useDeleteProject()
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-void/80 backdrop-blur-sm">
-      <div className="bg-panel border border-rim rounded-lg w-full max-w-sm mx-4 p-6 flex flex-col gap-5">
-        <div className="flex items-center justify-between">
-          <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-copy">Delete Project</h2>
-          <button onClick={onClose} className="text-muted hover:text-copy transition-colors duration-200 font-body text-lg leading-none">✕</button>
-        </div>
-        <p className="font-body text-sm text-muted">
-          Are you sure you want to delete <span className="text-copy font-medium">{project.name}</span>? This cannot be undone.
-        </p>
-        {deleteError && <p className="text-red-400 text-xs font-body">Failed to delete project</p>}
-        <div className="flex gap-3 pt-1">
-          <button
-            onClick={() => remove(project.id, { onSuccess: () => navigate('/u/admin/projects') })}
-            disabled={isPending}
-            className="flex-1 py-2.5 rounded border border-red-400 text-red-400 text-sm font-body font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-red-400/10 transition-colors duration-200"
-          >
-            {isPending ? 'Deleting...' : 'Delete'}
-          </button>
-          <button
-            onClick={onClose}
-            className="px-4 py-2.5 rounded border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
+type ModalState = { type: 'delete' } | null
 
 const AdminProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
   const { member } = useAuth()
+  const navigate = useNavigate()
   const { data: project, isLoading, isError } = useProject(id!)
   const [activeTab, setActiveTab] = useState<Tab>('info')
-  const [deleting, setDeleting] = useState(false)
+  const [modal, setModal] = useState<ModalState>(null)
 
   if (isLoading) return <p className="text-muted font-body text-sm">Loading...</p>
 
@@ -93,7 +57,13 @@ const AdminProjectDetail = () => {
 
   return (
     <>
-      {deleting && <DeleteModal project={project} onClose={() => setDeleting(false)} />}
+      {modal?.type === 'delete' && (
+        <DeleteProjectModal
+          project={project}
+          onClose={() => setModal(null)}
+          onSuccess={() => navigate('/u/admin/projects')}
+        />
+      )}
 
       <div className="max-w-3xl">
         <Link
@@ -118,7 +88,7 @@ const AdminProjectDetail = () => {
             </h1>
           </div>
           <button
-            onClick={() => setDeleting(true)}
+            onClick={() => setModal({ type: 'delete' })}
             className="flex-shrink-0 px-4 py-2 rounded border border-rim text-muted text-xs font-body hover:text-red-400 hover:border-red-400/40 transition-colors duration-200"
           >
             Delete
