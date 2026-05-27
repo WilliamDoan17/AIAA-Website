@@ -27,6 +27,7 @@ import MemberProfile from './pages/members/MemberProfile'
 import PublicEventList from './pages/events/PublicEventList'
 import PublicEventDetail from './pages/events/PublicEventDetail'
 import AdminEventList from './pages/events/AdminEventList'
+import AdminDashboard from './pages/AdminDashboard'
 import AdminClub from './pages/club/AdminClub'
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
               <Route index element={<ProtectedIndex />} />
               <Route path="admin" element={<AdminRoute />}>
                 <Route element={<AdminLayout />}>
-                  <Route index element={null}></Route>
+                  <Route index element={<AdminDashboard />} />
                   <Route path="club" element={<AdminClub />} />
                   <Route path="members" element={<AdminMemberList />} />
                   <Route path="events" element={<AdminEventList />} />
