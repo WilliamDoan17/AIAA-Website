@@ -61,11 +61,15 @@ const DeleteModal = ({ event, onClose }: DeleteModalProps) => {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
+type ModalState =
+  | { type: 'create' }
+  | { type: 'update'; event: Event }
+  | { type: 'delete'; event: Event }
+  | null
+
 const AdminEventList = () => {
   const { data: events = [], isLoading: loading } = useEvents()
-  const [showCreate, setShowCreate] = useState(false)
-  const [editing, setEditing] = useState<Event | null>(null)
-  const [deleting, setDeleting] = useState<Event | null>(null)
+  const [modal, setModal] = useState<ModalState>(null)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
 
@@ -78,11 +82,13 @@ const AdminEventList = () => {
     })
     , [events, search, statusFilter])
 
+  const closeModal = () => setModal(null)
+
   return (
     <>
-      {showCreate && <CreateEventModal onClose={() => setShowCreate(false)} />}
-      {editing && <UpdateEventModal event={editing} onClose={() => setEditing(null)} />}
-      {deleting && <DeleteModal event={deleting} onClose={() => setDeleting(null)} />}
+      {modal?.type === 'create' && <CreateEventModal onClose={closeModal} />}
+      {modal?.type === 'update' && <UpdateEventModal event={modal.event} onClose={closeModal} />}
+      {modal?.type === 'delete' && <DeleteModal event={modal.event} onClose={closeModal} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">
@@ -90,7 +96,7 @@ const AdminEventList = () => {
             Events
           </h1>
           <button
-            onClick={() => setShowCreate(true)}
+            onClick={() => setModal({ type: 'create' })}
             className="relative overflow-hidden px-5 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
           >
             + New Event
@@ -127,8 +133,8 @@ const AdminEventList = () => {
               <AdminEventCard
                 key={event.id}
                 event={event}
-                onEdit={() => setEditing(event)}
-                onDelete={() => setDeleting(event)}
+                onEdit={() => setModal({ type: 'update', event })}
+                onDelete={() => setModal({ type: 'delete', event })}
               />
             ))}
           </div>

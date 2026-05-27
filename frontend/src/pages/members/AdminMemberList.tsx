@@ -5,11 +5,15 @@ import InviteMemberModal from '../../components/members/InviteMemberModal'
 import UpdateMemberModal from '../../components/members/UpdateMemberModal'
 import AdminMemberCard from '../../components/members/AdminMemberCard'
 
+type ModalState =
+  | { type: 'invite' }
+  | { type: 'update'; member: Member }
+  | null
+
 const AdminMemberList = () => {
   const { data: members = [], isLoading: loading } = useMembers()
   const { mutate: remove, isPending: isDeleting, variables: deletingId } = useDeleteMember()
-  const [showInvite, setShowInvite] = useState(false)
-  const [editing, setEditing] = useState<Member | null>(null)
+  const [modal, setModal] = useState<ModalState>(null)
   const [search, setSearch] = useState('')
   const [roleFilter, setRoleFilter] = useState('all')
   const [titleFilter, setTitleFilter] = useState('all')
@@ -25,10 +29,12 @@ const AdminMemberList = () => {
     .filter(m => titleFilter === 'all' || m.title === titleFilter)
     , [members, search, roleFilter, titleFilter])
 
+  const closeModal = () => setModal(null)
+
   return (
     <>
-      {showInvite && <InviteMemberModal onClose={() => setShowInvite(false)} />}
-      {editing && <UpdateMemberModal member={editing} onClose={() => setEditing(null)} />}
+      {modal?.type === 'invite' && <InviteMemberModal onClose={closeModal} />}
+      {modal?.type === 'update' && <UpdateMemberModal member={modal.member} onClose={closeModal} />}
 
       <div className="max-w-4xl">
         <div className="flex items-center justify-between mb-6">
@@ -36,7 +42,7 @@ const AdminMemberList = () => {
             Members
           </h1>
           <button
-            onClick={() => setShowInvite(true)}
+            onClick={() => setModal({ type: 'invite' })}
             className="relative overflow-hidden px-5 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
           >
             + Invite
@@ -81,7 +87,7 @@ const AdminMemberList = () => {
               <AdminMemberCard
                 key={member.id}
                 member={member}
-                onEdit={() => setEditing(member)}
+                onEdit={() => setModal({ type: 'update', member })}
                 onRemove={() => remove(member.id)}
                 removing={isDeleting && deletingId === member.id}
               />
