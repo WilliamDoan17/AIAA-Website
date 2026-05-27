@@ -27,9 +27,9 @@ interface OfficerProjectCardProps {
 const OfficerProjectCard = ({ project }: OfficerProjectCardProps) => (
   <Link
     to={`/u/officer/projects/${project.id}`}
-    className="flex items-center gap-5 bg-surface border border-rim rounded px-5 py-4 hover:border-accent/50 transition-colors duration-200 group"
+    className="flex items-center gap-5 bg-surface border border-rim rounded-xl px-5 py-4 hover:border-accent/50 transition-colors duration-200 group"
   >
-    <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded bg-rim">
+    <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded-xl bg-rim">
       {project.cover_image
         ? <img src={project.cover_image} alt={project.name} className="w-full h-full object-cover" />
         : <div className="w-full h-full bg-rim" />
@@ -42,10 +42,10 @@ const OfficerProjectCard = ({ project }: OfficerProjectCardProps) => (
       <p className="font-body text-xs text-muted truncate mt-0.5">{project.summary}</p>
     </div>
     <div className="flex gap-2 flex-shrink-0">
-      <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border text-muted border-rim">
+      <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border text-muted border-rim">
         {categoryLabel[project.category]}
       </span>
-      <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border ${statusStyle[project.status]}`}>
+      <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border ${statusStyle[project.status]}`}>
         {statusLabel[project.status]}
       </span>
     </div>

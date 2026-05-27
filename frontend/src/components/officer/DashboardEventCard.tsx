@@ -8,7 +8,7 @@ const DashboardEventCard = ({ event }: Props) => {
   const startTime = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
 
   return (
-    <div className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-gold/40">
+    <div className="flex items-center gap-4 bg-surface border border-rim rounded-xl px-5 py-4 transition-[border-color] duration-200 hover:border-gold/40">
       <div className="flex-shrink-0 text-center w-12">
         <p className="font-display text-[0.6rem] uppercase tracking-widest text-gold">{date}</p>
         <p className="font-display text-[0.6rem] uppercase tracking-widest text-muted">{startTime}</p>

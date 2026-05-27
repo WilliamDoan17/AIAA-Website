@@ -56,16 +56,16 @@ const AdminDashboard = () => {
       <section className="flex flex-col gap-4">
         <h2 className="font-display text-xs uppercase tracking-widest text-muted">Quick Actions</h2>
         <div className="flex flex-wrap gap-3">
-          <Link to="/u/admin/members" className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
+          <Link to="/u/admin/members" className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
             Members
           </Link>
-          <Link to="/u/admin/projects" className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
+          <Link to="/u/admin/projects" className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
             Projects
           </Link>
-          <Link to="/u/admin/events" className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
+          <Link to="/u/admin/events" className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
             Events
           </Link>
-          <Link to="/u/admin/club" className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
+          <Link to="/u/admin/club" className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200">
             Club Info
           </Link>
         </div>

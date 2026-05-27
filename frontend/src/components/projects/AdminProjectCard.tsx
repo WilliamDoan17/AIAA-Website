@@ -26,17 +26,17 @@ interface AdminProjectCardProps {
 }
 
 const AdminProjectCard = ({ project, onDelete }: AdminProjectCardProps) => (
-  <div className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
+  <div className="flex items-center gap-4 bg-surface border border-rim rounded-xl px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
     <Link to={`/u/admin/projects/${project.id}`} className="flex-1 min-w-0 hover:text-accent transition-colors duration-200">
       <p className="font-body text-sm font-medium text-copy truncate">{project.name}</p>
       <p className="font-body text-xs text-muted truncate">{project.summary}</p>
     </Link>
 
-    <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 text-muted border-rim">
+    <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border flex-shrink-0 text-muted border-rim">
       {categoryLabel[project.category]}
     </span>
 
-    <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 ${statusStyle[project.status]}`}>
+    <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border flex-shrink-0 ${statusStyle[project.status]}`}>
       {statusLabel[project.status]}
     </span>
 

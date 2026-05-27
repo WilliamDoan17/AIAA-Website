@@ -24,7 +24,7 @@ const PublicEventDetail = () => {
   const eventTime = formatEventTime(event.start_time, event.end_time, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
 
   return (
-    <div className="min-h-screen bg-void text-copy starfield pb-24">
+    <div className="min-h-screen bg-void text-copy pb-24">
       <div className="relative z-[1] max-w-[1300px] mx-auto px-6 md:px-16 pt-20">
 
         <Link
@@ -69,7 +69,7 @@ const PublicEventDetail = () => {
               href={event.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-8 font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] py-3.5 px-10 bg-transparent text-accent border border-accent [clip-path:polygon(10px_0%,100%_0%,calc(100%-10px)_100%,0%_100%)] transition-[color,border-color] duration-300 hover:text-copy hover:border-copy"
+              className="inline-block mt-8 font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] py-3.5 px-10 bg-transparent text-accent border border-accent transition-[color,border-color] duration-300 hover:text-copy hover:border-copy"
             >
               Learn More →
             </a>

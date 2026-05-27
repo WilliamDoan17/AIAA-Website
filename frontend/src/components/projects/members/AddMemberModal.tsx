@@ -44,7 +44,7 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-void/80 backdrop-blur-sm">
-      <div className="bg-panel border border-rim rounded-lg w-full max-w-md mx-4 p-6 flex flex-col gap-5">
+      <div className="bg-panel border border-rim rounded-2xl w-full max-w-md mx-4 p-6 flex flex-col gap-5">
         <div className="flex items-center justify-between">
           <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-copy">Add Member</h2>
           <button onClick={onClose} className="text-muted hover:text-copy transition-colors duration-200 font-body text-lg leading-none">✕</button>
@@ -53,7 +53,7 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
         <div className="flex flex-col gap-1.5">
           <label className="font-body text-xs font-medium text-muted uppercase tracking-widest">Member</label>
           {selected ? (
-            <div className="flex items-center gap-3 bg-surface border border-accent rounded px-3 py-2">
+            <div className="flex items-center gap-3 bg-surface border border-accent rounded-xl px-3 py-2">
               <div className="w-7 h-7 flex-shrink-0 rounded-full overflow-hidden bg-rim">
                 {selected.photo
                   ? <img src={selected.photo} alt={selected.name} className="w-full h-full object-cover" />
@@ -78,10 +78,10 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
                 placeholder="Search by name or email…"
                 value={search}
                 onChange={e => { setSearch(e.target.value); setFieldErrors(f => ({ ...f, member: undefined })) }}
-                className={`w-full bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.member ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+                className={`w-full bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.member ? 'border-red-400' : 'border-rim focus:border-accent'}`}
               />
               {search && (
-                <div className="absolute top-full left-0 right-0 z-10 mt-1 bg-panel border border-rim rounded shadow-lg overflow-hidden">
+                <div className="absolute top-full left-0 right-0 z-10 mt-1 bg-panel border border-rim rounded-xl shadow-lg overflow-hidden">
                   {candidates.length === 0 ? (
                     <p className="font-body text-xs text-muted px-4 py-3">No members found.</p>
                   ) : (
@@ -120,7 +120,7 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
             placeholder="e.g. Lead Engineer"
             value={form.title}
             onChange={e => { setForm(f => ({ ...f, title: e.target.value })); setFieldErrors(f => ({ ...f, title: undefined })) }}
-            className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.title ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+            className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.title ? 'border-red-400' : 'border-rim focus:border-accent'}`}
           />
           {fieldErrors.title && <p className="text-red-400 text-xs font-body">{fieldErrors.title}</p>}
         </div>
@@ -130,7 +130,7 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
           <select
             value={form.role}
             onChange={e => setForm(f => ({ ...f, role: e.target.value as ProjectMemberRole }))}
-            className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+            className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
           >
             <option value="contributor">Contributor</option>
             <option value="admin">Admin</option>
@@ -143,13 +143,13 @@ const AddMemberModal = ({ projectId, existingMemberIds, onClose }: AddMemberModa
           <button
             onClick={handleSubmit}
             disabled={isPending}
-            className="flex-1 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            className="flex-1 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             {isPending ? 'Adding...' : 'Add Member'}
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
+            className="px-4 py-2.5 rounded-xl border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
           >
             Cancel
           </button>

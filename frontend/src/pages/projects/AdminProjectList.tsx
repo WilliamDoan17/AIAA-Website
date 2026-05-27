@@ -37,7 +37,7 @@ const AdminProjectList = () => {
           </h1>
           <button
             onClick={() => setModal({ type: 'create' })}
-            className="relative overflow-hidden px-5 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
+            className="relative overflow-hidden px-5 py-2 rounded-xl border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest transition-colors duration-200"
           >
             + New Project
           </button>

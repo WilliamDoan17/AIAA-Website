@@ -11,8 +11,8 @@ const PublicEventList = () => {
   const pastEvents = data.filter(e => new Date(e.end_time) < now)
 
   return (
-    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative pb-24 starfield">
-      <h1 className="relative z-[1] font-display font-black uppercase tracking-[0.06em] pt-20 pb-8 px-6 md:px-16 max-w-[1300px] mx-auto border-b border-rim heading-gradient fade-up-slow text-[clamp(2rem,5vw,3.5rem)]">
+    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative pb-24">
+      <h1 className="relative z-[1] font-display font-black uppercase tracking-[0.06em] pt-20 pb-8 px-6 md:px-16 max-w-[1300px] mx-auto border-b border-rim text-[clamp(2rem,5vw,3.5rem)]">
         <span className="font-display text-[0.7rem] tracking-[0.3em] text-accent block mb-4 [background:none] [-webkit-text-fill-color:var(--color-accent)]">
           // EVENTS
         </span>
@@ -22,7 +22,7 @@ const PublicEventList = () => {
       <PublicEventGroup title="Upcoming" events={upcomingEvents} />
       <div className="relative z-[1] max-w-[1300px] mx-auto px-6 md:px-16 mt-8">
         <button
-          className="block font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] py-3.5 px-10 bg-transparent text-muted border border-rim cursor-pointer [clip-path:polygon(10px_0%,100%_0%,calc(100%-10px)_100%,0%_100%)] transition-[color,border-color] duration-300 hover:text-copy hover:border-muted"
+          className="block font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] py-3.5 px-10 bg-transparent text-muted border border-rim cursor-pointer transition-[color,border-color] duration-300 hover:text-copy hover:border-muted"
           onClick={() => setShowPastEvents(prev => !prev)}
         >
           {showPastEvents ? 'Hide Past Events' : 'Show Past Events'}

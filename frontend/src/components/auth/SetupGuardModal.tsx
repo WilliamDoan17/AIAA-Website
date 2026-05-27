@@ -38,7 +38,7 @@ const SetupGuardModal = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-void/90 backdrop-blur-sm">
-      <div className="bg-panel border border-rim rounded-lg w-full max-w-sm mx-4 p-6 flex flex-col gap-5">
+      <div className="bg-panel border border-rim rounded-2xl w-full max-w-sm mx-4 p-6 flex flex-col gap-5">
         <div>
           <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-copy">
             Set Your Password
@@ -60,7 +60,7 @@ const SetupGuardModal = () => {
                 type="password"
                 value={form[key as keyof typeof form]}
                 onChange={e => setField(key as keyof typeof form)(e.target.value)}
-                className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+                className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
               />
             </div>
           ))}
@@ -71,7 +71,7 @@ const SetupGuardModal = () => {
         <button
           onClick={handleSubmit}
           disabled={saving}
-          className="relative overflow-hidden py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          className="relative overflow-hidden py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {saving ? 'Updating...' : 'Set Password'}
         </button>

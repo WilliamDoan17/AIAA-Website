@@ -24,18 +24,18 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-void text-copy font-body min-h-screen flex items-center justify-center px-4 relative starfield">
-      <div className="w-full max-w-md fade-up">
+    <div className="bg-void text-copy font-body min-h-screen flex items-center justify-center px-4 relative">
+      <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <span className="font-display text-[0.65rem] tracking-[0.35em] text-accent uppercase block mb-4">
             // Member Portal
           </span>
-          <h1 className="font-display text-[clamp(1.4rem,4vw,2rem)] font-black uppercase tracking-[0.06em] leading-tight heading-gradient">
+          <h1 className="font-display text-[clamp(1.4rem,4vw,2rem)] font-black uppercase tracking-[0.06em] leading-tight">
             Log In
           </h1>
         </div>
 
-        <div className="bg-panel border border-rim p-8 relative card-accent">
+        <div className="bg-panel border border-rim p-8 relative">
           <form onSubmit={handleLogin} className="flex flex-col gap-5">
             <div className="flex flex-col gap-1.5">
               <label className="font-display text-[0.6rem] uppercase tracking-[0.25em] text-muted">
@@ -76,7 +76,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="font-display text-xs font-bold uppercase tracking-[0.2em] py-4 px-8 mt-1 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden [clip-path:polygon(10px_0%,100%_0%,calc(100%-10px)_100%,0%_100%)] transition-colors duration-300 cta-btn disabled:opacity-40 disabled:cursor-not-allowed"
+              className="font-display text-xs font-bold uppercase tracking-[0.2em] py-4 px-8 mt-1 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {loading ? 'Logging In...' : 'Log In'}
             </button>

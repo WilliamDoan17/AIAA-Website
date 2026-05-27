@@ -21,7 +21,7 @@ const PublicMemberDetail = () => {
   )
 
   return (
-    <div className="min-h-screen bg-void text-copy starfield pb-24">
+    <div className="min-h-screen bg-void text-copy pb-24">
       <div className="relative z-[1] max-w-[1300px] mx-auto px-6 md:px-16 pt-20">
 
         <Link
@@ -31,9 +31,9 @@ const PublicMemberDetail = () => {
           ← Members
         </Link>
 
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start fade-up">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
 
-          <div className={`relative w-full md:w-72 aspect-[3/4] flex-shrink-0 overflow-hidden border ${member.title === 'President' ? 'border-[rgba(240,165,0,0.3)] president-bar' : 'border-rim'}`}>
+          <div className={`relative w-full md:w-72 aspect-[3/4] flex-shrink-0 overflow-hidden border ${member.title === 'President' ? 'border-[rgba(240,165,0,0.3)]' : 'border-rim'}`}>
             {member.photo
               ? <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
               : <div className="w-full h-full bg-rim" />

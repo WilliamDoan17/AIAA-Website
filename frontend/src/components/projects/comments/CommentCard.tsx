@@ -62,7 +62,7 @@ const CommentCard = ({ comment, canAct, onReply, isIndented = false }: CommentCa
           </Link>
 
           <div className="flex-1 min-w-0">
-            <div className="bg-surface border border-rim rounded px-4 py-3 flex flex-col gap-1.5">
+            <div className="bg-surface border border-rim rounded-xl px-4 py-3 flex flex-col gap-1.5">
               <div className="flex items-center gap-2">
                 <Link to={`${memberBase}/${comment.author.id}`} className="font-body text-xs font-medium text-copy hover:text-accent transition-colors duration-200">{comment.author.name}</Link>
                 <span className="text-muted font-body text-xs">·</span>
@@ -75,20 +75,20 @@ const CommentCard = ({ comment, canAct, onReply, isIndented = false }: CommentCa
                     rows={3}
                     value={content}
                     onChange={e => { setContent(e.target.value); setContentError(undefined) }}
-                    className={`bg-void border rounded px-3 py-2 text-sm font-body text-copy focus:outline-none transition-colors duration-200 resize-none ${contentError ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+                    className={`bg-void border rounded-xl px-3 py-2 text-sm font-body text-copy focus:outline-none transition-colors duration-200 resize-none ${contentError ? 'border-red-400' : 'border-rim focus:border-accent'}`}
                   />
                   {contentError && <p className="text-red-400 text-xs font-body">{contentError}</p>}
                   <div className="flex gap-2">
                     <button
                       onClick={handleSave}
                       disabled={isPending}
-                      className="px-3 py-1.5 rounded border border-accent text-accent text-xs font-body font-medium cta-btn disabled:opacity-50 transition-colors duration-200"
+                      className="px-3 py-1.5 rounded-xl border border-accent text-accent text-xs font-body font-medium disabled:opacity-50 transition-colors duration-200"
                     >
                       {isPending ? 'Saving...' : 'Save'}
                     </button>
                     <button
                       onClick={handleCancel}
-                      className="px-3 py-1.5 rounded border border-rim text-muted text-xs font-body hover:text-copy transition-colors duration-200"
+                      className="px-3 py-1.5 rounded-xl border border-rim text-muted text-xs font-body hover:text-copy transition-colors duration-200"
                     >
                       Cancel
                     </button>
@@ -118,7 +118,7 @@ const CommentCard = ({ comment, canAct, onReply, isIndented = false }: CommentCa
                 ···
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-1 z-10 bg-panel border border-rim rounded shadow-lg overflow-hidden min-w-[96px]">
+                <div className="absolute right-0 top-full mt-1 z-10 bg-panel border border-rim rounded-xl shadow-lg overflow-hidden min-w-[96px]">
                   <button
                     onClick={() => { setEditing(true); setMenuOpen(false) }}
                     className="w-full text-left px-4 py-2.5 font-body text-xs text-copy hover:bg-surface transition-colors duration-150"

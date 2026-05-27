@@ -19,17 +19,17 @@ const Landing = () => {
   ]
 
   return (
-    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative starfield">
+    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative">
 
       {/* Hero */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center text-center py-24 px-8 z-[1] overflow-hidden hero-glow hero-line">
-        <h1 className="font-display text-[clamp(1.8rem,5vw,3.8rem)] font-black uppercase tracking-[0.06em] leading-[1.15] max-w-[900px] mb-6 heading-gradient fade-up-slow">
+      <div className="relative min-h-screen flex flex-col items-center justify-center text-center py-24 px-8 z-[1] overflow-hidden">
+        <h1 className="font-display text-[clamp(1.8rem,5vw,3.8rem)] font-black uppercase tracking-[0.06em] leading-[1.15] max-w-[900px] mb-6">
           {clubInfo?.name ?? ''}
         </h1>
-        <h3 className="font-body font-light text-[clamp(1rem,2.5vw,1.4rem)] tracking-[0.25em] uppercase text-accent mb-10 fade-up-slow-d1">
+        <h3 className="font-body font-light text-[clamp(1rem,2.5vw,1.4rem)] tracking-[0.25em] uppercase text-accent mb-10">
           Become part of our vibrant community
         </h3>
-        <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden [clip-path:polygon(10px_0%,100%_0%,calc(100%-10px)_100%,0%_100%)] transition-colors duration-300 cta-btn fade-up-slow-d2">
+        <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300">
           Join Now
         </button>
       </div>

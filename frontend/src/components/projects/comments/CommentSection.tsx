@@ -113,14 +113,14 @@ const CommentSection = ({ postId, projectId, memberId }: CommentSectionProps) =>
           placeholder="Write a comment…"
           value={newComment}
           onChange={e => { setNewComment(e.target.value); setNewCommentError(undefined) }}
-          className={`w-full bg-surface border rounded px-4 py-3 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${newCommentError ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+          className={`w-full bg-surface border rounded-xl px-4 py-3 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${newCommentError ? 'border-red-400' : 'border-rim focus:border-accent'}`}
         />
         {newCommentError && <p className="text-red-400 text-xs font-body">{newCommentError}</p>}
         <div className="flex justify-end">
           <button
             onClick={handlePostComment}
             disabled={isPosting}
-            className="px-5 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn disabled:opacity-50 transition-colors duration-200"
+            className="px-5 py-2 rounded-xl border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest disabled:opacity-50 transition-colors duration-200"
           >
             {isPosting ? 'Posting...' : 'Post Comment'}
           </button>

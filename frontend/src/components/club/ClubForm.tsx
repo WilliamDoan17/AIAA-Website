@@ -26,7 +26,7 @@ const ClubForm = ({ clubInfo, onSave, saving, saved, saveError }: Props) => {
         <input
           value={form.name}
           onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-          className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
+          className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
         />
       </div>
 
@@ -37,13 +37,13 @@ const ClubForm = ({ clubInfo, onSave, saving, saved, saveError }: Props) => {
         <input
           value={form.cover_image}
           onChange={e => setForm(f => ({ ...f, cover_image: e.target.value }))}
-          className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
+          className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
         />
         {form.cover_image && (
           <img
             src={form.cover_image}
             alt="Cover preview"
-            className="mt-2 h-32 w-full object-cover rounded border border-rim"
+            className="mt-2 h-32 w-full object-cover rounded-xl border border-rim"
           />
         )}
       </div>
@@ -56,7 +56,7 @@ const ClubForm = ({ clubInfo, onSave, saving, saved, saveError }: Props) => {
           value={form.about}
           onChange={e => setForm(f => ({ ...f, about: e.target.value }))}
           rows={5}
-          className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 resize-none"
+          className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 resize-none"
         />
       </div>
 
@@ -64,7 +64,7 @@ const ClubForm = ({ clubInfo, onSave, saving, saved, saveError }: Props) => {
         <button
           onClick={() => onSave(form)}
           disabled={saving}
-          className="relative overflow-hidden px-6 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          className="relative overflow-hidden px-6 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {saving ? 'Saving...' : 'Save Changes'}
         </button>

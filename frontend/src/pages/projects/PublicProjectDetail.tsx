@@ -45,7 +45,7 @@ const PublicProjectDetail = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-void text-copy starfield pb-24">
+    <div className="min-h-screen bg-void text-copy pb-24">
       <div className="relative z-[1] max-w-[1300px] mx-auto px-6 md:px-16 pt-20">
 
         <Link

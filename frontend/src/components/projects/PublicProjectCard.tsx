@@ -4,7 +4,7 @@ import type { Project } from '../../types/projects'
 type FilterOptions = Record<string, string[]>
 
 const FilterTag = ({ value }: { value: string }) => (
-  <span className="font-display text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-accent border border-accent-dim bg-accent-dim px-3 py-1 [clip-path:polygon(6px_0%,100%_0%,calc(100%-6px)_100%,0%_100%)]">
+  <span className="font-display text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-accent border border-accent-dim bg-accent-dim px-3 py-1">
     {value}
   </span>
 )
@@ -17,7 +17,7 @@ interface PublicProjectCardProps {
 const PublicProjectCard = ({ project, filterOptions }: PublicProjectCardProps) => (
   <Link
     to={`/projects/${project.id}`}
-    className="flex flex-col md:flex-row items-stretch w-full bg-panel border border-rim overflow-hidden relative transition-[border-color,transform] duration-300 mb-4 card-accent hover:border-accent hover:translate-x-1 fade-up group"
+    className="flex flex-col md:flex-row items-stretch w-full bg-panel border border-rim overflow-hidden relative transition-[border-color,transform] duration-300 mb-4 hover:border-accent hover:translate-x-1 group"
   >
     <div className="w-full md:w-[280px] flex-shrink-0 overflow-hidden">
       {project.cover_image

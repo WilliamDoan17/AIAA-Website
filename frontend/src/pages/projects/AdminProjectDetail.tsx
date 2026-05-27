@@ -76,10 +76,10 @@ const AdminProjectDetail = () => {
         <div className="flex items-start justify-between gap-4 mb-2">
           <div>
             <div className="flex gap-2 mb-3">
-              <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border text-muted border-rim">
+              <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border text-muted border-rim">
                 {categoryLabel[project.category]}
               </span>
-              <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border ${statusStyle[project.status]}`}>
+              <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border ${statusStyle[project.status]}`}>
                 {statusLabel[project.status]}
               </span>
             </div>
@@ -89,7 +89,7 @@ const AdminProjectDetail = () => {
           </div>
           <button
             onClick={() => setModal({ type: 'delete' })}
-            className="flex-shrink-0 px-4 py-2 rounded border border-rim text-muted text-xs font-body hover:text-red-400 hover:border-red-400/40 transition-colors duration-200"
+            className="flex-shrink-0 px-4 py-2 rounded-xl border border-rim text-muted text-xs font-body hover:text-red-400 hover:border-red-400/40 transition-colors duration-200"
           >
             Delete
           </button>

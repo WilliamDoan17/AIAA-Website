@@ -81,7 +81,7 @@ const CreateEventForm = ({ onClose }: Props) => {
               type="text"
               value={(form[key] as string) ?? ''}
               onChange={e => setField(key, e.target.value)}
-              className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+              className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
             />
             {err && <p className="text-red-400 text-xs font-body">{err}</p>}
           </div>
@@ -99,7 +99,7 @@ const CreateEventForm = ({ onClose }: Props) => {
               rows={key === 'content' ? 5 : 2}
               value={form[key]}
               onChange={e => setField(key, e.target.value)}
-              className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+              className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
             />
             {err && <p className="text-red-400 text-xs font-body">{err}</p>}
           </div>
@@ -118,7 +118,7 @@ const CreateEventForm = ({ onClose }: Props) => {
                 type="datetime-local"
                 value={form[key]}
                 onChange={e => setField(key, e.target.value)}
-                className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+                className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
               />
               {err && <p className="text-red-400 text-xs font-body">{err}</p>}
             </div>
@@ -132,13 +132,13 @@ const CreateEventForm = ({ onClose }: Props) => {
         <button
           onClick={handleSubmit}
           disabled={isPending}
-          className="relative overflow-hidden flex-1 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          className="relative overflow-hidden flex-1 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {isPending ? 'Creating...' : 'Create Event'}
         </button>
         <button
           onClick={onClose}
-          className="px-4 py-2.5 rounded border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
+          className="px-4 py-2.5 rounded-xl border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
         >
           Cancel
         </button>

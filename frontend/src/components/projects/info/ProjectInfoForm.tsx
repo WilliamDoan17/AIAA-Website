@@ -78,7 +78,7 @@ const ProjectInfoForm = ({ project }: ProjectInfoFormProps) => {
               type="text"
               value={form[key]}
               onChange={e => setField(key, e.target.value)}
-              className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+              className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
             />
             {err && <p className="text-red-400 text-xs font-body">{err}</p>}
           </div>
@@ -96,7 +96,7 @@ const ProjectInfoForm = ({ project }: ProjectInfoFormProps) => {
               rows={key === 'description' ? 6 : 2}
               value={form[key]}
               onChange={e => setField(key, e.target.value)}
-              className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 resize-none ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
+              className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none transition-colors duration-200 resize-none ${err ? 'border-red-400 focus:border-red-400' : 'border-rim focus:border-accent'}`}
             />
             {err && <p className="text-red-400 text-xs font-body">{err}</p>}
           </div>
@@ -109,7 +109,7 @@ const ProjectInfoForm = ({ project }: ProjectInfoFormProps) => {
           <select
             value={form.category}
             onChange={e => setField('category', e.target.value)}
-            className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+            className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
           >
             {(Object.keys(categoryLabel) as ProjectCategory[]).map(c => (
               <option key={c} value={c}>{categoryLabel[c]}</option>
@@ -121,7 +121,7 @@ const ProjectInfoForm = ({ project }: ProjectInfoFormProps) => {
           <select
             value={form.status}
             onChange={e => setField('status', e.target.value)}
-            className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+            className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
           >
             {(Object.keys(statusLabel) as ProjectStatus[]).map(s => (
               <option key={s} value={s}>{statusLabel[s]}</option>
@@ -137,7 +137,7 @@ const ProjectInfoForm = ({ project }: ProjectInfoFormProps) => {
         <button
           onClick={handleSave}
           disabled={!isDirty || isPending}
-          className="px-6 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+          className="px-6 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium tracking-wide disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {isPending ? 'Saving...' : 'Save Changes'}
         </button>

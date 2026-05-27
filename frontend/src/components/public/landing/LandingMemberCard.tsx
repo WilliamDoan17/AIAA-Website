@@ -4,7 +4,7 @@ import type { Member } from '../../../types/members'
 type Props = { member: Member }
 
 const LandingMemberCard = ({ member }: Props) => (
-  <Link to={`/members/${member.id}`} className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface fade-up member-glow block no-underline">
+  <Link to={`/members/${member.id}`} className="bg-panel p-8 px-6 text-center relative overflow-hidden transition-[background] duration-300 hover:bg-surface block no-underline">
     <div className="w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-rim mx-auto mb-4 transition-[border-color] duration-300 relative z-[1] hover:border-accent">
       {member.photo
         ? <img className="w-full h-full object-cover [filter:grayscale(30%)] transition-[filter] duration-300 hover:[filter:grayscale(0%)]" src={member.photo} alt={member.name} />

@@ -29,7 +29,7 @@ const ReplyForm = ({ postId, memberId, replyToId, onClose }: ReplyFormProps) => 
         placeholder="Write a reply…"
         value={content}
         onChange={e => { setContent(e.target.value); setError(undefined) }}
-        className={`w-full bg-surface border rounded px-3 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${error ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+        className={`w-full bg-surface border rounded-xl px-3 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${error ? 'border-red-400' : 'border-rim focus:border-accent'}`}
         autoFocus
       />
       {error && <p className="text-red-400 text-xs font-body">{error}</p>}
@@ -37,13 +37,13 @@ const ReplyForm = ({ postId, memberId, replyToId, onClose }: ReplyFormProps) => 
         <button
           onClick={handleSubmit}
           disabled={isPending}
-          className="px-3 py-1.5 rounded border border-accent text-accent text-xs font-body font-medium cta-btn disabled:opacity-50 transition-colors duration-200"
+          className="px-3 py-1.5 rounded-xl border border-accent text-accent text-xs font-body font-medium disabled:opacity-50 transition-colors duration-200"
         >
           {isPending ? 'Posting...' : 'Reply'}
         </button>
         <button
           onClick={onClose}
-          className="px-3 py-1.5 rounded border border-rim text-muted text-xs font-body hover:text-copy transition-colors duration-200"
+          className="px-3 py-1.5 rounded-xl border border-rim text-muted text-xs font-body hover:text-copy transition-colors duration-200"
         >
           Cancel
         </button>

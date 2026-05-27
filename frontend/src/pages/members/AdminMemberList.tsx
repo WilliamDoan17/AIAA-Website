@@ -41,7 +41,7 @@ const AdminMemberList = () => {
           </h1>
           <button
             onClick={() => setModal({ type: 'invite' })}
-            className="relative overflow-hidden px-5 py-2 rounded border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest cta-btn transition-colors duration-200"
+            className="relative overflow-hidden px-5 py-2 rounded-xl border border-accent text-accent text-xs font-display font-semibold uppercase tracking-widest transition-colors duration-200"
           >
             + Invite
           </button>
@@ -53,12 +53,12 @@ const AdminMemberList = () => {
             placeholder="Search name or email..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 w-64"
+            className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 w-64"
           />
           <select
             value={roleFilter}
             onChange={e => setRoleFilter(e.target.value)}
-            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+            className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
           >
             <option value="all">All Roles</option>
             <option value="admin">Admin</option>
@@ -67,7 +67,7 @@ const AdminMemberList = () => {
           <select
             value={titleFilter}
             onChange={e => setTitleFilter(e.target.value)}
-            className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+            className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
           >
             {titles.map(t => (
               <option key={t} value={t}>{t === 'all' ? 'All Titles' : t}</option>

@@ -75,13 +75,13 @@ const OfficerDashboard = () => {
         <div className="flex gap-3">
           <Link
             to="/u/officer/projects"
-            className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
+            className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
           >
             My Projects
           </Link>
           <Link
             to="/u/officer/profile"
-            className="px-5 py-2 rounded border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
+            className="px-5 py-2 rounded-xl border border-rim text-muted text-xs font-display font-semibold uppercase tracking-widest hover:text-copy hover:border-muted transition-colors duration-200"
           >
             Edit Profile
           </Link>

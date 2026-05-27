@@ -28,12 +28,12 @@ const ProjectFilter = ({ search, onSearch, statusFilter, onStatusFilter, categor
       placeholder="Search projects..."
       value={search}
       onChange={e => onSearch(e.target.value)}
-      className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 w-64"
+      className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200 w-64"
     />
     <select
       value={statusFilter}
       onChange={e => onStatusFilter(e.target.value as ProjectStatus | 'all')}
-      className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+      className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
     >
       <option value="all">All Statuses</option>
       {(Object.keys(statusLabel) as ProjectStatus[]).map(s => (
@@ -43,7 +43,7 @@ const ProjectFilter = ({ search, onSearch, statusFilter, onStatusFilter, categor
     <select
       value={categoryFilter}
       onChange={e => onCategoryFilter(e.target.value as ProjectCategory | 'all')}
-      className="bg-surface border border-rim rounded px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
+      className="bg-surface border border-rim rounded-xl px-4 py-2 text-sm font-body text-copy focus:outline-none focus:border-accent transition-colors duration-200"
     >
       <option value="all">All Categories</option>
       {(Object.keys(categoryLabel) as ProjectCategory[]).map(c => (

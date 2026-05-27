@@ -15,7 +15,7 @@ const Field = ({ label, type = 'text', value, onChange }: FieldProps) => (
       type={type}
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="bg-surface border border-rim rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
+      className="bg-surface border border-rim rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none focus:border-accent transition-colors duration-200"
     />
   </div>
 )
@@ -72,7 +72,7 @@ const ResetPasswordSection = () => {
       <button
         onClick={handleReset}
         disabled={saving}
-        className="relative overflow-hidden self-start px-6 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium tracking-wide cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+        className="relative overflow-hidden self-start px-6 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
       >
         {saving ? 'Updating...' : 'Update Password'}
       </button>

@@ -12,7 +12,7 @@ const ProjectPostCard = ({ post, to, onDelete }: ProjectPostCardProps) => {
   const { member } = useAuth()
   const memberBase = member?.role === 'admin' ? '/u/admin/member' : '/u/officer/member'
   return (
-    <div className="flex items-start gap-4 bg-surface border border-rim rounded px-5 py-4">
+    <div className="flex items-start gap-4 bg-surface border border-rim rounded-xl px-5 py-4">
       <Link to={`${memberBase}/${post.author.id}`} className="w-8 h-8 flex-shrink-0 rounded-full overflow-hidden bg-rim hover:opacity-80 transition-opacity duration-200">
         {post.author.photo
           ? <img src={post.author.photo} alt={post.author.name} className="w-full h-full object-cover" />

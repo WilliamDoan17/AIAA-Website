@@ -8,7 +8,7 @@ type Props = {
 }
 
 const AdminMemberCard = ({ member, onEdit, onRemove, removing = false }: Props) => (
-  <div className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
+  <div className="flex items-center gap-4 bg-surface border border-rim rounded-xl px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
     <div className="w-9 h-9 rounded-full overflow-hidden border border-rim flex-shrink-0">
       {member.photo
         ? <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
@@ -25,7 +25,7 @@ const AdminMemberCard = ({ member, onEdit, onRemove, removing = false }: Props) 
       {member.title}
     </span>
 
-    <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border ${
+    <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border ${
       member.role === 'admin' ? 'text-accent border-accent/30 bg-accent-dim' : 'text-muted border-rim'
     }`}>
       {member.role}

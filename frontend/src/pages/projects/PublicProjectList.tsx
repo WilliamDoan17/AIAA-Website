@@ -21,15 +21,15 @@ const PublicProjectList = () => {
   , [data, filters])
 
   return (
-    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative starfield">
+    <div className="bg-void text-copy font-body min-h-screen overflow-x-hidden relative">
       <div className="relative z-[1] pt-20 pb-8 px-6 md:px-16 max-w-[1300px] mx-auto border-b border-rim">
         <span className="font-display text-[0.7rem] tracking-[0.3em] text-accent uppercase block mb-4">
           // PROJECTS
         </span>
-        <h1 className="font-display font-black uppercase tracking-[0.06em] m-0 mb-3 heading-gradient fade-up-slow text-[clamp(2rem,5vw,3.5rem)]">
+        <h1 className="font-display font-black uppercase tracking-[0.06em] m-0 mb-3 text-[clamp(2rem,5vw,3.5rem)]">
           Projects
         </h1>
-        <p className="font-body text-base font-light text-muted tracking-[0.15em] uppercase m-0 fade-up-slow-d1">
+        <p className="font-body text-base font-light text-muted tracking-[0.15em] uppercase m-0">
           Explore what we're working on
         </p>
       </div>

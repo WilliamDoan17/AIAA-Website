@@ -3,7 +3,7 @@ import type { Member } from '../../types/members'
 type Props = { president: Member }
 
 const PresidentCard = ({ president }: Props) => (
-  <div className="relative z-[1] flex flex-col md:flex-row items-stretch max-w-[1300px] mx-auto mt-12 px-6 md:px-16 gap-6 md:gap-12 fade-up president-bar group">
+  <div className="relative z-[1] flex flex-col md:flex-row items-stretch max-w-[1300px] mx-auto mt-12 px-6 md:px-16 gap-6 md:gap-12 group">
     <div className="relative w-full md:w-80 aspect-[3/4] flex-shrink-0 overflow-hidden border border-[rgba(240,165,0,0.3)] md:ml-4">
       {president.photo
         ? <img className="w-full h-full object-cover block [filter:brightness(0.85)_saturate(0.7)] transition-[filter] duration-300 group-hover:[filter:brightness(1)_saturate(1)]" src={president.photo} alt={president.name} />

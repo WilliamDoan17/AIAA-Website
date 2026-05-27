@@ -3,7 +3,7 @@ import type { Project } from '../../../types/projects'
 type Props = { project: Project }
 
 const LandingProjectCard = ({ project }: Props) => (
-  <div className="bg-panel border border-rim flex flex-col overflow-hidden relative transition-[border-color,transform] duration-300 cursor-default card-accent hover:border-accent hover:-translate-y-1 fade-up group">
+  <div className="bg-panel border border-rim flex flex-col overflow-hidden relative transition-[border-color,transform] duration-300 cursor-default hover:border-accent hover:-translate-y-1 group">
     <div className="w-full aspect-video overflow-hidden">
       {project.cover_image
         ? <img className="w-full h-full object-cover block [filter:brightness(0.75)_saturate(0.8)] transition-[filter] duration-300 group-hover:[filter:brightness(0.9)_saturate(1)]" src={project.cover_image} alt={project.name} />

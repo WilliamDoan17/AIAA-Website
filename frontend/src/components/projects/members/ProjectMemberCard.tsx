@@ -14,7 +14,7 @@ const ProjectMemberCard = ({ member, canManage = false, onEdit, onRemove }: Proj
   const memberBase = authMember?.role === 'admin' ? '/u/admin/member' : '/u/officer/member'
 
   return (
-    <div className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4">
+    <div className="flex items-center gap-4 bg-surface border border-rim rounded-xl px-5 py-4">
       <Link
         to={`${memberBase}/${member.member.id}`}
         className="w-9 h-9 flex-shrink-0 overflow-hidden rounded-full bg-rim hover:opacity-80 transition-opacity duration-200"
@@ -35,7 +35,7 @@ const ProjectMemberCard = ({ member, canManage = false, onEdit, onRemove }: Proj
         <p className="font-body text-xs text-muted truncate">{member.title}</p>
       </div>
 
-      <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 text-muted border-rim">
+      <span className="font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border flex-shrink-0 text-muted border-rim">
         {member.role}
       </span>
 

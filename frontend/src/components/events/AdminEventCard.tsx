@@ -27,7 +27,7 @@ const AdminEventCard = ({ event, onEdit, onDelete }: Props) => {
   const eventTime = formatEventTime(event.start_time, event.end_time)
 
   return (
-    <div className="flex items-center gap-4 bg-surface border border-rim rounded px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
+    <div className="flex items-center gap-4 bg-surface border border-rim rounded-xl px-5 py-4 transition-[border-color] duration-200 hover:border-accent/40">
       <div className="flex-1 min-w-0">
         <p className="font-body text-sm font-medium text-copy truncate">{event.name}</p>
         <p className="font-body text-xs text-muted truncate">
@@ -35,7 +35,7 @@ const AdminEventCard = ({ event, onEdit, onDelete }: Props) => {
         </p>
       </div>
 
-      <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded border flex-shrink-0 ${
+      <span className={`font-display text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-xl border flex-shrink-0 ${
         status === 'ongoing'
           ? 'text-gold border-gold/30'
           : status === 'upcoming'

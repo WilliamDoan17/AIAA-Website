@@ -41,7 +41,7 @@ const CreatePostModal = ({ projectId, memberId, onClose }: CreatePostModalProps)
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-void/80 backdrop-blur-sm">
-      <div className="bg-panel border border-rim rounded-lg w-full max-w-lg mx-4 p-6 flex flex-col gap-5">
+      <div className="bg-panel border border-rim rounded-2xl w-full max-w-lg mx-4 p-6 flex flex-col gap-5">
         <div className="flex items-center justify-between">
           <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-copy">New Post</h2>
           <button onClick={onClose} className="text-muted hover:text-copy transition-colors duration-200 font-body text-lg leading-none">✕</button>
@@ -53,7 +53,7 @@ const CreatePostModal = ({ projectId, memberId, onClose }: CreatePostModalProps)
             type="text"
             value={form.title}
             onChange={e => setField('title', e.target.value)}
-            className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.title ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+            className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 ${fieldErrors.title ? 'border-red-400' : 'border-rim focus:border-accent'}`}
           />
           {fieldErrors.title && <p className="text-red-400 text-xs font-body">{fieldErrors.title}</p>}
         </div>
@@ -64,7 +64,7 @@ const CreatePostModal = ({ projectId, memberId, onClose }: CreatePostModalProps)
             rows={6}
             value={form.content}
             onChange={e => setField('content', e.target.value)}
-            className={`bg-surface border rounded px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${fieldErrors.content ? 'border-red-400' : 'border-rim focus:border-accent'}`}
+            className={`bg-surface border rounded-xl px-4 py-2.5 text-sm font-body text-copy placeholder-muted focus:outline-none transition-colors duration-200 resize-none ${fieldErrors.content ? 'border-red-400' : 'border-rim focus:border-accent'}`}
           />
           {fieldErrors.content && <p className="text-red-400 text-xs font-body">{fieldErrors.content}</p>}
         </div>
@@ -75,13 +75,13 @@ const CreatePostModal = ({ projectId, memberId, onClose }: CreatePostModalProps)
           <button
             onClick={handleSubmit}
             disabled={isPending}
-            className="flex-1 py-2.5 rounded border border-accent text-accent text-sm font-body font-medium cta-btn disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            className="flex-1 py-2.5 rounded-xl border border-accent text-accent text-sm font-body font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             {isPending ? 'Saving...' : 'Create Post'}
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
+            className="px-4 py-2.5 rounded-xl border border-rim text-muted text-sm font-body hover:text-copy hover:border-muted transition-colors duration-200"
           >
             Cancel
           </button>
