@@ -40,25 +40,25 @@ frontend/src/
 │   │   ├── Landing.tsx
 │   │   └── Login.tsx
 │   ├── projects/
-│   │   ├── PublicList.tsx        — public project list
-│   │   ├── PublicDetail.tsx      — Info + Members tabs (canEdit=false, canManage=false)
-│   │   ├── AdminList.tsx         — list, create, delete projects
-│   │   ├── AdminDetail.tsx       — Info + Members + Posts tabs (canEdit=true, canManage=true)
-│   │   ├── OfficerList.tsx       — view assigned projects
-│   │   ├── OfficerDetail.tsx     — Info + Members + Posts tabs (canManage derived from project role)
-│   │   └── PostDetail.tsx        — full post + CommentSection; shared by admin & officer routes
+│   │   ├── PublicProjectList.tsx    — public project list
+│   │   ├── PublicProjectDetail.tsx  — Info + Members tabs (canEdit=false, canManage=false)
+│   │   ├── AdminProjectList.tsx     — list, create, delete projects
+│   │   ├── AdminProjectDetail.tsx   — Info + Members + Posts tabs (canEdit=true, canManage=true)
+│   │   ├── OfficerProjectList.tsx   — view assigned projects
+│   │   ├── OfficerProjectDetail.tsx — Info + Members + Posts tabs (canManage derived from project role)
+│   │   └── ProjectPostDetail.tsx    — full post + CommentSection; shared by admin & officer routes
 │   ├── members/
-│   │   ├── PublicList.tsx        — public member list
-│   │   ├── PublicDetail.tsx      — public member detail
-│   │   ├── AdminList.tsx         — view, filter, invite, edit, remove members
-│   │   ├── Detail.tsx            — member detail (admin & officer)
-│   │   └── Profile.tsx           — edit profile + reset password (admin & officer)
+│   │   ├── PublicMemberList.tsx     — public member list
+│   │   ├── PublicMemberDetail.tsx   — public member detail
+│   │   ├── AdminMemberList.tsx      — view, filter, invite, edit, remove members
+│   │   ├── MemberDetail.tsx         — member detail (admin & officer)
+│   │   └── MemberProfile.tsx        — edit profile + reset password (admin & officer)
 │   ├── events/
-│   │   ├── PublicList.tsx        — public event list
-│   │   ├── PublicDetail.tsx      — public event detail
-│   │   └── AdminList.tsx         — admin event management
+│   │   ├── PublicEventList.tsx      — public event list
+│   │   ├── PublicEventDetail.tsx    — public event detail
+│   │   └── AdminEventList.tsx       — admin event management
 │   └── club/
-│       └── Admin.tsx             — view and edit club details
+│       └── AdminClub.tsx            — view and edit club details
 ├── providers/
 │   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
 │   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient
