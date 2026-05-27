@@ -15,6 +15,7 @@ import PublicProjectList from './pages/projects/PublicProjectList'
 import PublicProjectDetail from './pages/projects/PublicProjectDetail'
 import AdminProjectList from './pages/projects/AdminProjectList'
 import AdminProjectDetail from './pages/projects/AdminProjectDetail'
+import OfficerDashboard from './pages/projects/OfficerDashboard'
 import OfficerProjectList from './pages/projects/OfficerProjectList'
 import OfficerProjectDetail from './pages/projects/OfficerProjectDetail'
 import ProjectPostDetail from './pages/projects/ProjectPostDetail'
@@ -64,7 +65,7 @@ function App() {
               </Route>
               <Route path="officer" element={<OfficerRoute />}>
                 <Route element={<OfficerLayout />}>
-                  <Route index element={null}></Route>
+                  <Route index element={<OfficerDashboard />} />
                   <Route path="projects" element={<OfficerProjectList />} />
                   <Route path="projects/:id" element={<OfficerProjectDetail />} />
                   <Route path="projects/:id/posts/:postId" element={<ProjectPostDetail />} />
