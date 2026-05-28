@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
-import SetupGuardModal from '../components/SetupGuardModal'
+import SetupGuardModal from '../components/auth/SetupGuardModal'
 
 const ProtectedRoute = () => {
   const { user, member, loading } = useAuth()

@@ -2,17 +2,81 @@
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
 <details>
-  <summary>May 19, 2026</summary>
+  <summary>May 27, 2026</summary>
 
-  - Carried over from May 18 / May 17:
-    - UI polish:
-      - split pages into components for easy management
-      - add a dashboard for members
-      - change the UI so it makes the unique style for each (members, projects, etc.)
-    - check database implementation for constraints and fix it
-    - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md`
-    - add column of `updated_at` and update trigger for each db domain
+  - UI polish:
+    - split pages into components for easy management ✅
+      - `AdminClub`:
+        - `ClubForm`: `components/club/ClubForm` ✅
+      - `components/events/` ✅
+        - `AdminEventList`:
+          - split in to Modal and Form components (`CreateEventModal, UpdateEventModal, CreateEventForm, UpdateEventForm`) ✅
+          - use state to manage modals ✅
+          - `AdminEventCard` ✅
+        - `PublicEventList`: 
+          - create `PublicEventCard` to substitute for in-file `EventCard` and use it ✅
+          - `PublicEventGroup` ✅
+      - `components/members` ✅
+        - `AdminMemberList`:
+          - `InviteMemberModal` ✅
+          - `UpdateMemberModal` ✅
+          - `AdminMemberCard` ✅
+          - use state to manage modal ✅
+        - `MemberProfile`:
+          - `UpdateProfileSection` to substitute `EditProfileSection` ✅
+          - `ResetPasswordSection` ✅
+        - `PublicMemberList`:
+          - `PublicMemberCard` ✅
+          - `PublicMemberContainer` ✅
+      - `components/projects` ✅
+        - change any `Edit` to `Update` ✅
+        - `AdminProjectDetail`:
+          - `DeleteProjectModal` and state management for modals ✅
+        - `AdminProjectList`:
+          - `CreateProjectModal` ✅
+          - `DeleteProjectModal` ✅
+          - `ProjectFilter` ✅
+          - `AdminProjectCard` ✅
+          - use state management for modals ✅
+        - `OfficerProjectList`:
+          - `OfficerProjectCard` ✅
+        - `PublicProjectList`:
+          - `PublicProjectCard` ✅
+          - `PublicProjectFilter` ✅
+          - `PublicProjectContainer` ✅
+        - `components/public/landing/` ✅
+          - `Landing(domain)Card` ✅
+    - all pages use `modal` / `setModal` directly (no `closeModal` alias) ✅
+    - add a dashboard for members (`/u/officer`) ✅
+      - `OfficerDashboard` page at `pages/projects/OfficerDashboard` ✅
+      - sections: My Projects (up to 4), Upcoming Events (up to 3), Quick Actions ✅
+      - `DashboardEventCard`: lightweight event card (date, name, location) ✅
+      - reuses `OfficerProjectCard` for project rows ✅
+    - add a dashboard for admin ✅
+      - `AdminDashboard` page at `pages/AdminDashboard` ✅
+      - sections: Overview stats (members, projects, active, events), Upcoming Events, Quick Actions ✅
+      - `AdminStatCard`: compact stat widget (label + value) ✅
+      - reuses `DashboardEventCard` for events section ✅
+    - change the UI style to `WattVision` (keep the color tone, but change everything)
+      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`) 
+        - Note: `STYLE.md` is now more detailed
+      - Split in phases for updating UI
+        - (Phases here) 
+  - Server: 
+    - check database implementation for constraints and fix it ✅
+    - add column of `updated_at` and update trigger for each db domain ✅
+    - take notes of current trigger and trigger functions on server and update it back on docs ✅
+  - Seed database with club content
+</details>
 
+<details>
+  <summary>May 25, 2026</summary>
+
+  - split supabase_functions to `TRIGGERS.md`, `FUNCTIONS.md` ✅
+  - See others profile (member) on click to: 
+    - comments name / profile picture ✅
+    - post author name / profile picture ✅
+    - project member card  ✅
 </details>
 
 <details>

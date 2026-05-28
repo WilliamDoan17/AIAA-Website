@@ -9,10 +9,11 @@ This document details the data model, validations, and access (RLS) controls for
 ### Schema
 | Field        | Type    | Notes                        |
 |--------------|---------|------------------------------|
-| id           | uuid    | primary key, auto-generated  |
-| name         | text    | not null, not empty          |
-| cover_image  | text    | not null, default ''         |
-| about        | text    | not null, default ''         |
+| id           | uuid        | primary key, auto-generated  |
+| name         | text        | not null, not empty          |
+| cover_image  | text        | not null, default ''         |
+| about        | text        | not null, default ''         |
+| updated_at   | timestamptz | not null, default now()      |
 
 ### RLS
 - **SELECT**: none
@@ -36,6 +37,7 @@ This document details the data model, validations, and access (RLS) controls for
 | bio        | text             | not null, default ''               |
 | is_setup   | boolean          | not null, default false            |
 | created_at | timestamptz      | not null, default now()            |
+| updated_at | timestamptz      | not null, default now()            |
 
 > `club_role`: `admin` | `officer`
 
@@ -84,6 +86,7 @@ This document details the data model, validations, and access (RLS) controls for
 | member_id  | uuid                      | PK, references club_members(id) on delete cascade |
 | role       | project_member_role enum  | not null, default 'contributor'    |
 | title      | text                      | not null, not empty                |
+| updated_at | timestamptz               | not null, default now()            |
 
 > `project_member_role`: `admin` | `contributor`
 
@@ -125,10 +128,13 @@ This document details the data model, validations, and access (RLS) controls for
 | project_post_comments | content       | not empty, 2–2048 chars         |
 
 ### Triggers
-| Table           | Trigger name              | Function                                        | Event         |
-|-----------------|---------------------------|-------------------------------------------------|---------------|
-| projects        | on_project_update         | set_project_updated_at()                        | BEFORE UPDATE |
-| project_members | on_project_member_update  | prevent_project_member_project_id_change()      | BEFORE UPDATE |
+| Table                   | Trigger name                       | Function                                        | Event         |
+|-------------------------|------------------------------------|-------------------------------------------------|---------------|
+| projects                | on_project_update                  | set_updated_at()                                | BEFORE UPDATE |
+| project_members         | on_project_member_update           | prevent_project_member_project_id_change()      | BEFORE UPDATE |
+| project_members         | on_project_member_set_updated_at   | set_updated_at()                                | BEFORE UPDATE |
+| project_posts           | on_post_update                     | set_updated_at()                                | BEFORE UPDATE |
+| project_post_comments   | on_comment_update                  | set_updated_at()                                | BEFORE UPDATE |
 
 ### RLS Policies
 - projects: SELECT public — INSERT/DELETE club admin only, UPDATE project admin or club admin
@@ -155,6 +161,7 @@ This document details the data model, validations, and access (RLS) controls for
 | url         | text              | nullable                     |
 | start_time  | timestamptz       | not null                     |
 | end_time    | timestamptz       | not null, end_time > start_time |
+| updated_at  | timestamptz       | not null, default now()      |
 
 ### Validation
 | Field       | Validation                            |

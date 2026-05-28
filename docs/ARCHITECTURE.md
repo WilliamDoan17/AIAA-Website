@@ -35,21 +35,32 @@ frontend/src/
 │   ├── AdminLayout.tsx     — sidebar + outlet for admin routes
 │   ├── OfficerLayout.tsx   — layout for officer/contributor routes
 │   └── PublicLayout.tsx    — Navbar + Footer + outlet for public routes
-├── pages/                  — one file per route, prefixed by audience
-│   ├── Landing.tsx
-│   ├── Login.tsx
-│   ├── MemberProfile.tsx   — edit profile + reset password (admin & officer)
-│   ├── PublicEvents.tsx
-│   ├── PublicMembers.tsx
-│   ├── PublicMemberDetail.tsx
-│   ├── PublicProjects.tsx
-│   ├── PublicProjectDetail.tsx  — Info + Members tabs (canEdit=false, canManage=false)
-│   ├── AdminClub.tsx
-│   ├── AdminMembers.tsx
-│   ├── AdminProjects.tsx
-│   ├── AdminProjectDetail.tsx   — Info + Members + Posts tabs (canEdit=true, canManage=true)
-│   ├── OfficerProjectDetail.tsx — Info + Members + Posts tabs (canManage derived from project role)
-│   └── ProjectPostDetail.tsx    — full post + CommentSection; shared by officer and admin routes
+├── pages/                  — organized by content domain; role encoded in filename prefix
+│   ├── AdminDashboard.tsx           — admin index: stats, upcoming events, quick actions
+│   ├── OfficerDashboard.tsx         — officer index: assigned projects, upcoming events, quick actions
+│   ├── public/
+│   │   ├── Landing.tsx
+│   │   └── Login.tsx
+│   ├── projects/
+│   │   ├── PublicProjectList.tsx    — public project list
+│   │   ├── PublicProjectDetail.tsx  — Info + Members tabs (canEdit=false, canManage=false)
+│   │   ├── AdminProjectList.tsx     — list, create, delete projects
+│   │   ├── AdminProjectDetail.tsx   — Info + Members + Posts tabs (canEdit=true, canManage=true)
+│   │   ├── OfficerProjectList.tsx   — view assigned projects
+│   │   ├── OfficerProjectDetail.tsx — Info + Members + Posts tabs (canManage derived from project role)
+│   │   └── ProjectPostDetail.tsx    — full post + CommentSection; shared by admin & officer routes
+│   ├── members/
+│   │   ├── PublicMemberList.tsx     — public member list
+│   │   ├── PublicMemberDetail.tsx   — public member detail
+│   │   ├── AdminMemberList.tsx      — view, filter, invite, edit, remove members
+│   │   ├── MemberDetail.tsx         — member detail (admin & officer)
+│   │   └── MemberProfile.tsx        — edit profile + reset password (admin & officer)
+│   ├── events/
+│   │   ├── PublicEventList.tsx      — public event list
+│   │   ├── PublicEventDetail.tsx    — public event detail
+│   │   └── AdminEventList.tsx       — admin event management
+│   └── club/
+│       └── AdminClub.tsx            — view and edit club details
 ├── providers/
 │   ├── AuthProvider.tsx    — fetches session + club_members row on auth change
 │   └── QueryProvider.tsx   — configures and provides the TanStack QueryClient
