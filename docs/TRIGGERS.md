@@ -22,6 +22,61 @@ Refreshes `updated_at` to `now()` on every update.
 
 ---
 
+## `on_project_update`
+
+**Table:** `public.projects`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
+## `on_project_member_update`
+
+**Table:** `public.project_members`
+**Event:** `BEFORE UPDATE`
+**Function:** [`prevent_project_member_project_id_change()`](FUNCTIONS.md#prevent_project_member_project_id_change)
+
+**Description:**
+Blocks any attempt to change `project_id` on an existing `project_members` row.
+
+---
+
+## `on_project_member_set_updated_at`
+
+**Table:** `public.project_members`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
+## `on_post_update`
+
+**Table:** `public.project_posts`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
+## `on_comment_update`
+
+**Table:** `public.project_post_comments`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
 ## `enforce_self_title_restriction`
 
 **Table:** `public.club_members`

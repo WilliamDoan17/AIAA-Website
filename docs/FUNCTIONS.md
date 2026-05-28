@@ -73,7 +73,7 @@ Updates the calling user's password and marks `is_setup = true` in `club_members
 ### `set_updated_at()`
 
 **Security:** `INVOKER`
-**Used by triggers:** `on_club_info_update`, `on_club_member_update` *(and future update triggers across all domains)*
+**Used by triggers:** `on_club_info_update`, `on_club_member_update`, `on_project_update`, `on_project_member_set_updated_at`, `on_post_update`, `on_comment_update`
 
 **Description:**
 Sets `NEW.updated_at = now()` before any UPDATE. Shared across all tables that carry an `updated_at` column.
@@ -99,6 +99,16 @@ Deletes the corresponding `auth.users` row when a `club_members` record is delet
 Prevents any member from updating their own `title` field — regardless of role. Only service role calls (e.g. edge functions) are unaffected.
 
 > **Note:** The function does not check `role`; it blocks all `auth.uid() = OLD.id` self-updates on `title`. If admin self-updates should be allowed, an `IS NOT (SELECT role FROM club_members WHERE id = auth.uid()) = 'admin'` guard needs to be added.
+
+---
+
+### `prevent_project_member_project_id_change()`
+
+**Security:** `INVOKER`
+**Used by trigger:** `on_project_member_update`
+
+**Description:**
+Raises an exception if `NEW.project_id <> OLD.project_id`, preventing reassignment of a project member to a different project.
 
 ---
 
