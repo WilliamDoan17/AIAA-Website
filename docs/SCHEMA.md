@@ -161,6 +161,7 @@ This document details the data model, validations, and access (RLS) controls for
 | url         | text              | nullable                     |
 | start_time  | timestamptz       | not null                     |
 | end_time    | timestamptz       | not null, end_time > start_time |
+| updated_at  | timestamptz       | not null, default now()      |
 
 ### Validation
 | Field       | Validation                            |

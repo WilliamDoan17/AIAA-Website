@@ -73,7 +73,7 @@ Updates the calling user's password and marks `is_setup = true` in `club_members
 ### `set_updated_at()`
 
 **Security:** `INVOKER`
-**Used by triggers:** `on_club_info_update`, `on_club_member_update`, `on_project_update`, `on_project_member_set_updated_at`, `on_post_update`, `on_comment_update`
+**Used by triggers:** `on_club_info_update`, `on_club_member_update`, `on_event_update`, `on_project_update`, `on_project_member_set_updated_at`, `on_post_update`, `on_comment_update`
 
 **Description:**
 Sets `NEW.updated_at = now()` before any UPDATE. Shared across all tables that carry an `updated_at` column.

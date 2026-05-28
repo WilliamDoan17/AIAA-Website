@@ -22,6 +22,17 @@ Refreshes `updated_at` to `now()` on every update.
 
 ---
 
+## `on_event_update`
+
+**Table:** `public.events`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
 ## `on_project_update`
 
 **Table:** `public.projects`
