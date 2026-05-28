@@ -95,7 +95,7 @@ Refreshes `updated_at` to `now()` on every update.
 **Function:** [`restrict_self_title_update()`](FUNCTIONS.md#restrict_self_title_update)
 
 **Description:**
-Prevents a non-admin member from updating their own `title`.
+Prevents any member from updating their own `title`, regardless of role.
 
 ---
 

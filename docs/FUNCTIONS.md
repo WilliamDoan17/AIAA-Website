@@ -96,9 +96,7 @@ Deletes the corresponding `auth.users` row when a `club_members` record is delet
 **Used by trigger:** `enforce_self_title_restriction`
 
 **Description:**
-Prevents any member from updating their own `title` field — regardless of role. Only service role calls (e.g. edge functions) are unaffected.
-
-> **Note:** The function does not check `role`; it blocks all `auth.uid() = OLD.id` self-updates on `title`. If admin self-updates should be allowed, an `IS NOT (SELECT role FROM club_members WHERE id = auth.uid()) = 'admin'` guard needs to be added.
+Prevents any member from updating their own `title` field, regardless of role. Only service role calls (e.g. edge functions) bypass this restriction.
 
 ---
 
