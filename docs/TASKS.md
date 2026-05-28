@@ -63,9 +63,9 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - Split in phases for updating UI
         - (Phases here) 
   - Server: 
-    - check database implementation for constraints and fix it
-    - add column of `updated_at` and update trigger for each db domain
-    - take notes of current trigger and trigger functions
+    - check database implementation for constraints and fix it ✅
+    - add column of `updated_at` and update trigger for each db domain ✅
+    - take notes of current trigger and trigger functions on server and update it back on docs ✅
   - Seed database with club content
 </details>
 
