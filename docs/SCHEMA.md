@@ -9,10 +9,11 @@ This document details the data model, validations, and access (RLS) controls for
 ### Schema
 | Field        | Type    | Notes                        |
 |--------------|---------|------------------------------|
-| id           | uuid    | primary key, auto-generated  |
-| name         | text    | not null, not empty          |
-| cover_image  | text    | not null, default ''         |
-| about        | text    | not null, default ''         |
+| id           | uuid        | primary key, auto-generated  |
+| name         | text        | not null, not empty          |
+| cover_image  | text        | not null, default ''         |
+| about        | text        | not null, default ''         |
+| updated_at   | timestamptz | not null, default now()      |
 
 ### RLS
 - **SELECT**: none
@@ -36,6 +37,7 @@ This document details the data model, validations, and access (RLS) controls for
 | bio        | text             | not null, default ''               |
 | is_setup   | boolean          | not null, default false            |
 | created_at | timestamptz      | not null, default now()            |
+| updated_at | timestamptz      | not null, default now()            |
 
 > `club_role`: `admin` | `officer`
 

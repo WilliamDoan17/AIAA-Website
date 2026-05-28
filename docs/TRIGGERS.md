@@ -1,5 +1,27 @@
 # Triggers
 
+## `on_club_info_update`
+
+**Table:** `public.club_info`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
+## `on_club_member_update`
+
+**Table:** `public.club_members`
+**Event:** `BEFORE UPDATE`
+**Function:** [`set_updated_at()`](FUNCTIONS.md#set_updated_at)
+
+**Description:**
+Refreshes `updated_at` to `now()` on every update.
+
+---
+
 ## `enforce_self_title_restriction`
 
 **Table:** `public.club_members`

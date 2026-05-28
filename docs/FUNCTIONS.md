@@ -70,6 +70,16 @@ Updates the calling user's password and marks `is_setup = true` in `club_members
 
 ## Database Functions
 
+### `set_updated_at()`
+
+**Security:** `INVOKER`
+**Used by triggers:** `on_club_info_update`, `on_club_member_update` *(and future update triggers across all domains)*
+
+**Description:**
+Sets `NEW.updated_at = now()` before any UPDATE. Shared across all tables that carry an `updated_at` column.
+
+---
+
 ### `delete_auth_user()`
 
 **Security:** `SECURITY DEFINER`
@@ -86,7 +96,9 @@ Deletes the corresponding `auth.users` row when a `club_members` record is delet
 **Used by trigger:** `enforce_self_title_restriction`
 
 **Description:**
-Prevents a non-admin member from updating their own `title` field. Admins updating their own or other members' titles and service role calls are unaffected.
+Prevents any member from updating their own `title` field — regardless of role. Only service role calls (e.g. edge functions) are unaffected.
+
+> **Note:** The function does not check `role`; it blocks all `auth.uid() = OLD.id` self-updates on `title`. If admin self-updates should be allowed, an `IS NOT (SELECT role FROM club_members WHERE id = auth.uid()) = 'admin'` guard needs to be added.
 
 ---
 
