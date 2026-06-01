@@ -1,6 +1,17 @@
 # TASKS
 Daily log of tasks worked on. One `<details>` block per day, newest on top.
 
+---
+
+## To be done
+
+- Seed database with real club content (projects, events, members)
+- Final QA pass on all public and admin flows
+- Redeploy on Vercel
+- Announce publicly
+
+---
+
 <details>
   <summary>May 27, 2026</summary>
 
@@ -57,11 +68,11 @@ Daily log of tasks worked on. One `<details>` block per day, newest on top.
       - sections: Overview stats (members, projects, active, events), Upcoming Events, Quick Actions ✅
       - `AdminStatCard`: compact stat widget (label + value) ✅
       - reuses `DashboardEventCard` for events section ✅
-    - change the UI style to `WattVision` (keep the color tone, but change everything)
-      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`) 
+    - change the UI style to `WattVision` (keep the color tone, but change everything) ✅
+      - Read `STYLE.md` and decide what part to change to update `STYLE.md` (using `design/WattVision`) ✅
         - Note: `STYLE.md` is now more detailed
-      - Split in phases for updating UI
-        - (Phases here) 
+      - Split in phases for updating UI ✅
+      - Execute UI phases ✅
   - Server: 
     - check database implementation for constraints and fix it ✅
     - add column of `updated_at` and update trigger for each db domain ✅

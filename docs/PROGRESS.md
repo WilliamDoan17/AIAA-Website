@@ -104,4 +104,47 @@
 
 ---
 
-**Last updated:** Tue Apr 29 2026
+## Phase 3 — Enhancements & Feature Extensions
+
+### P3-1 — File & Image Uploads
+
+| Task | Status |
+|------|--------|
+| Set up Supabase Storage bucket(s) with RLS | ⬜ |
+| File upload for club info cover image | ⬜ |
+| File upload for member profile photo | ⬜ |
+| File upload for project cover image | ⬜ |
+| File and image upload for project posts | ⬜ |
+
+### P3-2 — Messages
+
+| Task | Status |
+|------|--------|
+| Schema and RLS for `messages` domain | ⬜ |
+| Write service functions and hooks for messages | ⬜ |
+| Messages page (inbox, compose, conversation view) | ⬜ |
+| File and image attachments in messages | ⬜ |
+
+### P3-3 — Real-time Notifications
+
+| Task | Status |
+|------|--------|
+| Real-time Supabase subscriptions for comment activity | ⬜ |
+| In-app notification indicator and list UI | ⬜ |
+
+### P3-4 — Comment UX Improvements
+
+| Task | Status |
+|------|--------|
+| Cap visual indent at depth 2 | ⬜ |
+| @mention pre-fill when replying to a comment | ⬜ |
+
+### P3-5 — Onboarding Polish
+
+| Task | Status |
+|------|--------|
+| Custom email content for member invites | ⬜ |
+
+---
+
+**Last updated:** Sat May 31 2026

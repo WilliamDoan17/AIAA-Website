@@ -1,6 +1,6 @@
 # SCOPE
 
-This document outlines the features to be implemented for the AIAA-Website, organized by domain.
+This document outlines the full feature set for the AIAA-Website, organized by domain.
 
 ---
 
@@ -8,7 +8,7 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 - Admins may view and edit club-wide information, including:
   - Name
-  - Cover image
+  - Cover image (file upload via Supabase Storage)
   - About/description
 - Club information is managed from an admin-only dashboard page
 
@@ -17,11 +17,12 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 ## club_members
 
 - Admin features:
-  - Invite (add) a new member (triggers Supabase invite email; member sets their own password)
+  - Invite (add) a new member (triggers customizable invite email; member sets their own password)
   - Edit member's role and title
   - Remove members
 - Officer features:
   - Edit own name, photo, and bio (cannot modify email, role, or title — title is set by an admin only)
+  - Profile photo upload via Supabase Storage
 
 - Onboarding flow:
   1. Admin invites member; user receives an invite link
@@ -38,14 +39,21 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 - Project admin features:
   - Add/remove members for their project; edit member role/title
   - Edit their project's details (name, summary, description, cover image, status)
+  - Cover image upload via Supabase Storage
   - Create, edit, or delete any post in their project
 - Contributor features:
   - Create, edit, or delete their own posts in assigned projects
+  - Attach files and images to posts
   - Comment on any post within assigned projects
 
 - Page structure: unified role-aware routes — a single `/projects/:id` renders different controls based on the
   user's role in that specific project (club admin > project admin > contributor). No separate `/contributor/`
   or `/admin/` project routes; role is resolved per project at render time.
+
+- Comment section:
+  - Visual indent capped at depth 2 (replies to replies render at same indent level as depth-1)
+  - @mention pre-fill when replying to another user's comment
+  - Real-time notifications for new comments on watched posts
 
 ---
 
@@ -60,16 +68,11 @@ This document outlines the features to be implemented for the AIAA-Website, orga
 
 ---
 
+## messages
 
-## Future 
-- Notifications for comments (realtime database)
-- Onboarding to club:
-  - Custom email sending
-- Upload pictures for `cover-image`s & `photo`s
-- Messages
-- See others profile (member) `/u/profile/:id`
-- Upload file & pictures to posts & messages
-- Comment section: cap visual indent at depth 2 (replies to replies render at same indent level as depth-1)
-- Comment section: @mention pre-fill when replying to another user's comment
+- Direct messaging between club members
+- File and image attachments in messages
+
+---
 
 (See SCHEMA.md for technical/database implementation, validation, and RLS details. See PAGES.md for page-by-page breakdown.)

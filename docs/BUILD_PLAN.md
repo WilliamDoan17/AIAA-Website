@@ -91,6 +91,41 @@ The detail pages are deferred to this phase because they involve relational data
 
 ---
 
+### Phase 3 — Storage, Messaging & Real-time
+Focus: file storage, direct messaging, real-time notifications, and comment UX.
+
+**Goal:** Complete the collaboration layer — members can upload files, message each other, and get notified about activity in real time.
+
+---
+
+### Steps
+
+#### P3-1 — File & Image Uploads
+- Set up Supabase Storage bucket(s) with appropriate RLS policies
+- Replace URL-based cover image input with file upload for club info
+- Replace URL-based cover image input with file upload for project cover images
+- Replace URL-based photo input with file upload for member profile photos
+- Add file and image upload support to project posts
+
+#### P3-2 — Messages
+- Schema and RLS for a `messages` domain (direct messaging between members)
+- Write service functions and hooks for messages
+- Messages page with inbox, compose, and conversation view
+- File and image attachments in messages
+
+#### P3-3 — Real-time Notifications
+- Real-time Supabase subscriptions for comment activity on watched posts
+- In-app notification indicator and notification list UI
+
+#### P3-4 — Comment UX Improvements
+- Cap visual indent at depth 2 (replies to replies render at same indent level as depth-1)
+- @mention pre-fill when replying to another user's comment (auto-inserts @username in input)
+
+#### P3-5 — Onboarding Polish
+- Customizable email content for member invites (replace default Supabase invite email template)
+
+---
+
 ## Development Strategy
 - Develop and ship by features (vertical slices of the scope)
 
