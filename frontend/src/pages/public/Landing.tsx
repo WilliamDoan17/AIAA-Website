@@ -5,6 +5,7 @@ import { useClubInfo } from '../../hooks/club'
 import LandingMemberCard from '../../components/public/landing/LandingMemberCard'
 import LandingEventCard from '../../components/public/landing/LandingEventCard'
 import LandingProjectCard from '../../components/public/landing/LandingProjectCard'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
   const { data: clubInfo } = useClubInfo()
@@ -24,14 +25,17 @@ const Landing = () => {
       {/* Hero */}
       <div className="relative min-h-screen flex flex-col items-center justify-center text-center py-24 px-8 z-[1] overflow-hidden">
         <h1 className="font-display text-[clamp(1.8rem,5vw,3.8rem)] font-black uppercase tracking-[0.06em] leading-[1.15] max-w-[900px] mb-6">
-          {clubInfo?.name ?? ''}
+          {clubInfo?.name ?? 'American Institute of Aeronautics and Astronautics'}
         </h1>
         <h3 className="font-body font-light text-[clamp(1rem,2.5vw,1.4rem)] tracking-[0.25em] uppercase text-accent mb-10">
           Become part of our vibrant community
         </h3>
-        <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300 cta-btn">
-          Join Now
-        </button>
+        <Link to="https://linktr.ee/aiaausf">
+          <button className="font-display text-sm font-bold uppercase tracking-[0.2em] py-4 px-12 bg-transparent text-accent border border-accent cursor-pointer relative overflow-hidden transition-colors duration-300 cta-btn">
+            Join Now
+          </button>
+
+        </Link>
       </div>
 
       {/* About */}
